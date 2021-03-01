@@ -5,6 +5,9 @@
         cols="12"
         sm="8"
       >
+        <v-card>
+          <v-card-title></v-card-title>
+        </v-card>
       </v-col>
 
       <v-col

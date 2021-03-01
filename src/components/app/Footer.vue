@@ -1,6 +1,5 @@
 <template>
   <v-footer
-    elevation="24"
     color="white"
     padless
   >

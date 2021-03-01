@@ -6,27 +6,27 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '',
-    component: () => import('../views/Index'),
+    component: () => import('../views/app/Index'),
     children: [
       {
         path: '/',
         name: '主页',
-        component: () => import('../views/Home')
+        component: () => import('../views/app/Home')
       },
       {
         path: '/category',
         name: '分类',
-        component: () => import('../views/Category')
+        component: () => import('../views/app/Category')
       },
       {
         path: '/tag',
         name: '标签',
-        component: () => import('../views/Tag')
+        component: () => import('../views/app/Tag')
       },
       {
         path: '/about',
         name: '关于',
-        component: () => import('../views/About')
+        component: () => import('../views/app/About')
       }
     ]
   }

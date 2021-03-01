@@ -1,4 +1,13 @@
-<template></template>
+<template>
+
+</template>
+
 <script>
-  export default {}
+export default {
+  name: 'Dashboard'
+}
 </script>
+
+<style scoped>
+
+</style>
