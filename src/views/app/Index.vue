@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'Home',
+  name: 'Index',
   components: {
     AppDrawer: () => import('../../components/app/Drawer'),
     AppBar: () => import('../../components/app/Bar'),

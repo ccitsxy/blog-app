@@ -1,6 +1,5 @@
 <template>
   <div class="order">
-    <h5>富文本编辑器</h5>
     <div id="vditor"></div>
   </div>
 </template>
@@ -18,7 +17,7 @@ export default {
   },
   mounted () {
     this.contentEditor = new Vditor('vditor', {
-      height: 360,
+      minHeight: 360,
       toolbarConfig: {
         pin: true
       },
