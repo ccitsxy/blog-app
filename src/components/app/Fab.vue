@@ -11,3 +11,13 @@
     <v-icon>mdi-chevron-up</v-icon>
   </v-btn>
 </template>
+
+<script>
+
+export default {
+  name: 'Fab',
+  mounted () {
+    document.addEventListener()
+  }
+}
+</script>

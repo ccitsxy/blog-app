@@ -27,22 +27,7 @@
         {{ item2.name }}
       </v-tab>
     </v-tabs>
-    <v-btn
-      height="100%"
-      text
-      color="primary"
-      class="hidden-sm-and-down"
-    >
-      登录
-    </v-btn>
-    <v-btn
-      height="100%"
-      text
-      color="primary"
-      class="hidden-sm-and-down"
-    >
-      注册
-    </v-btn>
+    <account></account>
   </v-app-bar>
 </template>
 
@@ -50,11 +35,14 @@
 import { sync } from 'vuex-pathify'
 
 export default {
-  name: 'AppBar',
+  name: 'Bar',
   computed: {
     ...sync('app', [
       'drawer'
     ])
+  },
+  components: {
+    Account: () => import('./widget/account')
   }
 }
 </script>

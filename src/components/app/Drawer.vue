@@ -22,7 +22,7 @@
 import { sync } from 'vuex-pathify'
 
 export default {
-  name: 'AppDrawer',
+  name: 'Drawer',
   computed: {
     ...sync('app', [
       'drawer'
