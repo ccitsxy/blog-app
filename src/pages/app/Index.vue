@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <div>
 
     <app-drawer/>
 
@@ -10,8 +10,7 @@
     <app-footer/>
 
     <app-fab/>
-
-  </v-app>
+  </div>
 </template>
 
 <script>

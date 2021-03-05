@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer
+<!--  <v-navigation-drawer
     v-model="drawer"
     app
     temporary
@@ -15,7 +15,7 @@
         {{ item2.name }}
       </v-list-item>
     </v-list-item-group>
-  </v-navigation-drawer>
+  </v-navigation-drawer>-->
 </template>
 
 <script>
