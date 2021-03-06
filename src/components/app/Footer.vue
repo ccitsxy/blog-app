@@ -1,5 +1,5 @@
 <template>
-<!--  <v-footer
+  <v-footer
     color="white"
     padless
   >
@@ -17,5 +17,5 @@
         </strong>
       </v-col>
     </v-row>
-  </v-footer>-->
+  </v-footer>
 </template>

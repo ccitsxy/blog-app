@@ -1,8 +1,22 @@
 <template>
-  <div>
-    <div id="preview"></div>
-    <div id="outline"></div>
-  </div>
+  <v-container>
+    <v-row justify="center">
+      <v-col
+        cols="12"
+        sm="10"
+      >
+        <v-container id="preview"></v-container>
+      </v-col>
+
+      <v-col
+        cols="12"
+        sm="2"
+      >
+        <v-container id="outline"></v-container>
+      </v-col>
+    </v-row>
+
+  </v-container>
 </template>
 
 <script>
@@ -116,7 +130,6 @@ export default {
   display: block;
   padding-left: 8px;
 }
-
 /* 目录下箭头svg */
 #outline li > span > svg {
   width: 10px;

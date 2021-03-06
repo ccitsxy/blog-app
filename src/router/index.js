@@ -1,30 +1,39 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import routes from './routes'
-
 Vue.use(VueRouter)
 
-/*
- * If not building with SSR mode, you can
- * directly export the Router instantiation;
- *
- * The function below can be async too; either use
- * async/await or return a Promise which resolves
- * with the Router instance.
- */
+const routes = [
+  {
+    path: '',
+    component: () => import('../views/app/Index'),
+    children: [
+      {
+        path: '/',
+        name: '主页',
+        component: () => import('../views/app/Home')
+      },
+      {
+        path: '/category',
+        name: '分类',
+        component: () => import('../views/app/Category')
+      },
+      {
+        path: '/tag',
+        name: '标签',
+        component: () => import('../views/app/Tag')
+      },
+      {
+        path: '/about',
+        name: '关于',
+        component: () => import('../views/app/About')
+      }
+    ]
+  }
+]
 
-export default function (/* { store, ssrContext } */) {
-  const Router = new VueRouter({
-    scrollBehavior: () => ({ x: 0, y: 0 }),
-    routes,
+const router = new VueRouter({
+  routes
+})
 
-    // Leave these as they are and change in quasar.conf.js instead!
-    // quasar.conf.js -> build -> vueRouterMode
-    // quasar.conf.js -> build -> publicPath
-    mode: process.env.VUE_ROUTER_MODE,
-    base: process.env.VUE_ROUTER_BASE
-  })
-
-  return Router
-}
+export default router

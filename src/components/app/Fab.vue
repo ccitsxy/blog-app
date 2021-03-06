@@ -1,5 +1,5 @@
 <template>
-<!--  <v-btn
+  <v-btn
     color="primary"
     fab
     bottom
@@ -9,7 +9,7 @@
     @click="$vuetify.goTo(0)"
   >
     <v-icon>mdi-chevron-up</v-icon>
-  </v-btn>-->
+  </v-btn>
 </template>
 
 <script>
