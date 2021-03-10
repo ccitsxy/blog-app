@@ -13,9 +13,19 @@
       >
         {{ new Date().getFullYear() }} —
         <strong>
-          <router-link class="text-decoration-none" to="/">博客</router-link>
+          <router-link class="black--text text-decoration-none" to="/">博客</router-link>
         </strong>
       </v-col>
     </v-row>
   </v-footer>
 </template>
+
+<script>
+export default {
+  name: 'Footer'
+}
+</script>
+
+<style scoped>
+
+</style>

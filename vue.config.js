@@ -11,6 +11,8 @@ module.exports = {
   productionSourceMap: false,
   // 生成的 HTML 中的 <link rel="stylesheet"> 和 <script> 标签上启用 Subresource Integrity (SRI)
   integrity: false,
+  // 保存时自动更正
+  lintOnSave: true,
   // webpack相关配置
   chainWebpack: (config) => {
     config.resolve.alias

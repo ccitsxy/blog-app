@@ -1,19 +1,24 @@
 <template>
   <v-container>
-    <v-row justify="center">
+    <v-row>
       <v-col
         cols="12"
-        sm="8"
+        sm="10"
       >
+        <v-card>
+
+        </v-card>
       </v-col>
 
       <v-col
         cols="12"
-        sm="4"
+        sm="2"
       >
+        <v-card>
+          <!--  -->
+        </v-card>
       </v-col>
     </v-row>
-
   </v-container>
 </template>
 
