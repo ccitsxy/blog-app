@@ -2,7 +2,7 @@
   <v-app>
     <admin-app-bar />
 
-    <admin-drawer />
+    <admin-drawer :nav="nav" />
 
     <admin-view />
 
@@ -17,24 +17,20 @@ export default {
     return {
       nav: [
         {
-          name: '主页',
-          path: '/'
+          name: '文章编辑',
+          path: '/admin/edit'
         },
         {
-          name: '分类',
-          path: '/category'
+          name: '文章管理',
+          path: '/admin/article'
         },
         {
-          name: '标签',
-          path: '/tag'
+          name: '分类管理',
+          path: '/admin/category'
         },
         {
-          name: '归档',
-          path: '/archive'
-        },
-        {
-          name: '关于',
-          path: '/about'
+          name: '标签管理',
+          path: '/admin/tag'
         }
       ]
     }

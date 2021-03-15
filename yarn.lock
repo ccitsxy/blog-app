@@ -8465,10 +8465,10 @@ vary@~1.1.2:
   resolved "https://registry.npm.taobao.org/vary/download/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
-vditor@3.7.6:
-  version "3.7.6"
-  resolved "https://registry.npm.taobao.org/vditor/download/vditor-3.7.6.tgz#b6d9574a46836cffef05d030154526ee7113925e"
-  integrity sha1-ttlXSkaDbP/vBdAwFUUm7nETkl4=
+vditor@^3.8.3:
+  version "3.8.3"
+  resolved "https://registry.npm.taobao.org/vditor/download/vditor-3.8.3.tgz#f649580e070b5c7f2b82b4034c572210afcc5162"
+  integrity sha1-9klYDgcLXH8rgrQDTFciEK/MUWI=
   dependencies:
     diff-match-patch "^1.0.5"
 

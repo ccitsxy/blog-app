@@ -38,7 +38,7 @@
         </v-btn>
       </template>
       <v-list class="py-0">
-        <v-list-item link>管理</v-list-item>
+        <v-list-item link to="/admin">管理</v-list-item>
         <v-list-item link>退出</v-list-item>
       </v-list>
     </v-menu>
@@ -60,9 +60,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.v-list {
-  font-size: 0.875rem;
-}
-</style>
