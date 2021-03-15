@@ -6,42 +6,59 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '',
-    component: () => import('../views/Index'),
+    component: () => import('../views/app/Index'),
     children: [
       {
         path: '/',
         name: '主页',
-        component: () => import('../views/Home')
+        component: () => import('../views/app/Home')
       },
       {
         path: '/category',
         name: '分类',
-        component: () => import('../views/Category')
+        component: () => import('../views/app/Category')
       },
       {
         path: '/tag',
         name: '标签',
-        component: () => import('../views/Tag')
+        component: () => import('../views/app/Tag')
       },
       {
         path: '/archive',
         name: '归档',
-        component: () => import('../views/Archive')
+        component: () => import('../views/app/Archive')
       },
       {
         path: '/about',
         name: '关于',
-        component: () => import('../views/About')
+        component: () => import('../views/app/About')
+      }
+    ]
+  },
+  {
+    path: '/admin',
+    component: () => import('../views/admin/Index'),
+    redirect: '/admin/edit',
+    children: [
+      {
+        path: '/admin/edit',
+        name: '文章编辑',
+        component: () => import('../views/admin/Edit')
       },
       {
-        path: '/manage',
-        name: '管理',
-        component: () => import('../views/Manage')
+        path: '/admin/article',
+        name: '文章管理',
+        component: () => import('../views/admin/Article')
       },
       {
-        path: '/edit',
-        name: '博客编辑',
-        component: () => import('../views/Edit')
+        path: '/admin/category',
+        name: '分类管理',
+        component: () => import('../views/admin/Category')
+      },
+      {
+        path: '/admin/tag',
+        name: '标签管理',
+        component: () => import('../views/admin/Tag')
       }
     ]
   }

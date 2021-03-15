@@ -1,10 +1,9 @@
 <template>
   <v-navigation-drawer
     v-model="drawer"
-    temporary
     app
   >
-    <v-list>
+    <v-list class="py-0">
       <v-list-item-group
         color="black"
         slider-color="primary"
@@ -32,7 +31,7 @@ export default {
     nav: Array
   },
   computed: {
-    ...sync('app', [
+    ...sync('admin', [
       'drawer'
     ])
   }

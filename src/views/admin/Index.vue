@@ -1,16 +1,12 @@
 <template>
   <v-app>
+    <admin-app-bar />
 
-    <app-drawer :nav="nav"/>
+    <admin-drawer />
 
-    <app-bar :nav="nav"/>
+    <admin-view />
 
-    <app-view/>
-
-    <app-footer/>
-
-    <app-fab/>
-
+    <admin-footer />
   </v-app>
 </template>
 
@@ -39,24 +35,19 @@ export default {
         {
           name: '关于',
           path: '/about'
-        },
-        {
-          path: '/manage',
-          name: '管理'
-        },
-        {
-          path: '/edit',
-          name: '编辑'
         }
       ]
     }
   },
   components: {
-    AppDrawer: () => import('../components/Drawer'),
-    AppBar: () => import('../components/Bar'),
-    AppView: () => import('../components/View'),
-    AppFooter: () => import('../components/Footer'),
-    AppFab: () => import('../components/Fab')
+    AdminDrawer: () => import('../../components/admin/Drawer'),
+    AdminAppBar: () => import('../../components/admin/AppBar'),
+    AdminView: () => import('../../components/admin/View'),
+    AdminFooter: () => import('../../components/admin/Footer')
   }
 }
 </script>
+
+<style scoped>
+
+</style>

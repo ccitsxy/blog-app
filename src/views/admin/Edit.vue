@@ -8,7 +8,7 @@
       outlined
       clearable
       dense
-      placeholder="标题"
+      label="标题"
       hide-details
     >
       <v-btn
@@ -47,7 +47,7 @@ export default {
   mounted () {
     // 页面加载后加载编辑器，防止读取不到id
     this.contentEditor = new Vditor('vditor', {
-      minHeight: 530,
+      height: 530,
       toolbarConfig: {
         pin: true
       },

@@ -3,21 +3,25 @@
     color="white"
     app
     flat
+    hide-on-scroll
+    dense
   >
     <v-app-bar-nav-icon @click="drawer = !drawer" class="hidden-sm-and-up"></v-app-bar-nav-icon>
+    <v-app-bar-title class="px-0 hidden-xs-only">
+      <router-link class="black--text text-decoration-none" to="/">博客</router-link>
+    </v-app-bar-title>
     <v-spacer></v-spacer>
     <v-btn class="hidden-xs-only"
            text
            v-for="(item,index) in nav"
            :key="index"
            :to="item.path"
-    >
-      {{ item.name }}
+    >{{ item.name }}
     </v-btn>
     <v-spacer></v-spacer>
     <v-menu
       bottom
-      min-width="100px"
+      min-width="120px"
       rounded
       offset-y
     >
@@ -33,27 +37,10 @@
           ></v-avatar>
         </v-btn>
       </template>
-      <v-card>
-        <v-list-item-content class="justify-center">
-          <div class="mx-auto text-center">
-            <v-btn
-              depressed
-              rounded
-              text
-            >
-              Edit Account
-            </v-btn>
-            <v-divider class="my-3"></v-divider>
-            <v-btn
-              depressed
-              rounded
-              text
-            >
-              Disconnect
-            </v-btn>
-          </div>
-        </v-list-item-content>
-      </v-card>
+      <v-list class="py-0">
+        <v-list-item link>管理</v-list-item>
+        <v-list-item link>退出</v-list-item>
+      </v-list>
     </v-menu>
   </v-app-bar>
 </template>
@@ -66,11 +53,6 @@ export default {
   props: {
     nav: Array
   },
-  data () {
-    return {
-      dialog: false
-    }
-  },
   computed: {
     ...sync('app', [
       'drawer'
@@ -78,3 +60,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.v-list {
+  font-size: 0.875rem;
+}
+</style>
