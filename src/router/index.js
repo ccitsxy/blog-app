@@ -32,6 +32,11 @@ const routes = [
         path: '/about',
         name: '关于',
         component: () => import('../views/app/About')
+      },
+      {
+        path: '/article/:aid',
+        name: '文章',
+        component: () => import('../views/app/ArticleDetail')
       }
     ]
   },
