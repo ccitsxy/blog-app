@@ -21,24 +21,24 @@ export default {
     return {
       nav: [
         {
-          name: '主页',
-          path: '/'
+          path: '/',
+          name: '主页'
         },
         {
-          name: '分类',
-          path: '/category'
+          path: '/category',
+          name: '分类'
         },
         {
-          name: '标签',
-          path: '/tag'
+          path: '/tag',
+          name: '标签'
         },
         {
-          name: '归档',
-          path: '/archive'
+          path: '/archive',
+          name: '归档'
         },
         {
-          name: '关于',
-          path: '/about'
+          path: '/about',
+          name: '关于'
         }
       ]
     }
@@ -52,26 +52,3 @@ export default {
   }
 }
 </script>
-
-<style>
-/* Chrome 滚动条样式 */
-::-webkit-scrollbar{
-  width: 4px;
-  height: 6px;
-}
-::-webkit-scrollbar-thumb{
-  border-radius: 1em;
-  background-color: rgba(50,50,50,.3);
-}
-::-webkit-scrollbar-track{
-  border-radius: 1em;
-  background-color: rgba(50,50,50,.1);
-}
-/* Firefox 滚动条隐藏*/
-html{
-  overflow-y: scroll;
-  scrollbar-color: transparent transparent;
-  scrollbar-track-color: transparent;
-  -ms-scrollbar-track-color: transparent;
-}
-</style>
