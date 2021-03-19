@@ -20,6 +20,17 @@
       >提交
       </v-btn>
     </v-text-field>
+    <v-text-field
+      v-model="description"
+      class="mb-2"
+      color="primary"
+      background-color="white"
+      outlined
+      clearable
+      dense
+      label="简介"
+      hide-details
+    ></v-text-field>
     <div id="vditor"></div>
   </v-container>
 </template>
@@ -33,6 +44,7 @@ export default {
   data () {
     return {
       title: '',
+      description: '',
       contentEditor: ''
     }
   },
@@ -47,7 +59,7 @@ export default {
   mounted () {
     // 页面加载后加载编辑器，防止读取不到id
     this.contentEditor = new Vditor('vditor', {
-      height: 530,
+      height: 360,
       toolbarConfig: {
         pin: true
       },
