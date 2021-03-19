@@ -1,18 +1,18 @@
 <template>
   <v-container>
-    <v-row justify="center">
-      <v-col
-        cols="12"
-        sm="10"
-      >
-        <v-container id="preview"></v-container>
-      </v-col>
+    <v-row>
 
       <v-col
         cols="12"
-        sm="2"
+        sm="9"
       >
-        <v-container id="outline"></v-container>
+        <v-container class="white px-8" id="preview"></v-container>
+      </v-col>
+      <v-col
+        cols="12"
+        sm="3"
+      >
+        <v-container class="white pa-0" id="outline"></v-container>
       </v-col>
     </v-row>
 
@@ -109,9 +109,12 @@ export default {
   display: block;
   /* 不加 fixed 无法监听滚动 */
   position: fixed;
-  font-size: 18px;
-  line-height: 1.75;
   overflow: auto;
+  width: 200px;
+}
+
+#outline > ul {
+  padding-left: 0;
 }
 
 #outline ul {
@@ -126,14 +129,14 @@ export default {
 }
 
 #outline li > span.vditor-outline__item--current {
-  border-left: 1px solid #4285f4;
-  color: #4285f4;
-  background-color: #f6f8fa;
+/*  border-left: 1px solid #4285f4;*/
+  color: #1976d2;
+  background-color: #e4effa;
 }
 
 #outline li > span:hover {
   color: #4285f4;
-  background-color: #f6f8fa;
+  background-color: #e4effa
 }
 
 @media (max-width: 768px) {
