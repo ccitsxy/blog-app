@@ -6,9 +6,7 @@
   >
     <v-list class="py-0">
       <v-list-item-group
-        color="black"
-        slider-color="primary"
-        slider-size="4"
+        color="primary"
       >
         <v-list-item
           v-for="(item,index) in nav"
