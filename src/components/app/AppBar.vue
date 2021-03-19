@@ -2,23 +2,22 @@
   <v-app-bar
     color="white"
     app
-    flat
-    hide-on-scroll
     dense
+    elevate-on-scroll
   >
     <v-app-bar-nav-icon @click="drawer = !drawer" class="hidden-sm-and-up"></v-app-bar-nav-icon>
     <v-app-bar-title class="px-0 hidden-xs-only">
-      <router-link class="black--text text-decoration-none" to="/">博客</router-link>
+      <router-link class="text-decoration-none" to="/">博客</router-link>
     </v-app-bar-title>
-    <v-spacer></v-spacer>
-    <v-btn class="hidden-xs-only"
-           text
-           v-for="(item,index) in nav"
-           :key="index"
-           :to="item.path"
-    >{{ item.name }}
-    </v-btn>
-    <v-spacer></v-spacer>
+    <v-tabs class="hidden-xs-only" style="width: auto" centered>
+      <v-tab
+        text
+        v-for="(item,index) in nav"
+        :key="index"
+        :to="item.path"
+      >{{ item.name }}
+      </v-tab>
+    </v-tabs>
     <v-menu
       bottom
       min-width="120px"
