@@ -17,20 +17,20 @@ export default {
     return {
       nav: [
         {
-          name: '文章编辑',
-          path: '/admin/edit'
+          path: '/admin/edit',
+          name: '文章编辑'
         },
         {
-          name: '文章管理',
-          path: '/admin/article'
+          path: '/admin/article',
+          name: '文章管理'
         },
         {
-          name: '分类管理',
-          path: '/admin/category'
+          path: '/admin/category',
+          name: '分类管理'
         },
         {
-          name: '标签管理',
-          path: '/admin/tag'
+          path: '/admin/tag',
+          name: '标签管理'
         }
       ]
     }
