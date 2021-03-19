@@ -2,9 +2,9 @@
   <v-app-bar
     color="white"
     app
+    dense
     flat
     hide-on-scroll
-    dense
   >
     <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
     <v-spacer></v-spacer>
