@@ -25,12 +25,12 @@ export default {
           name: '主页'
         },
         {
-          path: '/category',
-          name: '分类'
-        },
-        {
           path: '/tag',
           name: '标签'
+        },
+        {
+          path: '/category',
+          name: '分类'
         },
         {
           path: '/archive',

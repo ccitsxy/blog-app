@@ -135,7 +135,7 @@ export default {
 }
 
 #outline li > span:hover {
-  color: #4285f4;
+  color: #1976d2;
   background-color: #e4effa
 }
 

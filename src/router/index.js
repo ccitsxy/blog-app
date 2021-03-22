@@ -14,14 +14,14 @@ const routes = [
         component: () => import('../views/app/Home')
       },
       {
-        path: '/category',
-        name: '分类',
-        component: () => import('../views/app/Category')
-      },
-      {
         path: '/tag',
         name: '标签',
         component: () => import('../views/app/Tag')
+      },
+      {
+        path: '/category',
+        name: '分类',
+        component: () => import('../views/app/Category')
       },
       {
         path: '/archive',
@@ -36,7 +36,7 @@ const routes = [
       {
         path: '/article/:aid',
         name: '文章',
-        component: () => import('../views/app/ArticleDetail')
+        component: () => import('../views/app/Article')
       }
     ]
   },

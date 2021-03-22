@@ -9,15 +9,24 @@
     <v-app-bar-title class="px-0 hidden-xs-only">
       <router-link class="text-decoration-none" to="/">博客</router-link>
     </v-app-bar-title>
-    <v-tabs class="hidden-xs-only" style="width: auto" centered>
+    <v-tabs
+      slider-size="4"
+      class="hidden-xs-only"
+      style="width: auto"
+      centered
+    >
       <v-tab
+        style="min-width: 48px"
         text
+        class="black--text"
+        active-class="font-weight-bold"
         v-for="(item,index) in nav"
         :key="index"
         :to="item.path"
       >{{ item.name }}
       </v-tab>
     </v-tabs>
+    <v-spacer class="hidden-sm-and-up"></v-spacer>
     <v-menu
       bottom
       min-width="120px"

@@ -1,28 +1,26 @@
 <template>
   <v-container>
-    <v-row justify="center">
+    <v-row>
       <v-col
         cols="12"
         sm="9"
       >
         <v-card
+          to="/about"
           v-for="item in 5"
           :key="item"
           flat
           class="mb-4"
         >
-          <v-card-title class="font-weight-bold">测试</v-card-title>
+          <v-card-title class="font-weight-bold title">测试</v-card-title>
           <v-card-subtitle class="black--text">2021/3/17</v-card-subtitle>
           <v-card-text class="black--text">
             <p>
               介绍四种常见的编程命名规范：PascalCase，snake_case，camelCase，kebab-case。
             </p>
-            <v-chip class="mr-1" color="primary" text-color="white" small>Vue</v-chip>
-            <v-chip class="mr-1" color="primary" text-color="white" small>CSS</v-chip>
-            <v-chip class="mr-1" color="primary" text-color="white" small>HTML</v-chip>
-            <v-chip class="mr-1" color="primary" text-color="white" small>JS</v-chip>
-            <v-chip class="mr-1" color="primary" text-color="white" small>SpringBoot</v-chip>
-            <v-chip class="float-right" color="primary" small label outlined>Vue</v-chip>
+            <v-chip v-for="item in 5" :key="item" class="mr-1" color="primary" text-color="white" small label>Vue
+            </v-chip>
+            <v-chip class="float-right" color="primary" small outlined label>Vue</v-chip>
           </v-card-text>
         </v-card>
         <v-pagination></v-pagination>
@@ -32,54 +30,30 @@
         cols="12"
         sm="3"
       >
-        <v-card flat class="mb-4">
-          <v-card-title class="ml-1 font-weight-bold">分类</v-card-title>
-          <v-card-text>
-            <v-chip color="primary" to="/about" outlined class="ma-1" label>Vue</v-chip>
-            <v-chip color="primary" outlined class="ma-1" label>CSS</v-chip>
-            <v-chip color="primary" outlined class="ma-1" label>HTML</v-chip>
-            <v-chip color="primary" outlined class="ma-1" label>JavaScript</v-chip>
-            <v-chip color="primary" outlined class="ma-1" label>Spring Boot</v-chip>
-            <v-chip color="primary" outlined class="ma-1" label>MySQL</v-chip>
-          </v-card-text>
-        </v-card>
-        <v-card flat class="mb-4">
-          <v-card-title class="ml-1 font-weight-bold">分类</v-card-title>
-          <v-card-text>
-            <v-chip color="primary" outlined class="ma-1" label>Vue</v-chip>
-            <v-chip color="primary" outlined class="ma-1" label>CSS</v-chip>
-            <v-chip color="primary" outlined class="ma-1" label>HTML</v-chip>
-            <v-chip color="primary" outlined class="ma-1" label>JavaScript</v-chip>
-            <v-chip color="primary" outlined class="ma-1" label>Spring Boot</v-chip>
-            <v-chip color="primary" outlined class="ma-1" label>MySQL</v-chip>
-          </v-card-text>
-        </v-card>
-        <v-card flat class="mb-4">
-          <v-card-title class="ml-1 font-weight-bold">标签</v-card-title>
-          <v-card-text>
-            <v-chip color="primary" class="ma-1">Vue</v-chip>
-            <v-chip color="primary" class="ma-1">CSS</v-chip>
-            <v-chip color="primary" class="ma-1">HTML</v-chip>
-            <v-chip color="primary" class="ma-1">JavaScript</v-chip>
-            <v-chip color="primary" class="ma-1">Spring Boot</v-chip>
-            <v-chip color="primary" class="ma-1">MySQL</v-chip>
-          </v-card-text>
-        </v-card>
-        <v-card flat class="mb-4">
-          <v-card-title class="ml-1 font-weight-bold">归档</v-card-title>
-          <v-card-text>
-              <v-btn
-                text
-                color="primary"
-                class="ma-1"
-                style="letter-spacing: unset"
-                v-for="(item, i) in items"
-                :key="i"
-                to="/123/"
-                v-text="item.text"
-              >
-              </v-btn>
-          </v-card-text>
+        <v-card color="transparent" flat max-width="240" style="position: fixed">
+          <v-card to="/tag" flat class="mb-4">
+            <v-card-title class="font-weight-bold title">标签</v-card-title>
+            <v-card-text>
+              <v-chip label color="primary" class="mr-2 mb-2">Vue</v-chip>
+            </v-card-text>
+          </v-card>
+          <v-card to="/tag" flat class="mb-4">
+            <v-card-title class="font-weight-bold title">分类</v-card-title>
+            <v-card-text>
+              <v-chip label outlined color="primary" class="mr-2 mb-2">Vue</v-chip>
+            </v-card-text>
+          </v-card>
+          <v-card to="/archive" flat class="mb-4">
+            <v-card-title class="font-weight-bold title">归档</v-card-title>
+            <v-card-text>
+              <v-row>
+                <v-col v-for="item in 5" :key="item" cols="6">
+                  <router-link class="archive" to="/about">2018年1月
+                  </router-link>
+                </v-col>
+              </v-row>
+            </v-card-text>
+          </v-card>
         </v-card>
       </v-col>
     </v-row>
@@ -109,40 +83,22 @@ export default {
           path: '/admin/tag',
           name: '标签管理'
         }
-      ],
-      items: [
-        {
-          text: '2021年1月'
-        },
-        {
-          text: '2021年2月'
-        },
-        {
-          text: '2021年3月'
-        },
-        {
-          text: '2021年1月'
-        },
-        {
-          text: '2021年2月'
-        },
-        {
-          text: '2021年3月'
-        },
-        {
-          text: '2021年1月'
-        },
-        {
-          text: '2021年2月'
-        },
-        {
-          text: '2021年3月'
-        },
-        {
-          text: '2021年3月'
-        }
       ]
     }
   }
 }
 </script>
+
+<style scoped>
+.title:hover {
+  color: #4285f4;
+}
+
+.archive {
+  text-decoration: none;
+}
+
+.archive:hover {
+  text-decoration: underline;
+}
+</style>
