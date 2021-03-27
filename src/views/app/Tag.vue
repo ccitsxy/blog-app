@@ -1,6 +1,23 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row justify="center">
+      <v-col
+        cols="12"
+        sm="9"
+      >
+        <v-chip-group
+          active-class="primary"
+          mandatory
+          column
+        >
+          <v-chip
+            v-for="(item,index) in nav"
+            :key="index"
+            label
+          >{{ item.name }}
+          </v-chip>
+        </v-chip-group>
+      </v-col>
       <v-col
         cols="12"
         sm="9"
@@ -25,27 +42,6 @@
         </v-card>
         <v-pagination></v-pagination>
       </v-col>
-      <v-col
-        cols="12"
-        sm="3"
-        class="text-center"
-      >
-        <v-card min-width="240" flat class="mb-4" style="position: fixed">
-          <v-card-text class="pa-0">
-            <v-list class="py-0">
-              <v-list-item-group
-                color="primary"
-              >
-                <v-list-item
-                  v-for="(item,index) in nav"
-                  :key="index"
-                >{{ item.name }}
-                </v-list-item>
-              </v-list-item-group>
-            </v-list>
-          </v-card-text>
-        </v-card>
-      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -56,6 +52,26 @@ export default {
   data () {
     return {
       nav: [
+        {
+          path: '/',
+          name: '主页'
+        },
+        {
+          path: '/tag',
+          name: '标签'
+        },
+        {
+          path: '/category',
+          name: '分类'
+        },
+        {
+          path: '/archive',
+          name: '归档'
+        },
+        {
+          path: '/about',
+          name: '关于'
+        },
         {
           path: '/',
           name: '主页'

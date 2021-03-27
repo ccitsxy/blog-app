@@ -4,9 +4,9 @@
     app
     dense
     flat
-    hide-on-scroll
   >
     <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar-title class="px-0 hidden-lg-and-up font-weight-bold">{{$route.name}}</v-app-bar-title>
     <v-spacer></v-spacer>
     <v-menu
       bottom

@@ -1,18 +1,18 @@
 <template>
   <v-container>
-    <v-row>
-
+    <v-row justify="center">
       <v-col
         cols="12"
         sm="9"
       >
-        <v-container class="white px-8" id="preview"></v-container>
+        <v-container class="white px-8 rounded" id="preview"></v-container>
       </v-col>
       <v-col
         cols="12"
         sm="3"
+        class="hidden-md-and-down"
       >
-        <v-container class="white pa-0" id="outline"></v-container>
+        <v-container class="white pa-0 rounded" id="outline"></v-container>
       </v-col>
     </v-row>
 
@@ -129,7 +129,7 @@ export default {
 }
 
 #outline li > span.vditor-outline__item--current {
-/*  border-left: 1px solid #4285f4;*/
+  border-left: 1px solid #4285f4;
   color: #1976d2;
   background-color: #e4effa;
 }
@@ -137,11 +137,5 @@ export default {
 #outline li > span:hover {
   color: #1976d2;
   background-color: #e4effa
-}
-
-@media (max-width: 768px) {
-  #outline {
-    display: none !important;
-  }
 }
 </style>

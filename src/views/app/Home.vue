@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row justify="center">
       <v-col
         cols="12"
         sm="9"
@@ -10,9 +10,9 @@
           v-for="item in 5"
           :key="item"
           flat
-          class="mb-4"
+          class="mb-4 title"
         >
-          <v-card-title class="font-weight-bold title">测试</v-card-title>
+          <v-card-title class="font-weight-bold">测试</v-card-title>
           <v-card-subtitle class="black--text">2021/3/17</v-card-subtitle>
           <v-card-text class="black--text">
             <p>
@@ -29,22 +29,23 @@
       <v-col
         cols="12"
         sm="3"
+        class="hidden-md-and-down"
       >
-        <v-card color="transparent" flat max-width="240" style="position: fixed">
-          <v-card to="/tag" flat class="mb-4">
-            <v-card-title class="font-weight-bold title">标签</v-card-title>
+        <v-card width="270" color="transparent" flat style="position: fixed">
+          <v-card to="/tag" flat class="mb-4 title">
+            <v-card-title class="font-weight-bold">标签</v-card-title>
             <v-card-text>
-              <v-chip label color="primary" class="mr-2 mb-2">Vue</v-chip>
+              <v-chip v-for="item in 5" :key="item" label color="primary" class="mr-2 mb-2">Vue</v-chip>
             </v-card-text>
           </v-card>
-          <v-card to="/tag" flat class="mb-4">
-            <v-card-title class="font-weight-bold title">分类</v-card-title>
+          <v-card to="/tag" flat class="mb-4 title">
+            <v-card-title  class="font-weight-bold">分类</v-card-title>
             <v-card-text>
-              <v-chip label outlined color="primary" class="mr-2 mb-2">Vue</v-chip>
+              <v-chip v-for="item in 5" :key="item" label outlined color="primary" class="mr-2 mb-2">Vue</v-chip>
             </v-card-text>
           </v-card>
-          <v-card to="/archive" flat class="mb-4">
-            <v-card-title class="font-weight-bold title">归档</v-card-title>
+          <v-card to="/archive" flat class="mb-4 title">
+            <v-card-title class="font-weight-bold">归档</v-card-title>
             <v-card-text>
               <v-row>
                 <v-col v-for="item in 5" :key="item" cols="6">

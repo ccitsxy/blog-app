@@ -53,7 +53,7 @@ const routes = [
       {
         path: '/admin/article',
         name: '文章管理',
-        component: () => import('../views/admin/Article')
+        component: () => import('../views/admin/List')
       },
       {
         path: '/admin/category',
