@@ -4,26 +4,7 @@
       <v-col
         cols="12"
         sm="9"
-      >
-        <v-card
-          to="/about"
-          v-for="item in 5"
-          :key="item"
-          flat
-          class="mb-4 title"
-        >
-          <v-card-title class="font-weight-bold">测试</v-card-title>
-          <v-card-subtitle class="black--text">2021/3/17</v-card-subtitle>
-          <v-card-text class="black--text">
-            <p>
-              介绍四种常见的编程命名规范：PascalCase，snake_case，camelCase，kebab-case。
-            </p>
-            <v-chip v-for="item in 5" :key="item" class="mr-1" color="primary" text-color="white" small label>Vue
-            </v-chip>
-            <v-chip class="float-right" color="primary" small outlined label>Vue</v-chip>
-          </v-card-text>
-        </v-card>
-        <v-pagination></v-pagination>
+      ><article-list></article-list>
       </v-col>
 
       <v-col
@@ -32,20 +13,20 @@
         class="hidden-md-and-down"
       >
         <v-card width="270" color="transparent" flat style="position: fixed">
-          <v-card to="/tag" flat class="mb-4 title">
-            <v-card-title class="font-weight-bold">标签</v-card-title>
+          <v-card to="/tag" flat class="mb-4">
+            <v-card-title><span class="title">测试</span></v-card-title>
             <v-card-text>
               <v-chip v-for="item in 5" :key="item" label color="primary" class="mr-2 mb-2">Vue</v-chip>
             </v-card-text>
           </v-card>
-          <v-card to="/tag" flat class="mb-4 title">
-            <v-card-title  class="font-weight-bold">分类</v-card-title>
+          <v-card to="/tag" flat class="mb-4">
+            <v-card-title><span class="title">测试</span></v-card-title>
             <v-card-text>
               <v-chip v-for="item in 5" :key="item" label outlined color="primary" class="mr-2 mb-2">Vue</v-chip>
             </v-card-text>
           </v-card>
-          <v-card to="/archive" flat class="mb-4 title">
-            <v-card-title class="font-weight-bold">归档</v-card-title>
+          <v-card to="/archive" flat class="mb-4">
+            <v-card-title><span class="title">测试</span></v-card-title>
             <v-card-text>
               <v-row>
                 <v-col v-for="item in 5" :key="item" cols="6">
@@ -65,6 +46,9 @@
 
 export default {
   name: 'Home',
+  components: {
+    ArticleList: () => import('../../components/app/ArticleList')
+  },
   data () {
     return {
       card: [
@@ -91,15 +75,13 @@ export default {
 </script>
 
 <style scoped>
-.title:hover {
-  color: #4285f4;
-}
-
-.archive {
+.title {
+  font-weight: bold;
   text-decoration: none;
 }
 
-.archive:hover {
+.title:hover {
+  color: #1976d2;
   text-decoration: underline;
 }
 </style>

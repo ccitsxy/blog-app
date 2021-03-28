@@ -53,7 +53,7 @@ const routes = [
       {
         path: '/admin/article',
         name: '文章管理',
-        component: () => import('../views/admin/List')
+        component: () => import('../views/admin/Article')
       },
       {
         path: '/admin/category',
@@ -70,7 +70,9 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  // 切换路由时页面回到顶部
+  scrollBehavior: () => ({ x: 0, y: 0 })
 })
 
 export default router
