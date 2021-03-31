@@ -38,7 +38,7 @@
     <v-row justify="center">
       <v-dialog
         v-model="dialog"
-        max-width="290"
+        max-width="600"
       >
         <v-card>
           <v-card-title>
@@ -46,20 +46,14 @@
           </v-card-title>
 
           <v-card-text>
-            <v-row>
-              <v-col cols="12" class="text--primary">标签:
-                <v-chip color="primary">123</v-chip>
-              </v-col>
-              <v-col cols="12" class="text--primary">分类:</v-col>
-            </v-row>
+            <v-chip v-for="item in 5" class="mr-2" :key="item" color="primary">123</v-chip>
           </v-card-text>
 
           <v-card-actions>
             <v-spacer></v-spacer>
 
             <v-btn
-              color="primary"
-              text
+              color="error"
               @click="dialog = false"
             >
               取消
@@ -114,7 +108,7 @@ export default {
   },
   mounted () {
     // 页面加载后加载编辑器，防止读取不到id
-    this.markdown = new Vditor('vditor', {
+    this.markdown = new Vditor('markdown', {
       height: 360,
       toolbarConfig: {
         pin: true

@@ -4,39 +4,26 @@
       <v-col
         cols="12"
         sm="9"
-      ><article-list></article-list>
-      </v-col>
-
-      <v-col
-        cols="12"
-        sm="3"
-        class="hidden-md-and-down"
       >
-        <v-card width="270" color="transparent" flat style="position: fixed">
-          <v-card to="/tag" flat class="mb-4">
-            <v-card-title><span class="title">测试</span></v-card-title>
-            <v-card-text>
-              <v-chip v-for="item in 5" :key="item" label color="primary" class="mr-2 mb-2">Vue</v-chip>
-            </v-card-text>
-          </v-card>
-          <v-card to="/tag" flat class="mb-4">
-            <v-card-title><span class="title">测试</span></v-card-title>
-            <v-card-text>
-              <v-chip v-for="item in 5" :key="item" label outlined color="primary" class="mr-2 mb-2">Vue</v-chip>
-            </v-card-text>
-          </v-card>
-          <v-card to="/archive" flat class="mb-4">
-            <v-card-title><span class="title">测试</span></v-card-title>
-            <v-card-text>
-              <v-row>
-                <v-col v-for="item in 5" :key="item" cols="6">
-                  <router-link class="archive" to="/about">2018年1月
-                  </router-link>
-                </v-col>
-              </v-row>
-            </v-card-text>
-          </v-card>
+        <v-card
+          to="/about"
+          v-for="item in 5"
+          :key="item"
+          flat
+          class="mb-4"
+        >
+          <v-card-title class="font-weight-bold">测试</v-card-title>
+          <v-card-subtitle class="black--text">2021/3/17</v-card-subtitle>
+          <v-card-text class="black--text">
+            <p>
+              介绍四种常见的编程命名规范：PascalCase，snake_case，camelCase，kebab-case。
+            </p>
+            <v-chip color="primary" small outlined label>Vue</v-chip>
+            <v-chip class="float-right mr-1" v-for="item in 5" :key="item" color="primary" text-color="white" small label>Vue
+            </v-chip>
+          </v-card-text>
         </v-card>
+        <v-pagination></v-pagination>
       </v-col>
     </v-row>
   </v-container>
@@ -46,9 +33,6 @@
 
 export default {
   name: 'Home',
-  components: {
-    ArticleList: () => import('../../components/app/ArticleList')
-  },
   data () {
     return {
       card: [
@@ -70,18 +54,9 @@ export default {
         }
       ]
     }
+  },
+  created () {
+    this.$http.get('')
   }
 }
 </script>
-
-<style scoped>
-.title {
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.title:hover {
-  color: #1976d2;
-  text-decoration: underline;
-}
-</style>

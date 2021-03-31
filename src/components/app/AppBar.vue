@@ -16,7 +16,7 @@
       centered
     >
       <v-tab
-        style="min-width: 48px"
+        style="min-width: 0"
         class="black--text"
         active-class="font-weight-bold"
         v-for="(item,index) in nav"
@@ -25,7 +25,7 @@
       >{{ item.name }}
       </v-tab>
     </v-tabs>
-    <v-app-bar-title class="px-0 hidden-sm-and-up font-weight-bold">{{$route.name}}</v-app-bar-title>
+    <v-app-bar-title class="px-0 hidden-sm-and-up font-weight-bold">{{ $route.name }}</v-app-bar-title>
     <v-spacer class="hidden-sm-and-up"></v-spacer>
     <v-menu
       bottom

@@ -29,7 +29,7 @@
           flat
           class="mb-4"
         >
-          <v-card-title class="font-weight-bold title">测试</v-card-title>
+          <v-card-title class="font-weight-bold">测试</v-card-title>
           <v-card-subtitle class="black--text">2021/3/17</v-card-subtitle>
           <v-card-text class="black--text">
             <p>

@@ -14,14 +14,14 @@ const routes = [
         component: () => import('../views/app/Home')
       },
       {
-        path: '/tag',
-        name: '标签',
-        component: () => import('../views/app/Tag')
-      },
-      {
         path: '/category',
         name: '分类',
         component: () => import('../views/app/Category')
+      },
+      {
+        path: '/tag',
+        name: '标签',
+        component: () => import('../views/app/Tag')
       },
       {
         path: '/archive',
@@ -66,13 +66,21 @@ const routes = [
         component: () => import('../views/admin/Tag')
       }
     ]
+  },
+  {
+    path: '/login',
+    name: '登录',
+    component: () => import('../views/Login')
   }
 ]
 
 const router = new VueRouter({
   routes,
   // 切换路由时页面回到顶部
-  scrollBehavior: () => ({ x: 0, y: 0 })
+  scrollBehavior: () => ({
+    x: 0,
+    y: 0
+  })
 })
 
 export default router
