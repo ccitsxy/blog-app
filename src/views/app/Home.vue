@@ -19,11 +19,9 @@
               介绍四种常见的编程命名规范：PascalCase，snake_case，camelCase，kebab-case。
             </p>
             <v-chip color="primary" small outlined label>Vue</v-chip>
-            <v-chip class="float-right mr-1" v-for="item in 5" :key="item" color="primary" text-color="white" small label>Vue
-            </v-chip>
           </v-card-text>
         </v-card>
-        <v-pagination></v-pagination>
+        <v-pagination :length="length" :value="current"></v-pagination>
       </v-col>
     </v-row>
   </v-container>
@@ -35,28 +33,14 @@ export default {
   name: 'Home',
   data () {
     return {
-      card: [
-        {
-          path: '/admin/edit',
-          name: '文章编辑'
-        },
-        {
-          path: '/admin/article',
-          name: '文章管理'
-        },
-        {
-          path: '/admin/category',
-          name: '分类管理'
-        },
-        {
-          path: '/admin/tag',
-          name: '标签管理'
-        }
-      ]
+      length: '',
+      current: ''
     }
   },
   created () {
-    this.$http.get('')
+    this.$http.get(process.env.VUE_APP_BASE_API + '/article', {}).then((response) => {
+      console.log(response.data)
+    })
   }
 }
 </script>

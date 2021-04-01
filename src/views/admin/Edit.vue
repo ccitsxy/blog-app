@@ -133,13 +133,6 @@ export default {
   },
   methods: {
     submit () {
-      this.$http.post(process.env.VUE_APP_BASE_API + '/article', this.article).then(() => {
-        this.dialog = false
-        this.$dialog.notify.success('提交成功', {
-          position: 'top',
-          timeout: 5000
-        })
-      })
     }
   }
 }

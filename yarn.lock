@@ -2755,7 +2755,12 @@ core-js-compat@^3.6.5, core-js-compat@^3.8.1, core-js-compat@^3.9.0:
     browserslist "^4.16.3"
     semver "7.0.0"
 
-core-js@^3.6.5, core-js@^3.9.1:
+core-js@^3.10.0:
+  version "3.10.0"
+  resolved "https://registry.npm.taobao.org/core-js/download/core-js-3.10.0.tgz?cache=0&sync_timestamp=1617181724044&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcore-js%2Fdownload%2Fcore-js-3.10.0.tgz#9a020547c8b6879f929306949e31496bbe2ae9b3"
+  integrity sha1-mgIFR8i2h5+SkwaUnjFJa74q6bM=
+
+core-js@^3.6.5:
   version "3.9.1"
   resolved "https://registry.npm.taobao.org/core-js/download/core-js-3.9.1.tgz#cec8de593db8eb2a85ffb0dbdeb312cb6e5460ae"
   integrity sha1-zsjeWT246yqF/7Db3rMSy25UYK4=
@@ -8465,10 +8470,10 @@ vary@~1.1.2:
   resolved "https://registry.npm.taobao.org/vary/download/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
-vditor@^3.8.3:
-  version "3.8.3"
-  resolved "https://registry.npm.taobao.org/vditor/download/vditor-3.8.3.tgz#f649580e070b5c7f2b82b4034c572210afcc5162"
-  integrity sha1-9klYDgcLXH8rgrQDTFciEK/MUWI=
+vditor@^3.8.4:
+  version "3.8.4"
+  resolved "https://registry.npm.taobao.org/vditor/download/vditor-3.8.4.tgz#5b68e127de83f31f3df1d5d0d512e6b100e98b04"
+  integrity sha1-W2jhJ96D8x898dXQ1RLmsQDpiwQ=
   dependencies:
     diff-match-patch "^1.0.5"
 
@@ -8490,11 +8495,6 @@ vm-browserify@^1.0.1:
   version "1.1.2"
   resolved "https://registry.npm.taobao.org/vm-browserify/download/vm-browserify-1.1.2.tgz?cache=0&sync_timestamp=1572870717730&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvm-browserify%2Fdownload%2Fvm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha1-eGQcSIuObKkadfUR56OzKobl3aA=
-
-vue-axios@^3.2.4:
-  version "3.2.4"
-  resolved "https://registry.npm.taobao.org/vue-axios/download/vue-axios-3.2.4.tgz?cache=0&sync_timestamp=1612148479218&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue-axios%2Fdownload%2Fvue-axios-3.2.4.tgz#2334158db8ac2a0f603aa431c2626fbf6d766724"
-  integrity sha1-IzQVjbisKg9gOqQxwmJvv212ZyQ=
 
 vue-class-component@^7.2.6:
   version "7.2.6"
@@ -8592,10 +8592,10 @@ vuetify-loader@^1.7.0:
     file-loader "^6.2.0"
     loader-utils "^2.0.0"
 
-vuetify@^2.4.8:
-  version "2.4.8"
-  resolved "https://registry.npm.taobao.org/vuetify/download/vuetify-2.4.8.tgz#c6e883a9b2560f9906bd8b9f9eb58b001200aeef"
-  integrity sha1-xuiDqbJWD5kGvYufnrWLABIAru8=
+vuetify@^2.4.9:
+  version "2.4.9"
+  resolved "https://registry.npm.taobao.org/vuetify/download/vuetify-2.4.9.tgz#c4ccf4cf3dc81d426da78913c32d47ab33ede38f"
+  integrity sha1-xMz0zz3IHUJtp4kTwy1HqzPt448=
 
 vuex-pathify@^1.4.5:
   version "1.4.5"

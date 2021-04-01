@@ -18,7 +18,7 @@
       <v-tab
         style="min-width: 0"
         class="black--text"
-        active-class="font-weight-bold"
+        active-class="primary--text font-weight-bold"
         v-for="(item,index) in nav"
         :key="index"
         :to="item.path"
