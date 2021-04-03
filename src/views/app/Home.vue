@@ -6,22 +6,46 @@
         sm="9"
       >
         <v-card
-          to="/about"
-          v-for="item in 5"
-          :key="item"
+          v-for="(item,index) in articles.content"
+          :key="index"
           flat
           class="mb-4"
         >
-          <v-card-title class="font-weight-bold">测试</v-card-title>
-          <v-card-subtitle class="black--text">2021/3/17</v-card-subtitle>
+          <v-card-title class="font-weight-bold">{{ item.title }}</v-card-title>
+          <v-card-subtitle class="black--text mt-0">
+            <v-icon>mdi-timer</v-icon>
+            {{ item.created }}
+            <v-icon>mdi-update</v-icon>
+            {{ item.updated }}
+          </v-card-subtitle>
           <v-card-text class="black--text">
-            <p>
-              介绍四种常见的编程命名规范：PascalCase，snake_case，camelCase，kebab-case。
-            </p>
-            <v-chip color="primary" small outlined label>Vue</v-chip>
+            <p>{{ item.description }}</p>
+            <v-chip
+              class="mr-2"
+              color="primary"
+              :small="$vuetify.breakpoint.smAndDown"
+              outlined
+              label
+              :to="'/category/'+item.category.cid">
+              {{ item.category.name }}
+            </v-chip>
+            <v-chip
+              v-for="(item2,index) in item.tags"
+              :key="index"
+              color="primary"
+              :small="$vuetify.breakpoint.smAndDown"
+              label
+              :to="'/tag/'+item2.tid"
+            >
+              {{ item2.name }}
+            </v-chip>
           </v-card-text>
         </v-card>
-        <v-pagination :length="length" :value="current"></v-pagination>
+        <v-pagination
+          :v-model="page+1"
+          :value="page+1"
+          :length="articles.totalPages">
+        </v-pagination>
       </v-col>
     </v-row>
   </v-container>
@@ -33,13 +57,17 @@ export default {
   name: 'Home',
   data () {
     return {
-      length: '',
-      current: ''
+      articles: {
+        totalPages: 0
+      },
+      page: 0,
+      size: 10
     }
   },
   created () {
-    this.$http.get(process.env.VUE_APP_BASE_API + '/article', {}).then((response) => {
+    this.$http.get(process.env.VUE_APP_BASE_API + '/article/' + this.page + '/' + this.size).then((response) => {
       console.log(response.data)
+      this.articles = response.data
     })
   }
 }
