@@ -2,7 +2,6 @@
   <v-container id="edit" fluid>
     <v-text-field
       v-model="article.title"
-      color="primary"
       background-color="white"
       outlined
       clearable
@@ -17,58 +16,58 @@
         slot="append-outer"
         color="primary"
         dark
-        @click.stop="dialog = true"
+        @click="publish()"
       >
         发布
       </v-btn>
     </v-text-field>
-    <v-textarea
-      auto-grow
+    <v-text-field
       v-model="article.description"
-      color="primary"
       background-color="white"
       outlined
       clearable
       dense
       label="简介"
       :rules="descriptionRules"
-      counter="200"
-    ></v-textarea>
-    <div id="markdown"></div>
-    <v-row justify="center">
-      <v-dialog
-        v-model="dialog"
-        max-width="600"
+      counter="100"
+      hide-details="auto"
+    ></v-text-field>
+    <v-row>
+      <v-col
+        cols="12"
+        md="6"
       >
-        <v-card>
-          <v-card-title>
-            发布
-          </v-card-title>
-
-          <v-card-text>
-            <v-chip v-for="item in 5" class="mr-2" :key="item" color="primary">123</v-chip>
-          </v-card-text>
-
-          <v-card-actions>
-            <v-spacer></v-spacer>
-
-            <v-btn
-              color="error"
-              @click="dialog = false"
-            >
-              取消
-            </v-btn>
-
-            <v-btn
-              color="primary"
-              @click="submit"
-            >
-              发布
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+        <v-select
+          v-model="article.category.name"
+          :items="tags"
+          :menu-props="{ bottom: true, offsetY: true }"
+          label="分类"
+          outlined
+          dense
+          clearable
+          hide-details="auto"
+        ></v-select>
+      </v-col>
+      <v-col
+        cols="12"
+        md="6"
+      >
+        <v-select
+          v-model="article.tags"
+          :item="tags"
+          :item-text="name"
+          :item-value="tid"
+          :menu-props="{ bottom: true, offsetY: true }"
+          label="标签"
+          multiple
+          outlined
+          dense
+          small-chips
+          clearable
+        ></v-select>
+      </v-col>
     </v-row>
+    <div id="markdown"></div>
   </v-container>
 </template>
 
@@ -84,7 +83,9 @@ export default {
       article: {
         title: '',
         description: '',
-        markdown: ''
+        markdown: '',
+        category: '',
+        tags: ''
       },
       titleRules: [
         v => !!v || '标题不能为空',
@@ -92,8 +93,9 @@ export default {
       ],
       descriptionRules: [
         v => !!v || '简介不能为空',
-        v => v.length <= 200 || '简介必须少于200个字'
-      ]
+        v => v.length <= 100 || '简介必须少于200个字'
+      ],
+      tags: []
     }
   },
   created () {
@@ -105,6 +107,7 @@ export default {
       localStorage.setItem('title', this.article.title)
       localStorage.setItem('description', this.article.description)
     })
+    this.getTags()
   },
   mounted () {
     // 页面加载后加载编辑器，防止读取不到id
@@ -132,7 +135,17 @@ export default {
     window.localStorage.setItem('description', this.article.description)
   },
   methods: {
-    submit () {
+    publish () {
+      this.$http.post(process.env.VUE_APP_BASE_API + '/article/', this.article).then(() => {
+        console.log(this.article)
+        localStorage.clear()
+      })
+    },
+    getTags () {
+      this.$http.get(process.env.VUE_APP_BASE_API + '/tag/').then((response) => {
+        console.log(response.data)
+        this.tags = response.data
+      })
     }
   }
 }

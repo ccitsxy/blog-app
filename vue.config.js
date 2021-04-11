@@ -16,7 +16,7 @@ module.exports = {
     // http 代理配置
     proxy: {
       '/': {
-        target: 'http://192.168.1.111:8181',
+        target: 'http://localhost:8181',
         changeOrigin: true,
         pathRewrite: {
           '^/': ''

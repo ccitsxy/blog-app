@@ -1,10 +1,37 @@
 <template>
-  <div></div>
+  <v-data-table
+    :headers="headers"
+    hide-default-footer
+  ></v-data-table>
 </template>
 
 <script>
 export default {
-  name: 'List'
+  name: 'Article',
+  data () {
+    return {
+      headers:
+        [
+          {
+            text: 'AID',
+            sortable: false,
+            value: 'aid'
+          },
+          {
+            text: '名称',
+            value: 'name'
+          },
+          {
+            text: '创建时间',
+            value: 'created'
+          },
+          {
+            text: '修改时间',
+            value: 'updated'
+          }
+        ]
+    }
+  }
 }
 </script>
 

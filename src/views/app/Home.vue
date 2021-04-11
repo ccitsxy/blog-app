@@ -12,7 +12,7 @@
           class="mb-4"
         >
           <v-card-title class="font-weight-bold">{{ item.title }}</v-card-title>
-          <v-card-subtitle class="black--text mt-0">
+          <v-card-subtitle class="black--text mt-0 ml-n1">
             <v-icon>mdi-timer</v-icon>
             {{ item.created }}
             <v-icon>mdi-update</v-icon>
@@ -23,17 +23,19 @@
             <v-chip
               class="mr-2"
               color="primary"
-              :small="$vuetify.breakpoint.smAndDown"
+              small
               outlined
               label
-              :to="'/category/'+item.category.cid">
+              :to="'/category/'+item.category.cid"
+            >
               {{ item.category.name }}
             </v-chip>
             <v-chip
+              class="mr-2"
               v-for="(item2,index) in item.tags"
               :key="index"
               color="primary"
-              :small="$vuetify.breakpoint.smAndDown"
+              small
               label
               :to="'/tag/'+item2.tid"
             >
@@ -42,8 +44,7 @@
           </v-card-text>
         </v-card>
         <v-pagination
-          :v-model="page+1"
-          :value="page+1"
+          v-model="page"
           :length="articles.totalPages">
         </v-pagination>
       </v-col>
@@ -60,15 +61,25 @@ export default {
       articles: {
         totalPages: 0
       },
-      page: 0,
+      page: 1,
       size: 10
     }
   },
   created () {
-    this.$http.get(process.env.VUE_APP_BASE_API + '/article/' + this.page + '/' + this.size).then((response) => {
-      console.log(response.data)
-      this.articles = response.data
-    })
+    this.getArticles()
+  },
+  watch: {
+    page () {
+      this.getArticles()
+    }
+  },
+  methods: {
+    getArticles () {
+      this.$http.get(process.env.VUE_APP_BASE_API + '/article/' + (this.page - 1) + '/' + this.size).then((response) => {
+        console.log(response.data)
+        this.articles = response.data
+      })
+    }
   }
 }
 </script>
