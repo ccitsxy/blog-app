@@ -2,6 +2,7 @@
   <v-data-table
     :headers="headers"
     hide-default-footer
+    fixed-header
   ></v-data-table>
 </template>
 
@@ -13,7 +14,7 @@ export default {
       headers:
         [
           {
-            text: 'AID',
+            text: '文章ID',
             sortable: false,
             value: 'aid'
           },
@@ -36,5 +37,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

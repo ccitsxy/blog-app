@@ -38,8 +38,11 @@
         md="6"
       >
         <v-select
-          v-model="article.category.name"
-          :items="tags"
+          v-model="article.category"
+          return-object
+          :items="category"
+          item-text="name"
+          item-value="cid"
           :menu-props="{ bottom: true, offsetY: true }"
           label="分类"
           outlined
@@ -54,16 +57,16 @@
       >
         <v-select
           v-model="article.tags"
-          :item="tags"
-          :item-text="name"
-          :item-value="tid"
+          return-object
+          :items="tags"
+          item-text="name"
+          item-value="tid"
           :menu-props="{ bottom: true, offsetY: true }"
           label="标签"
-          multiple
           outlined
           dense
-          small-chips
           clearable
+          multiple
         ></v-select>
       </v-col>
     </v-row>
@@ -79,13 +82,12 @@ export default {
   name: 'Edit',
   data () {
     return {
-      dialog: false,
       article: {
         title: '',
         description: '',
         markdown: '',
-        category: '',
-        tags: ''
+        category: [],
+        tags: []
       },
       titleRules: [
         v => !!v || '标题不能为空',
@@ -95,23 +97,18 @@ export default {
         v => !!v || '简介不能为空',
         v => v.length <= 100 || '简介必须少于200个字'
       ],
-      tags: []
+      category: [],
+      tags: [],
+      contentEditor: ''
     }
   },
   created () {
-    // 页面载入时读取标题
-    this.title = window.localStorage.getItem('title')
-    this.description = window.localStorage.getItem('description')
-    // 页面刷新时保存标题
-    window.addEventListener('beforeunload', () => {
-      localStorage.setItem('title', this.article.title)
-      localStorage.setItem('description', this.article.description)
-    })
+    this.getCategory()
     this.getTags()
   },
   mounted () {
     // 页面加载后加载编辑器，防止读取不到id
-    this.markdown = new Vditor('markdown', {
+    this.contentEditor = new Vditor('markdown', {
       height: 360,
       toolbarConfig: {
         pin: true
@@ -129,16 +126,22 @@ export default {
       }
     })
   },
-  destroyed () {
-    // 页面跳转时保存标题
-    window.localStorage.setItem('title', this.article.title)
-    window.localStorage.setItem('description', this.article.description)
-  },
   methods: {
     publish () {
+      this.article.markdown = this.contentEditor.getValue()
       this.$http.post(process.env.VUE_APP_BASE_API + '/article/', this.article).then(() => {
         console.log(this.article)
         localStorage.clear()
+        this.$dialog.message.success('发布成功', {
+          position: 'top'
+        })
+        this.$router.push('/admin/article')
+      })
+    },
+    getCategory () {
+      this.$http.get(process.env.VUE_APP_BASE_API + '/category/').then((response) => {
+        console.log(response.data)
+        this.category = response.data
       })
     },
     getTags () {

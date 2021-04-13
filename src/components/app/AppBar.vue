@@ -9,22 +9,16 @@
     <v-app-bar-title class="px-0 hidden-xs-only">
       <router-link class="text-decoration-none" to="/">博客</router-link>
     </v-app-bar-title>
-    <v-tabs
-      slider-size="4"
+    <v-spacer class="hidden-xs-only"></v-spacer>
+    <v-btn
       class="hidden-xs-only"
-      style="width: auto"
-      centered
-    >
-      <v-tab
-        style="min-width: 0"
-        class="black--text"
-        active-class="primary--text font-weight-bold"
-        v-for="(item,index) in nav"
-        :key="index"
-        :to="item.path"
-      >{{ item.name }}
-      </v-tab>
-    </v-tabs>
+      text
+      v-for="(item,index) in nav"
+      :key="index"
+      :to="item.path"
+    >{{ item.name }}
+    </v-btn>
+    <v-spacer></v-spacer>
     <v-app-bar-title class="px-0 hidden-sm-and-up font-weight-bold">{{ $route.name }}</v-app-bar-title>
     <v-spacer class="hidden-sm-and-up"></v-spacer>
     <v-menu

@@ -16,14 +16,7 @@ const routes = [
       {
         path: '/category',
         name: '分类',
-        component: () => import('../views/app/Category'),
-        children: [
-          {
-            path: '/category/:cid',
-            name: '分类',
-            components: () => import('../views/app/Category')
-          }
-        ]
+        component: () => import('../views/app/Category')
       },
       {
         path: '/tag',
