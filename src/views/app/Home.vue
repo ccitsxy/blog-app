@@ -1,14 +1,62 @@
 <template>
-  <article-list :articles="articles" :page="page"></article-list>
+  <v-container>
+    <v-row justify="center">
+      <v-col
+        cols="12"
+        sm="9"
+      >
+        <v-card
+          v-for="(item,index) in articles.content"
+          :key="index"
+          :to="'/article/'+item.aid"
+          flat
+          class="mb-4"
+        >
+          <v-card-title class="font-weight-bold v-title">{{ item.title }}</v-card-title>
+          <v-card-subtitle class="black--text mt-0 ml-n1">
+            <v-icon>mdi-timer</v-icon>
+            {{ item.created }}
+            <v-icon v-if="item.updated">mdi-update</v-icon>
+            {{ item.updated }}
+          </v-card-subtitle>
+          <v-card-text class="black--text">
+            <p>{{ item.description }}</p>
+            <v-chip
+              class="mr-2"
+              color="primary"
+              small
+              outlined
+              label
+              :to="'/category/'+item.category.cid"
+            >
+              {{ item.category.name }}
+            </v-chip>
+            <v-chip
+              class="mr-2"
+              v-for="(item2,index) in item.tags"
+              :key="index"
+              color="primary"
+              small
+              label
+              :to="'/tag/'+item2.tid"
+            >
+              {{ item2.name }}
+            </v-chip>
+          </v-card-text>
+        </v-card>
+        <v-pagination
+          v-model="page"
+          :length="articles.totalPages">
+        </v-pagination>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
 
 export default {
   name: 'Home',
-  components: {
-    ArticleList: () => import('../../components/app/ArticleList')
-  },
   data () {
     return {
       articles: {},

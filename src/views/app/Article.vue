@@ -47,7 +47,6 @@
         <v-container class="white pa-0 rounded" id="outline"></v-container>
       </v-col>
     </v-row>
-
   </v-container>
 </template>
 
@@ -123,18 +122,23 @@ export default {
 <style>
 #outline {
   display: block;
-  /* 不加 fixed 无法监听滚动 */
   position: fixed;
+  width: 186px;
   overflow: auto;
-  width: 200px;
+  font-size: 14px;
+  background-color: #fff;
+  line-height: 20px;
+  white-space:nowrap
+}
+
+#outline ul {
+  margin-left: 16px;
+  list-style: none;
 }
 
 #outline > ul {
   padding-left: 0;
-}
-
-#outline ul {
-  list-style: none;
+  margin-left: 0;
 }
 
 #outline li > span {
@@ -145,14 +149,14 @@ export default {
 }
 
 #outline li > span.vditor-outline__item--current {
-  border-left: 1px solid #4285f4;
+  border-left: 1px solid #1976d2;
   color: #1976d2;
-  background-color: #e4effa;
+  background-color: #f6f8fa;
 }
 
 #outline li > span:hover {
   color: #1976d2;
-  background-color: #e4effa
+  background-color: #f6f8fa;
 }
 
 code, kbd, pre, samp{
