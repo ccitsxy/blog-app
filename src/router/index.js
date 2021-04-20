@@ -15,13 +15,29 @@ const routes = [
       },
       {
         path: '/category',
-        name: '分类',
-        component: () => import('../views/app/Category')
+        component: () => import('../views/app/Category'),
+        redirect: '/category/1',
+        children:
+          [
+            {
+              path: '/category/:cid',
+              name: '分类',
+              component: () => import('../views/app/CategoryDetail')
+            }
+          ]
       },
       {
         path: '/tag',
-        name: '标签',
-        component: () => import('../views/app/Tag')
+        component: () => import('../views/app/Tag'),
+        redirect: '/tag/1',
+        children:
+          [
+            {
+              path: '/tag/:tid',
+              name: '标签',
+              component: () => import('../views/app/TagDetail')
+            }
+          ]
       },
       {
         path: '/archive',
@@ -48,6 +64,11 @@ const routes = [
       {
         path: '/admin/edit',
         name: '文章编辑',
+        component: () => import('../views/admin/Edit')
+      },
+      {
+        path: '/admin/edit/:aid',
+        name: '文章修改',
         component: () => import('../views/admin/Edit')
       },
       {

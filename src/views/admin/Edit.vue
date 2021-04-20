@@ -102,41 +102,33 @@ export default {
       contentEditor: ''
     }
   },
-  created () {
+  mounted () {
+    this.getArticle()
     this.getCategory()
     this.getTags()
-  },
-  mounted () {
-    // 页面加载后加载编辑器，防止读取不到id
-    this.contentEditor = new Vditor('markdown', {
-      height: 360,
-      toolbarConfig: {
-        pin: true
-      },
-      counter: {
-        enable: true,
-        max: 100000
-      },
-      // 缓存编辑器内容
-      cache: {
-        enable: true,
-        id: 'markdown'
-      },
-      after: () => {
-      }
-    })
   },
   methods: {
     publish () {
       this.article.markdown = this.contentEditor.getValue()
       this.$http.post(process.env.VUE_APP_BASE_API + '/article/', this.article).then(() => {
         console.log(this.article)
-        localStorage.clear()
         this.$dialog.message.success('发布成功', {
           position: 'top'
         })
         this.$router.push('/admin/article')
       })
+    },
+    getArticle () {
+      if (this.$route.params.aid) {
+        this.$http.get(process.env.VUE_APP_BASE_API +
+          '/article/' + this.$route.params.aid).then((response) => {
+          console.log(response.data)
+          this.article = response.data
+          this.initEditor()
+        })
+      } else {
+        this.initEditor()
+      }
     },
     getCategory () {
       this.$http.get(process.env.VUE_APP_BASE_API + '/category/').then((response) => {
@@ -148,6 +140,27 @@ export default {
       this.$http.get(process.env.VUE_APP_BASE_API + '/tag/').then((response) => {
         console.log(response.data)
         this.tags = response.data
+      })
+    },
+    initEditor () {
+      // 页面加载后加载编辑器，防止读取不到id
+      this.contentEditor = new Vditor('markdown', {
+        height: 360,
+        toolbarConfig: {
+          pin: true
+        },
+        counter: {
+          enable: true,
+          max: 100000
+        },
+        // 缓存编辑器内容
+        cache: {
+          enable: false,
+          id: 'markdown'
+        },
+        after: () => {
+          this.contentEditor.setValue(this.article.markdown)
+        }
       })
     }
   }

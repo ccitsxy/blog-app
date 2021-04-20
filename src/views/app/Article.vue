@@ -59,7 +59,10 @@ export default {
   data () {
     return {
       article: {
-        markdown: ''
+        markdown: '',
+        category: {
+          cid: ''
+        }
       }
     }
   },
@@ -128,7 +131,7 @@ export default {
   font-size: 14px;
   background-color: #fff;
   line-height: 20px;
-  white-space:nowrap
+  white-space: nowrap
 }
 
 #outline ul {
@@ -159,7 +162,7 @@ export default {
   background-color: #f6f8fa;
 }
 
-code, kbd, pre, samp{
-  font-family: sans-serif!important;
+code, kbd, pre, samp {
+  font-family: sans-serif !important;
 }
 </style>

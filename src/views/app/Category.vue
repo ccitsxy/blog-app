@@ -5,12 +5,25 @@
         cols="12"
         sm="9"
       >
+        <v-chip-group
+          active-class="primary transparent--text v-chip--outlined"
+          column
+        >
+          <v-chip
+            v-for="(item,index) in categories"
+            :key="index"
+            :to="'/category/'+item.cid"
+            label
+          >{{ item.name }}
+          </v-chip>
+        </v-chip-group>
       </v-col>
       <v-col
         cols="12"
         sm="9"
       >
-        <router-view></router-view>
+        <!-- 添加key表示不同页面 -->
+        <router-view :key="$route.path"></router-view>
       </v-col>
     </v-row>
   </v-container>
@@ -21,8 +34,18 @@ export default {
   name: 'Category',
   data () {
     return {
-      page: 1,
-      size: 10
+      categories: {}
+    }
+  },
+  created () {
+    this.getCategories()
+  },
+  methods: {
+    getCategories () {
+      this.$http.get(process.env.VUE_APP_BASE_API + '/category/').then((response) => {
+        console.log(response.data)
+        this.categories = response.data
+      })
     }
   }
 }

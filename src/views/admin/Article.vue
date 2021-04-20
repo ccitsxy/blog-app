@@ -1,28 +1,55 @@
 <template>
-  <v-data-table
-    :items="articles.content"
-    :page="page"
-    :headers="headers"
-    fixed-header
-  >
-    <template v-slot:item.actions="
+  <v-card flat>
+    <v-card-title>
+      <v-text-field
+        v-model="search"
+        single-line
+        hide-details
+        background-color="white"
+        outlined
+        clearable
+        dense
+        label="搜索"
+      >
+        <v-btn
+          class="ml-2"
+          height="40"
+          slot="append-outer"
+          color="primary"
+          dark
+          to="/admin/edit"
+          target="_blank"
+        >
+          新建
+        </v-btn>
+      </v-text-field>
+    </v-card-title>
+    <v-data-table
+      class="mx-sm-4"
+      :items="articles.content"
+      :page="page"
+      :headers="headers"
+      :search="search"
+    >
+      <template v-slot:item.actions="
       /* eslint-disable-next-line vue/no-unused-vars */
       {item}">
-      <v-icon
-        small
-        class="mr-2"
-        @click="editArticle"
-      >
-        mdi-pencil
-      </v-icon>
-      <v-icon
-        small
-        @click="deleteArticle"
-      >
-        mdi-delete
-      </v-icon>
-    </template>
-  </v-data-table>
+        <v-icon
+          small
+          class="mr-2"
+          @click="editArticle(item)"
+        >
+          mdi-pencil
+        </v-icon>
+        <v-icon
+          small
+          @click="deleteArticle(item)"
+        >
+          mdi-delete
+        </v-icon>
+      </template>
+    </v-data-table>
+  </v-card>
 </template>
 
 <script>
@@ -34,7 +61,6 @@ export default {
         [
           {
             text: '序号',
-            sortable: false,
             value: 'aid'
           },
           {
@@ -58,7 +84,8 @@ export default {
         ],
       articles: {},
       page: 1,
-      size: 10
+      size: 10,
+      search: ''
     }
   },
   created () {
@@ -75,6 +102,14 @@ export default {
         console.log(response.data)
         this.articles = response.data
       })
+    },
+    editArticle (item) {
+      console.log(item)
+      const route = this.$router.resolve('/admin/edit/' + item.aid)
+      window.open(route.href, '_blank')
+    },
+    deleteArticle (item) {
+      console.log(item)
     }
   }
 }
@@ -83,5 +118,9 @@ export default {
 <style scoped>
 >>> .text-start, >>> .v-data-footer, >>> .v-select__selection {
   font-size: unset !important;
+}
+
+>>> .v-input__append-outer {
+  margin: 0 !important;
 }
 </style>

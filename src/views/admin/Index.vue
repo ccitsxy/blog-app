@@ -6,7 +6,9 @@
 
     <admin-view />
 
-    <admin-footer />
+    <admin-footer/>
+
+    <admin-fab />
   </v-app>
 </template>
 
@@ -39,7 +41,8 @@ export default {
     AdminDrawer: () => import('../../components/admin/Drawer'),
     AdminAppBar: () => import('../../components/admin/AppBar'),
     AdminView: () => import('../../components/admin/View'),
-    AdminFooter: () => import('../../components/admin/Footer')
+    AdminFooter: () => import('../../components/admin/Footer'),
+    AdminFab: () => import('../../components/Fab')
   }
 }
 </script>

@@ -48,7 +48,7 @@ export default {
     AppBar: () => import('../../components/app/AppBar'),
     AppView: () => import('../../components/app/View'),
     AppFooter: () => import('../../components/app/Footer'),
-    AppFab: () => import('../../components/app/Fab')
+    AppFab: () => import('../../components/Fab')
   }
 }
 </script>

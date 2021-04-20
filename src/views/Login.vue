@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <v-container class="ma-auto">
+
+  </v-container>
 </template>
 
 <script>
