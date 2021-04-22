@@ -1,5 +1,5 @@
 <template>
-  <v-container id="edit" fluid>
+  <v-container id="edit" class="ma-1" fluid>
     <v-text-field
       v-model="article.title"
       background-color="white"

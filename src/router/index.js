@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -92,6 +95,16 @@ const routes = [
     path: '/login',
     name: '登录',
     component: () => import('../views/Login')
+  },
+  {
+    path: '/register',
+    name: '注册',
+    component: () => import('../views/Register')
+  },
+  {
+    path: '*',
+    name: '404',
+    component: () => import('../views/404')
   }
 ]
 
@@ -102,6 +115,16 @@ const router = new VueRouter({
     x: 0,
     y: 0
   })
+})
+
+// 顶部进度条
+router.beforeEach((to, from, next) => {
+  NProgress.start()
+  next()
+})
+
+router.afterEach(() => {
+  NProgress.done()
 })
 
 export default router

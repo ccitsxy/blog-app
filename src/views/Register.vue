@@ -36,18 +36,17 @@
               <v-card-actions>
                 <v-btn
                   text
-                  to="/register"
+                  to="/login"
                   color="primary"
-                >注册
+                >登录
                 </v-btn>
                 <v-spacer></v-spacer>
                 <v-btn
                   :loading="loginLoading"
                   color="primary"
                   @click="userLogin"
-                >登录
-                </v-btn
-                >
+                >注册
+                </v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -63,13 +62,13 @@
 
 <script>
 export default {
-  name: 'Login',
+  name: 'Register',
   data: () => ({
     passwordDisplay: false,
     loginLoading: false,
     loginForm: {
-      account: '',
-      password: ''
+      account: 'admin',
+      password: 'admin'
     },
     rules: {
       required: value => !!value || 'Required.'

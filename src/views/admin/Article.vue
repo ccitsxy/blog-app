@@ -3,7 +3,6 @@
     <v-card-title>
       <v-text-field
         v-model="search"
-        single-line
         hide-details
         background-color="white"
         outlined
@@ -20,35 +19,43 @@
           to="/admin/edit"
           target="_blank"
         >
-          新建
+          <v-icon>mdi-plus</v-icon>
         </v-btn>
       </v-text-field>
     </v-card-title>
     <v-data-table
       class="mx-sm-4"
       :items="articles.content"
-      :page="page"
+      :page.sync="page"
       :headers="headers"
       :search="search"
+      hide-default-footer
     >
       <template v-slot:item.actions="
       /* eslint-disable-next-line vue/no-unused-vars */
       {item}">
-        <v-icon
-          small
+        <v-btn
+          icon
           class="mr-2"
+          color="success"
           @click="editArticle(item)"
         >
-          mdi-pencil
-        </v-icon>
-        <v-icon
-          small
+          <v-icon>
+            mdi-pencil
+          </v-icon>
+        </v-btn>
+        <v-btn
+          icon
+          color="error"
           @click="deleteArticle(item)"
         >
-          mdi-delete
-        </v-icon>
+          <v-icon>
+            mdi-delete
+          </v-icon>
+        </v-btn>
       </template>
     </v-data-table>
+    <v-pagination class="mt-2" l v-model="page" :length="articles.totalPages"/>
   </v-card>
 </template>
 
