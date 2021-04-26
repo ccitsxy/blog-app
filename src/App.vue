@@ -5,12 +5,12 @@
 </template>
 
 <style>
-html::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 6px;
   height: 6px;
   color: transparent;
 }
-html::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   border-radius: 6px;
   background-color: #aaa;
 }

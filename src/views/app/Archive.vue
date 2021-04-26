@@ -5,29 +5,16 @@
         cols="12"
         sm="9"
       >
-        <v-card flat>
-          <v-timeline
-            dense
-            clipped
-          >
-            <v-timeline-item
-              fill-dot
-              class="mb-12 title"
-            >
-              2021
-            </v-timeline-item>
-            <v-timeline-item
-              fill-dot
-              class="mb-12"
-              small
-            >
-              <v-row>
-                <v-col cols="3">3-25</v-col>
-                <v-col>title</v-col>
-              </v-row>
-            </v-timeline-item>
-          </v-timeline>
-        </v-card>
+        <v-chip-group
+          column
+        >
+          <template v-for="(item,index) in archive">
+            <v-chip active-class="primary" :key="index">
+              {{ item.year }}年{{ item.month }}月
+            </v-chip>
+          </template>
+
+        </v-chip-group>
       </v-col>
     </v-row>
   </v-container>
@@ -37,7 +24,20 @@
 export default {
   name: 'Archive',
   data () {
-    return {}
+    return {
+      archive: []
+    }
+  },
+  created () {
+    this.getArchive()
+  },
+  methods: {
+    getArchive () {
+      this.$http.get(process.env.VUE_APP_BASE_API + '/article/archive').then((response) => {
+        console.log(response.data)
+        this.archive = response.data
+      })
+    }
   }
 }
 </script>

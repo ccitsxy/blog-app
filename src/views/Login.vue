@@ -1,10 +1,11 @@
 <template>
   <v-app>
-    <v-content>
+    <v-main>
       <v-container fluid fill-height>
         <v-layout class="align-center justify-center">
           <v-flex xs12 sm8 md6 lg5 xl3>
             <v-card class="elevation-12">
+              <v-card-title>{{token}}</v-card-title>
               <v-toolbar color="primary" dark flat>
                 <v-toolbar-title>登录</v-toolbar-title>
                 <v-spacer></v-spacer>
@@ -13,10 +14,10 @@
                 <v-form ref="login_form">
                   <v-text-field
                     label="账号"
-                    name="account"
+                    name="username"
                     prepend-icon="mdi-account"
                     type="text"
-                    v-model="loginForm.account"
+                    v-model="loginForm.username"
                     :rules="[rules.required]"
                   ></v-text-field>
 
@@ -53,31 +54,23 @@
           </v-flex>
         </v-layout>
       </v-container>
-    </v-content>
-    <v-snackbar top :color="snackbar.color" v-model="snackbar.show">
-      {{ snackbar.text }}
-      <v-btn text @click="snackbar.show = false">Close</v-btn>
-    </v-snackbar>
+    </v-main>
   </v-app>
 </template>
 
 <script>
+
 export default {
   name: 'Login',
   data: () => ({
     passwordDisplay: false,
     loginLoading: false,
     loginForm: {
-      account: '',
-      password: ''
+      username: 'admin',
+      password: 'admin'
     },
     rules: {
       required: value => !!value || 'Required.'
-    },
-    snackbar: {
-      show: false,
-      text: '',
-      color: 'primary'
     }
   }),
   methods: {
@@ -86,29 +79,11 @@ export default {
       if (!_this.$refs.login_form.validate()) return
       // 表单验证成功
       _this.loginLoading = true
-      _this.$store
-        .dispatch('user/LOGIN', _this.loginForm)
-        .then(res => {
-          if (res.code === 200) {
-            _this.loginLoading = false
-            _this.$router.replace('/')
-          } else {
-            console.error(res) // _this.snackbarShow(res.msg);
-          }
-        })
-        .catch(({ msg }) => {
-          _this.snackbarShow(msg, 'error')
-        })
-        .finally(() => {
-          _this.loginLoading = false
-        })
-    },
-    snackbarShow (text, color) {
-      this.snackbar = {
-        show: true,
-        text,
-        color
-      }
+      this.$http.post(process.env.VUE_APP_BASE_API +
+        '/user/login', this.loginForm).then((response) => {
+        this.token = response.data
+        console.log(this.token)
+      })
     }
   }
 }

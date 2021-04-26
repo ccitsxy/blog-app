@@ -2755,10 +2755,10 @@ core-js-compat@^3.6.5, core-js-compat@^3.8.1, core-js-compat@^3.9.0:
     browserslist "^4.16.3"
     semver "7.0.0"
 
-core-js@^3.10.2:
-  version "3.10.2"
-  resolved "https://registry.nlark.com/core-js/download/core-js-3.10.2.tgz?cache=0&sync_timestamp=1618851955289&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcore-js%2Fdownload%2Fcore-js-3.10.2.tgz#17cb038ce084522a717d873b63f2b3ee532e2cd5"
-  integrity sha1-F8sDjOCEUipxfYc7Y/Kz7lMuLNU=
+core-js@^3.11.0:
+  version "3.11.0"
+  resolved "https://registry.nlark.com/core-js/download/core-js-3.11.0.tgz?cache=0&sync_timestamp=1619088116467&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcore-js%2Fdownload%2Fcore-js-3.11.0.tgz#05dac6aa70c0a4ad842261f8957b961d36eb8926"
+  integrity sha1-BdrGqnDApK2EImH4lXuWHTbriSY=
 
 core-js@^3.6.5:
   version "3.9.1"
@@ -8587,11 +8587,6 @@ vue@^2.6.11:
   version "2.6.12"
   resolved "https://registry.npm.taobao.org/vue/download/vue-2.6.12.tgz?cache=0&sync_timestamp=1614614651009&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue%2Fdownload%2Fvue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
   integrity sha1-9evU+mvShpQD4pqJau1JBEVskSM=
-
-vuetify-dialog@^2.0.14:
-  version "2.0.14"
-  resolved "https://registry.npm.taobao.org/vuetify-dialog/download/vuetify-dialog-2.0.14.tgz#194010bc03b94a61d3673825a3eeff873b9e1358"
-  integrity sha1-GUAQvAO5SmHTZzglo+7/hzueE1g=
 
 vuetify-loader@^1.7.0:
   version "1.7.2"

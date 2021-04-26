@@ -13,7 +13,7 @@
       >
         {{ new Date().getFullYear() }} —
         <strong>
-          <router-link class="text-decoration-none" to="/">博客</router-link>
+          <router-link class="text-decoration-none" to="/admin">博客后台</router-link>
         </strong>
       </v-col>
     </v-row>

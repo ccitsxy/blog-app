@@ -1,6 +1,6 @@
 <template>
   <v-card flat>
-    <v-card-title>
+    <v-card-title class="pr-2">
       <v-text-field
         v-model="search"
         hide-details
@@ -24,11 +24,9 @@
     </v-card-title>
     <v-data-table
       class="mx-sm-4"
-      :items="tags.content"
-      :page="page"
+      :items="tags"
       :headers="headers"
       :search="search"
-      hide-default-footer
     >
       <template v-slot:item.actions="
       /* eslint-disable-next-line vue/no-unused-vars */
@@ -53,7 +51,6 @@
         </v-btn>
       </template>
     </v-data-table>
-    <v-pagination class="mt-2" v-model="page" :length="tags.totalPages"/>
     <v-dialog
       v-model="dialog"
       max-width="300px"
@@ -61,7 +58,7 @@
     >
       <v-card>
         <v-card-title>
-          <span class="headline">{{formTitle}}</span>
+          <span class="headline">{{ formTitle }}</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -119,9 +116,7 @@ export default {
             sortable: false
           }
         ],
-      tags: {},
-      page: 1,
-      size: 10,
+      tags: [],
       search: '',
       dialog: false,
       editedIndex: -1,
@@ -149,8 +144,7 @@ export default {
   },
   methods: {
     getTags () {
-      this.$http.get(process.env.VUE_APP_BASE_API +
-        '/tag/' + (this.page - 1) + '/' + this.size).then((response) => {
+      this.$http.get(process.env.VUE_APP_BASE_API + '/tag/').then((response) => {
         console.log(response.data)
         this.tags = response.data
       })

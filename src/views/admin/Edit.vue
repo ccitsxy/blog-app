@@ -1,76 +1,81 @@
 <template>
   <v-container id="edit" class="ma-1" fluid>
-    <v-text-field
-      v-model="article.title"
-      background-color="white"
-      outlined
-      clearable
-      dense
-      label="标题"
-      :rules="titleRules"
-      counter="50"
+    <v-form
+      ref="form"
+      lazy-validation
     >
-      <v-btn
-        class="ml-2"
-        height="40"
-        slot="append-outer"
-        color="primary"
-        dark
-        @click="publish()"
+      <v-text-field
+        v-model="article.title"
+        background-color="white"
+        outlined
+        clearable
+        dense
+        label="标题"
+        :rules="titleRules"
+        counter="50"
       >
-        发布
-      </v-btn>
-    </v-text-field>
-    <v-text-field
-      v-model="article.description"
-      background-color="white"
-      outlined
-      clearable
-      dense
-      label="简介"
-      :rules="descriptionRules"
-      counter="100"
-      hide-details="auto"
-    ></v-text-field>
-    <v-row>
-      <v-col
-        cols="12"
-        md="6"
-      >
-        <v-select
-          v-model="article.category"
-          return-object
-          :items="category"
-          item-text="name"
-          item-value="cid"
-          :menu-props="{ bottom: true, offsetY: true }"
-          label="分类"
-          outlined
-          dense
-          clearable
-          hide-details="auto"
-        ></v-select>
-      </v-col>
-      <v-col
-        cols="12"
-        md="6"
-      >
-        <v-select
-          v-model="article.tags"
-          return-object
-          :items="tags"
-          item-text="name"
-          item-value="tid"
-          :menu-props="{ bottom: true, offsetY: true }"
-          label="标签"
-          outlined
-          dense
-          clearable
-          multiple
-        ></v-select>
-      </v-col>
-    </v-row>
-    <div id="markdown"></div>
+        <v-btn
+          class="ml-2"
+          height="40"
+          slot="append-outer"
+          color="primary"
+          dark
+          @click="publish()"
+        >
+          发布
+        </v-btn>
+      </v-text-field>
+      <v-text-field
+        v-model="article.description"
+        background-color="white"
+        outlined
+        clearable
+        dense
+        label="简介"
+        :rules="descriptionRules"
+        counter="100"
+        hide-details="auto"
+      ></v-text-field>
+      <v-row>
+        <v-col
+          cols="12"
+          md="6"
+        >
+          <v-select
+            v-model="article.category"
+            return-object
+            :items="category"
+            item-text="name"
+            item-value="cid"
+            :menu-props="{ bottom: true, offsetY: true }"
+            label="分类"
+            outlined
+            dense
+            clearable
+            hide-details="auto"
+          ></v-select>
+        </v-col>
+        <v-col
+          cols="12"
+          md="6"
+        >
+          <v-select
+            v-model="article.tags"
+            return-object
+            :items="tags"
+            item-text="name"
+            item-value="tid"
+            :menu-props="{ bottom: true, offsetY: true }"
+            label="标签"
+            outlined
+            dense
+            clearable
+            multiple
+          ></v-select>
+        </v-col>
+      </v-row>
+      <div id="markdown"></div>
+    </v-form>
   </v-container>
 </template>
 
@@ -110,13 +115,13 @@ export default {
   methods: {
     publish () {
       this.article.markdown = this.contentEditor.getValue()
-      this.$http.post(process.env.VUE_APP_BASE_API + '/article/', this.article).then(() => {
-        console.log(this.article)
-        this.$dialog.message.success('发布成功', {
-          position: 'top'
+      if (this.$refs.form.validate() && this.article.markdown) {
+        this.$http.post(process.env.VUE_APP_BASE_API + '/article/',
+          this.article).then(() => {
+          console.log(this.article)
+          this.$router.push('/admin/article')
         })
-        this.$router.push('/admin/article')
-      })
+      }
     },
     getArticle () {
       if (this.$route.params.aid) {

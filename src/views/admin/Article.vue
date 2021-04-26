@@ -1,6 +1,6 @@
 <template>
   <v-card flat>
-    <v-card-title>
+    <v-card-title class="pr-2">
       <v-text-field
         v-model="search"
         hide-details
@@ -25,11 +25,9 @@
     </v-card-title>
     <v-data-table
       class="mx-sm-4"
-      :items="articles.content"
-      :page.sync="page"
+      :items="articles"
       :headers="headers"
       :search="search"
-      hide-default-footer
     >
       <template v-slot:item.actions="
       /* eslint-disable-next-line vue/no-unused-vars */
@@ -55,11 +53,11 @@
         </v-btn>
       </template>
     </v-data-table>
-    <v-pagination class="mt-2" l v-model="page" :length="articles.totalPages"/>
   </v-card>
 </template>
 
 <script>
+
 export default {
   name: 'Article',
   data () {
@@ -89,7 +87,7 @@ export default {
             sortable: false
           }
         ],
-      articles: {},
+      articles: [],
       page: 1,
       size: 10,
       search: ''
@@ -98,14 +96,9 @@ export default {
   created () {
     this.getArticles()
   },
-  watch: {
-    page () {
-      this.getArticles()
-    }
-  },
   methods: {
     getArticles () {
-      this.$http.get(process.env.VUE_APP_BASE_API + '/article/' + (this.page - 1) + '/' + this.size).then((response) => {
+      this.$http.get(process.env.VUE_APP_BASE_API + '/article/').then((response) => {
         console.log(response.data)
         this.articles = response.data
       })
@@ -124,10 +117,15 @@ export default {
 
 <style scoped>
 >>> .text-start, >>> .v-data-footer, >>> .v-select__selection {
-  font-size: unset !important;
+  font-size: 16px !important;
 }
 
 >>> .v-input__append-outer {
   margin: 0 !important;
+}
+
+>>> .v-data-footer {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 </style>

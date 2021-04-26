@@ -1,6 +1,6 @@
 <template>
   <v-card flat>
-    <v-card-title>
+    <v-card-title class="pr-2">
       <v-text-field
         v-model="search"
         hide-details
@@ -24,10 +24,9 @@
     </v-card-title>
     <v-data-table
       class="mx-sm-4"
-      :items="categories.content"
-      :page.sync="page"
+      :items="categories"
       :headers="headers"
-      hide-default-footer
+      :search="search"
     >
       <template v-slot:item.actions="
       /* eslint-disable-next-line vue/no-unused-vars */
@@ -55,7 +54,6 @@
         </v-btn>
       </template>
     </v-data-table>
-    <v-pagination class="mt-2" v-model="page" :length="categories.totalPages"/>
     <v-dialog
       v-model="dialog"
       max-width="300px"
@@ -121,9 +119,7 @@ export default {
             sortable: false
           }
         ],
-      categories: {},
-      page: 1,
-      size: 10,
+      categories: [],
       search: '',
       dialog: false,
       editedIndex: -1,
@@ -151,7 +147,7 @@ export default {
   },
   methods: {
     getCategories () {
-      this.$http.get(process.env.VUE_APP_BASE_API + '/category/' + (this.page - 1) + '/' + this.size).then((response) => {
+      this.$http.get(process.env.VUE_APP_BASE_API + '/category/').then((response) => {
         console.log(response.data)
         this.categories = response.data
       })

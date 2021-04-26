@@ -76,7 +76,8 @@ export default {
   },
   methods: {
     getArticles () {
-      this.$http.get(process.env.VUE_APP_BASE_API + '/article/' + (this.page - 1) + '/' + this.size).then((response) => {
+      this.$http.get(process.env.VUE_APP_BASE_API + '/article/' +
+        (this.page - 1) + '/' + this.size).then((response) => {
         console.log(response.data)
         this.articles = response.data
       })

@@ -42,7 +42,6 @@
       <v-col
         cols="12"
         sm="3"
-        class="hidden-md-and-down"
       >
         <v-container class="white pa-0 rounded" id="outline"></v-container>
       </v-col>
@@ -124,14 +123,14 @@ export default {
 
 <style>
 #outline {
+  width: 240px;
+  max-height: calc(100% - 128px);
   display: block;
   position: fixed;
-  width: 186px;
   overflow: auto;
   font-size: 14px;
   background-color: #fff;
-  line-height: 20px;
-  white-space: nowrap
+  white-space: nowrap;
 }
 
 #outline ul {
@@ -164,5 +163,9 @@ export default {
 
 code, kbd, pre, samp {
   font-family: sans-serif !important;
+}
+
+.vditor-outline::-webkit-scrollbar {
+  display: inherit;
 }
 </style>
