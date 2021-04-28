@@ -53,6 +53,7 @@
             dense
             clearable
             hide-details="auto"
+            :rules="categoryRules"
           ></v-select>
         </v-col>
         <v-col
@@ -71,6 +72,7 @@
             dense
             clearable
             multiple
+            :rules="tagRules"
           ></v-select>
         </v-col>
       </v-row>
@@ -91,8 +93,8 @@ export default {
         title: '',
         description: '',
         markdown: '',
-        category: [],
-        tags: []
+        category: null,
+        tags: null
       },
       titleRules: [
         v => !!v || '标题不能为空',
@@ -101,6 +103,12 @@ export default {
       descriptionRules: [
         v => !!v || '简介不能为空',
         v => v.length <= 100 || '简介必须少于200个字'
+      ],
+      categoryRules: [
+        v => !!v || '分类不能为空'
+      ],
+      tagRules: [
+        v => !!v || '标签不能为空'
       ],
       category: [],
       tags: [],

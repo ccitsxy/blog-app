@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+// 顶部进度条
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
@@ -44,8 +45,16 @@ const routes = [
       },
       {
         path: '/archive',
-        name: '归档',
-        component: () => import('../views/app/Archive')
+        component: () => import('../views/app/Archive'),
+        redirect: '/archive/' + new Date().getFullYear() + '/' + (new Date().getMonth() + 1),
+        children:
+          [
+            {
+              path: '/archive/:year/:month',
+              name: '归档',
+              component: () => import('../views/app/ArchiveDetail')
+            }
+          ]
       },
       {
         path: '/about',

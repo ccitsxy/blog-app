@@ -58,22 +58,23 @@ export default {
       size: 10
     }
   },
-  /*  created () {
+  created () {
+    this.getArticlesByArchive()
+  },
+  watch: {
+    page () {
       this.getArticlesByArchive()
-    },
-    watch: {
-      page () {
-        this.getArticlesByCategory()
-      }
-    }, */
+    }
+  },
   methods: {
     getArticlesByArchive () {
-      this.$http.get(process.env.VUE_APP_BASE_API +
-        '/article/archive/' + this.$route.params.cid + '/' + (this.page - 1) + '/' + this.size
-      ).then((response) => {
-        console.log(response.data)
-        this.articles = response.data
-      })
+      this.$http.get(process.env.VUE_APP_BASE_API + '/article/archive/' +
+        this.$route.params.year + '/' + this.$route.params.month + '/' +
+        (this.page - 1) + ' / ' + this.size)
+        .then((response) => {
+          console.log(response.data)
+          this.articles = response.data
+        })
     }
   }
 }

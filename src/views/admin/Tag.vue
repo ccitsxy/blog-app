@@ -27,6 +27,7 @@
       :items="tags"
       :headers="headers"
       :search="search"
+      :options="{itemsPerPage:15}"
     >
       <template v-slot:item.actions="
       /* eslint-disable-next-line vue/no-unused-vars */

@@ -1,5 +1,14 @@
 <template>
-  <h1></h1>
+  <v-container>
+    <v-row justify="center">
+      <v-col
+        cols="12"
+        sm="9"
+      >
+        <v-alert></v-alert>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
