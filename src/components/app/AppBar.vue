@@ -11,8 +11,9 @@
     </v-app-bar-title>
     <v-spacer class="hidden-xs-only"></v-spacer>
     <v-btn
-      class="hidden-xs-only"
       text
+      active-class="primary--text"
+      class="black--text hidden-xs-only text-decoration-none"
       v-for="(item,index) in nav"
       :key="index"
       :to="item.path"

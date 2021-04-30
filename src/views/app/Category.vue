@@ -52,7 +52,8 @@ export default {
 </script>
 
 <style scoped>
-.v-chip--active >>> .v-chip__content {
+/* 激活项颜色 */
+>>> .v-chip--active > .v-chip__content {
   color: #1976d2;
 }
 </style>

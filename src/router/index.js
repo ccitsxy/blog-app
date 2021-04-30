@@ -97,6 +97,11 @@ const routes = [
         path: '/admin/tag',
         name: '标签管理',
         component: () => import('../views/admin/Tag')
+      },
+      {
+        path: '/admin/user',
+        name: '用户管理',
+        component: () => import('../views/admin/User')
       }
     ]
   },
@@ -112,13 +117,14 @@ const routes = [
   },
   {
     path: '*',
-    name: '404',
+    name: 'ERROR404',
     component: () => import('../views/404')
   }
 ]
 
 const router = new VueRouter({
   routes,
+  mode: 'hash',
   // 切换路由时页面回到顶部
   scrollBehavior: () => ({
     x: 0,

@@ -24,7 +24,7 @@
     </v-card-title>
     <v-data-table
       class="mx-sm-4"
-      :items="tags"
+      :items="users"
       :headers="headers"
       :search="search"
       :options="{itemsPerPage:15}"
@@ -35,18 +35,21 @@
         <v-btn
           icon
           class="mr-2"
-          color="success" @click="editItem(item)"
+          color="success"
         >
-          <v-icon>
+          <v-icon
+            @click="editItem(item)"
+          >
             mdi-pencil
           </v-icon>
         </v-btn>
         <v-btn
           icon
           color="error"
-          @click="deleteItem(item)"
         >
-          <v-icon>
+          <v-icon
+            @click="deleteItem(item)"
+          >
             mdi-delete
           </v-icon>
         </v-btn>
@@ -59,15 +62,15 @@
     >
       <v-card>
         <v-card-title>
-          <span class="headline">{{ formTitle }}</span>
+          <span class="headline">{{formTitle}}</span>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
               <v-col cols="12">
                 <v-text-field
-                  outlined
                   dense
+                  outlined
                   hide-details
                   v-model="editedItem.name"
                   label="名称"
@@ -89,19 +92,19 @@
 
 <script>
 export default {
-  name: 'Tag',
+  name: 'User',
   data () {
     return {
       headers:
         [
           {
             text: '序号',
-            value: 'tid'
+            value: 'uid'
           },
           {
-            text: '名称',
+            text: '账号',
             sortable: false,
-            value: 'name'
+            value: 'username'
           },
           {
             text: '创建时间',
@@ -117,7 +120,7 @@ export default {
             sortable: false
           }
         ],
-      tags: [],
+      users: [],
       search: '',
       dialog: false,
       editedIndex: -1,
@@ -128,39 +131,39 @@ export default {
     }
   },
   created () {
-    this.getTags()
+    this.getUsers()
   },
   computed: {
     formTitle () {
-      return this.editedIndex === -1 ? '新建标签' : '编辑标签'
+      return this.editedIndex === -1 ? '新建用户' : '编辑用户'
     }
   },
   watch: {
     page () {
-      this.getTags()
+      this.getUsers()
     },
     dialog (val) {
       val || this.close()
     }
   },
   methods: {
-    getTags () {
-      this.$http.get(process.env.VUE_APP_BASE_API + '/tag/').then((response) => {
+    getUsers () {
+      this.$http.get(process.env.VUE_APP_BASE_API + '/user/').then((response) => {
         console.log(response.data)
-        this.tags = response.data
+        this.users = response.data
       })
     },
     createItem () {
       this.dialog = true
     },
     editItem (item) {
-      this.editedIndex = this.tags.indexOf(item)
+      this.editedIndex = this.users.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
 
     deleteItem (item) {
-      const index = this.tags.indexOf(item)
+      const index = this.users.indexOf(item)
       confirm('Are you sure you want to delete this item?') && this.tags.content.splice(index, 1)
     },
 
@@ -174,9 +177,9 @@ export default {
 
     save () {
       if (this.editedIndex > -1) {
-        Object.assign(this.tags.content[this.editedIndex], this.editedItem)
+        Object.assign(this.categories.content[this.editedIndex], this.editedItem)
       } else {
-        this.tags.content.push(this.editedItem)
+        this.categories.content.push(this.editedItem)
       }
       this.close()
     }

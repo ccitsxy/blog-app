@@ -157,13 +157,13 @@ export default {
       this.dialog = true
     },
     editItem (item) {
-      this.editedIndex = this.categories.content.indexOf(item)
+      this.editedIndex = this.categories.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
 
     deleteItem (item) {
-      const index = this.categories.content.indexOf(item)
+      const index = this.categories.indexOf(item)
       confirm('Are you sure you want to delete this item?') && this.tags.content.splice(index, 1)
     },
 
@@ -188,9 +188,6 @@ export default {
 </script>
 
 <style scoped>
->>> .text-start, >>> .v-data-footer, >>> .v-select__selection {
-  font-size: unset !important;
-}
 
 >>> .v-input__append-outer {
   margin: 0 !important;

@@ -5,7 +5,6 @@
         <v-layout class="align-center justify-center">
           <v-flex xs12 sm8 md6 lg5 xl3>
             <v-card class="elevation-12">
-              <v-card-title>{{token}}</v-card-title>
               <v-toolbar color="primary" dark flat>
                 <v-toolbar-title>登录</v-toolbar-title>
                 <v-spacer></v-spacer>

@@ -117,16 +117,4 @@ export default {
 </script>
 
 <style scoped>
->>> .text-start, >>> .v-data-footer, >>> .v-select__selection {
-  font-size: 16px !important;
-}
-
->>> .v-input__append-outer {
-  margin: 0 !important;
-}
-
->>> .v-data-footer {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
 </style>

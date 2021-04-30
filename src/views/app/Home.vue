@@ -13,7 +13,7 @@
           class="mb-4"
         >
           <v-card-title class="font-weight-bold">
-            <span class="v-title">{{ item.title }}</span>
+            <span class="text-title">{{ item.title }}</span>
           </v-card-title>
           <v-card-subtitle class="black--text mt-0 ml-n1">
             <v-icon>mdi-timer</v-icon>
@@ -85,13 +85,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.v-title {
-  text-decoration: none;
-}
-
-.v-title:hover {
-  color: #1976d2
-}
-</style>
