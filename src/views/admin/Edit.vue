@@ -102,13 +102,13 @@ export default {
       ],
       descriptionRules: [
         v => !!v || '简介不能为空',
-        v => v.length <= 100 || '简介必须少于200个字'
+        v => v.length <= 100 || '简介必须少于100个字'
       ],
       categoryRules: [
         v => !!v || '分类不能为空'
       ],
       tagRules: [
-        v => !!v || '标签不能为空'
+        v => (!!v && v.length > 0) || '分类不能为空'
       ],
       category: [],
       tags: [],
