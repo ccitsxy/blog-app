@@ -183,10 +183,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
->>> .v-input__append-outer {
-  margin: 0 !important;
-}
-</style>
