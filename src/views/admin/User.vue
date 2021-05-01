@@ -73,7 +73,7 @@
                   outlined
                   hide-details
                   v-model="editedItem.name"
-                  label="名称"
+                  label="账号"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -177,19 +177,12 @@ export default {
 
     save () {
       if (this.editedIndex > -1) {
-        Object.assign(this.categories.content[this.editedIndex], this.editedItem)
+        Object.assign(this.users[this.editedIndex], this.editedItem)
       } else {
-        this.categories.content.push(this.editedItem)
+        this.users.push(this.editedItem)
       }
       this.close()
     }
   }
 }
 </script>
-
-<style scoped>
-
->>> .v-input__append-outer {
-  margin: 0 !important;
-}
-</style>
