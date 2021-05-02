@@ -62,7 +62,7 @@
     >
       <v-card>
         <v-card-title>
-          <span class="headline">{{formTitle}}</span>
+          <span class="headline">{{ formTitle }}</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -72,7 +72,7 @@
                   dense
                   outlined
                   hide-details
-                  v-model="editedItem.name"
+                  v-model="editedItem.username"
                   label="账号"
                 ></v-text-field>
               </v-col>
@@ -148,7 +148,7 @@ export default {
   },
   methods: {
     getUsers () {
-      this.$http.get(process.env.VUE_APP_BASE_API + '/user/').then((response) => {
+      this.$http.get(`${process.env.VUE_APP_BASE_API}/user/`).then((response) => {
         console.log(response.data)
         this.users = response.data
       })
@@ -164,7 +164,7 @@ export default {
 
     deleteItem (item) {
       const index = this.users.indexOf(item)
-      confirm('Are you sure you want to delete this item?') && this.tags.content.splice(index, 1)
+      confirm('Are you sure you want to delete this item?') && this.users.splice(index, 1)
     },
 
     close () {

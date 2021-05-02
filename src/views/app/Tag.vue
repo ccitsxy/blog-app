@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     getTags () {
-      this.$http.get(process.env.VUE_APP_BASE_API + '/tag/').then((response) => {
+      this.$http.get(`${process.env.VUE_APP_BASE_API}/tag/`).then((response) => {
         console.log(response.data)
         this.categories = response.data
       })

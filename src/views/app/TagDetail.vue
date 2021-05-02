@@ -68,12 +68,12 @@ export default {
   },
   methods: {
     getArticlesByTag () {
-      this.$http.get(process.env.VUE_APP_BASE_API +
-        '/article/tag/' + this.$route.params.tid + '/' + (this.page - 1) + '/' + this.size
-      ).then((response) => {
-        console.log(response.data)
-        this.articles = response.data
-      })
+      this.$http.get(`${process.env.VUE_APP_BASE_API}/article/tag/
+      ${this.$route.params.tid}/${this.page - 1}/${this.size}`)
+        .then((response) => {
+          console.log(response.data)
+          this.articles = response.data
+        })
     }
   }
 }

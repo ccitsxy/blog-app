@@ -3,25 +3,63 @@
     <v-row justify="center">
       <v-col
         cols="12"
-        sm="6"
+        sm="4"
       >
-        <v-data-table
-          hide-default-footer
-          :headers="headers"
-          :items="front"
-        >
-        </v-data-table>
+        <v-card>
+          <v-card-title class="primary white--text">
+            <v-icon class="mr-2" large dark>mdi-devices</v-icon>
+            环境
+          </v-card-title>
+          <v-card-text class="pa-0">
+            <v-data-table
+              hide-default-header
+              hide-default-footer
+              :headers="headers"
+              :items="devices"
+            >
+            </v-data-table>
+          </v-card-text>
+        </v-card>
       </v-col>
       <v-col
         cols="12"
-        sm="6"
+        sm="4"
       >
-        <v-data-table
-          hide-default-footer
-          :headers="headers"
-          :items="back"
-        >
-        </v-data-table>
+        <v-card>
+          <v-card-title class="green white--text">
+            <v-icon class="mr-2" large dark>mdi-vuejs</v-icon>
+            前端
+          </v-card-title>
+          <v-card-text class="pa-0">
+            <v-data-table
+              hide-default-header
+              hide-default-footer
+              :headers="headers"
+              :items="front"
+            >
+            </v-data-table>
+          </v-card-text>
+        </v-card>
+      </v-col>
+      <v-col
+        cols="12"
+        sm="4"
+      >
+        <v-card>
+          <v-card-title class="red white--text">
+            <v-icon class="mr-2" large dark>mdi-language-java</v-icon>
+            后端
+          </v-card-title>
+          <v-card-text class="pa-0">
+            <v-data-table
+              hide-default-header
+              hide-default-footer
+              :headers="headers"
+              :items="back"
+            >
+            </v-data-table>
+          </v-card-text>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -42,6 +80,28 @@ export default {
           text: '版本',
           sortable: false,
           value: 'version'
+        }
+      ],
+      devices: [
+        {
+          name: '系统',
+          version: 'Windows 10 20H2'
+        },
+        {
+          name: 'JDK',
+          version: '1.8.0'
+        },
+        {
+          name: 'Node.js',
+          version: '14.15.4'
+        },
+        {
+          name: 'MySQL',
+          version: '8.0.16'
+        },
+        {
+          name: '浏览器',
+          version: 'Google Chrome 90'
         }
       ],
       front: [
@@ -96,12 +156,16 @@ export default {
           version: '2.11.4'
         },
         {
-          name: 'MySQL',
-          version: '8.0.16'
-        },
-        {
           name: 'Sa-Token',
           version: '1.17.0'
+        },
+        {
+          name: 'Tomcat',
+          version: '9.0.41'
+        },
+        {
+          name: 'Hibernate',
+          version: '5.4.27'
         }
       ]
     }

@@ -1,5 +1,5 @@
 <template>
-  <v-container id="edit" class="ma-1" fluid>
+  <v-container id="edit" class="ma-sm-1" fluid>
     <v-form
       ref="form"
       lazy-validation
@@ -124,11 +124,11 @@ export default {
     publish () {
       this.article.markdown = this.contentEditor.getValue()
       if (this.$refs.form.validate() && this.article.markdown) {
-        this.$http.post(process.env.VUE_APP_BASE_API + '/article/',
-          this.article).then(() => {
-          console.log(this.article)
-          this.$router.push('/admin/article')
-        })
+        this.$http.post(`${process.env.VUE_APP_BASE_API}/article/`, this.article)
+          .then(() => {
+            console.log(this.article)
+            this.$router.push('/admin/article')
+          })
       }
     },
     getArticle () {
@@ -158,7 +158,7 @@ export default {
     initEditor () {
       // 页面加载后加载编辑器，防止读取不到id
       this.contentEditor = new Vditor('markdown', {
-        height: 360,
+        height: 300,
         toolbarConfig: {
           pin: true
         },

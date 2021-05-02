@@ -148,7 +148,7 @@ export default {
   },
   methods: {
     getCategories () {
-      this.$http.get(process.env.VUE_APP_BASE_API + '/category/').then((response) => {
+      this.$http.get(`${process.env.VUE_APP_BASE_API}/category/`).then((response) => {
         console.log(response.data)
         this.categories = response.data
       })
@@ -164,7 +164,7 @@ export default {
 
     deleteItem (item) {
       const index = this.categories.indexOf(item)
-      confirm('Are you sure you want to delete this item?') && this.tags.content.splice(index, 1)
+      confirm('Are you sure you want to delete this item?') && this.tags.splice(index, 1)
     },
 
     close () {
@@ -177,9 +177,9 @@ export default {
 
     save () {
       if (this.editedIndex > -1) {
-        Object.assign(this.categories.content[this.editedIndex], this.editedItem)
+        Object.assign(this.categories[this.editedIndex], this.editedItem)
       } else {
-        this.categories.content.push(this.editedItem)
+        this.categories.push(this.editedItem)
       }
       this.close()
     }

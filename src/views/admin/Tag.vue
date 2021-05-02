@@ -145,7 +145,7 @@ export default {
   },
   methods: {
     getTags () {
-      this.$http.get(process.env.VUE_APP_BASE_API + '/tag/').then((response) => {
+      this.$http.get(`${process.env.VUE_APP_BASE_API}/tag/`).then((response) => {
         console.log(response.data)
         this.tags = response.data
       })
@@ -161,7 +161,7 @@ export default {
 
     deleteItem (item) {
       const index = this.tags.indexOf(item)
-      confirm('Are you sure you want to delete this item?') && this.tags.content.splice(index, 1)
+      confirm('Are you sure you want to delete this item?') && this.tags.splice(index, 1)
     },
 
     close () {
@@ -174,7 +174,7 @@ export default {
 
     save () {
       if (this.editedIndex > -1) {
-        Object.assign(this.tags.content[this.editedIndex], this.editedItem)
+        Object.assign(this.tags[this.editedIndex], this.editedItem)
       } else {
         this.tags.content.push(this.editedItem)
       }

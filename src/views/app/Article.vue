@@ -35,7 +35,7 @@
             >
               {{ item.name }}
             </v-chip>
-            <v-container class="white ml-2" id="preview"></v-container>
+            <v-container class="white" id="preview"></v-container>
           </v-card-text>
         </v-card>
       </v-col>
@@ -70,7 +70,8 @@ export default {
   },
   methods: {
     getArticle () {
-      this.$http.get(process.env.VUE_APP_BASE_API + '/article/' + this.$route.params.aid)
+      // ES6 ${变量}
+      this.$http.get(`${process.env.VUE_APP_BASE_API}/article/${this.$route.params.aid}`)
         .then((response) => {
           this.article = response.data
         })
