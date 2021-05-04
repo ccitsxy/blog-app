@@ -123,35 +123,37 @@ export default {
   methods: {
     publish () {
       this.article.markdown = this.contentEditor.getValue()
-      if (this.$refs.form.validate() && this.article.markdown) {
+      if (!(this.article.markdown.length - 1)) {
+        this.contentEditor.tip('内容不能为空', 1000)
+      } else if (this.$refs.form.validate()) {
         this.$http.post(`${process.env.VUE_APP_BASE_API}/article/`, this.article)
           .then(() => {
-            console.log(this.article)
+            this.$dialog.message.success('发表成功', {
+              position: 'top',
+              timeout: 5000
+            })
             this.$router.push('/admin/article')
           })
       }
     },
     getArticle () {
       if (this.$route.params.aid) {
-        this.$http.get(process.env.VUE_APP_BASE_API +
-          '/article/' + this.$route.params.aid).then((response) => {
-          console.log(response.data)
-          this.article = response.data
-          this.initEditor()
-        })
+        this.$http.get(`${process.env.VUE_APP_BASE_API}/article/${this.$route.params.aid}`)
+          .then((response) => {
+            this.article = response.data
+            this.initEditor()
+          })
       } else {
         this.initEditor()
       }
     },
     getCategory () {
-      this.$http.get(process.env.VUE_APP_BASE_API + '/category/').then((response) => {
-        console.log(response.data)
+      this.$http.get(`${process.env.VUE_APP_BASE_API}/category/`).then((response) => {
         this.category = response.data
       })
     },
     getTags () {
-      this.$http.get(process.env.VUE_APP_BASE_API + '/tag/').then((response) => {
-        console.log(response.data)
+      this.$http.get(`${process.env.VUE_APP_BASE_API}/tag/`).then((response) => {
         this.tags = response.data
       })
     },
@@ -168,8 +170,13 @@ export default {
         },
         // 缓存编辑器内容
         cache: {
-          enable: false,
+          enable: true,
           id: 'markdown'
+        },
+        preview: {
+          hljs: {
+            lineNumber: true
+          }
         },
         after: () => {
           this.contentEditor.setValue(this.article.markdown)
@@ -179,6 +186,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-</style>

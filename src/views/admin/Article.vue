@@ -30,7 +30,6 @@
       :search="search"
       :options="{itemsPerPage:15}"
     >
-      <!-- eslint-disable-next-line vue/no-unused-vars-->
       <template v-slot:item.actions="{item}">
         <v-btn
           icon
@@ -99,17 +98,15 @@ export default {
   methods: {
     getArticles () {
       this.$http.get(`${process.env.VUE_APP_BASE_API}/article/`).then((response) => {
-        console.log(response.data)
         this.articles = response.data
       })
     },
     editArticle (item) {
-      console.log(item)
       const route = this.$router.resolve(`/admin/edit/${item.aid}`)
       window.open(route.href, '_blank')
     },
     deleteArticle (item) {
-      console.log(item)
+      console.log(item.aid)
     }
   }
 }

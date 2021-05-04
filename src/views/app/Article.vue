@@ -81,6 +81,9 @@ export default {
     },
     preview () {
       Vditor.preview(document.getElementById('preview'), this.article.markdown, {
+        hljs: {
+          lineNumber: true
+        },
         after () {
           Vditor.outlineRender(
             document.getElementById('preview'),
@@ -126,7 +129,7 @@ export default {
 <style>
 
 #outline {
-  width: 240px;
+  width: 270px;
   max-height: calc(100% - 128px);
   display: block;
   position: fixed;
@@ -162,10 +165,6 @@ export default {
 #outline li > span:hover {
   color: #1976d2;
   background-color: #f6f8fa;
-}
-
-code, kbd, pre, samp {
-  font-family: sans-serif !important;
 }
 
 .vditor-outline::-webkit-scrollbar {

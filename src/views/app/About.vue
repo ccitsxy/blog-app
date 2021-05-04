@@ -93,7 +93,7 @@ export default {
         },
         {
           name: 'Node.js',
-          version: '14.15.4'
+          version: '14.16.1'
         },
         {
           name: 'MySQL',
@@ -124,10 +124,6 @@ export default {
         {
           name: 'axios',
           version: '0.21.1'
-        },
-        {
-          name: 'vue-axios',
-          version: '3.2.4'
         },
         {
           name: 'vuetify',
