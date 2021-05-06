@@ -69,7 +69,7 @@ export default {
   methods: {
     getArticlesByArchive () {
       this.$http.get(`${process.env.VUE_APP_BASE_API}/article/archive/
-      ${this.$route.params.year}/${this.$route.params.month}/${this.page - 1}/${this.size}`)
+      ${this.$route.params.year}/${this.$route.params.month}/${this.page}/${this.size}`)
         .then((response) => {
           console.log(response.data)
           this.articles = response.data

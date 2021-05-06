@@ -69,7 +69,7 @@ export default {
   methods: {
     getArticlesByCategory () {
       this.$http.get(`${process.env.VUE_APP_BASE_API}/article/category/
-      ${this.$route.params.cid}/${this.page - 1}/${this.size}`)
+      ${this.$route.params.cid}/${this.page}/${this.size}`)
         .then((response) => {
           console.log(response.data)
           this.articles = response.data

@@ -41,8 +41,13 @@
         </v-btn>
       </template>
       <v-list class="py-0">
-        <v-list-item link to="/admin">管理</v-list-item>
-        <v-list-item link>退出</v-list-item>
+        <template v-if="token">
+          <v-list-item link to="/admin">管理</v-list-item>
+          <v-list-item link>退出</v-list-item>
+        </template>
+        <template v-else>
+          <v-list-item link to="/login">登录</v-list-item>
+        </template>
       </v-list>
     </v-menu>
   </v-app-bar>
@@ -59,6 +64,9 @@ export default {
   computed: {
     ...sync('app', [
       'drawer'
+    ]),
+    ...sync('user', [
+      'token'
     ])
   }
 }

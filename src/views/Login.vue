@@ -59,6 +59,8 @@
 
 <script>
 
+import { sync } from 'vuex-pathify'
+
 export default {
   name: 'Login',
   data: () => ({
@@ -72,16 +74,23 @@ export default {
       required: value => !!value || 'Required.'
     }
   }),
+  computed: {
+    ...sync('user', [
+      'token'
+    ])
+  },
   methods: {
     userLogin () {
       const _this = this
       if (!_this.$refs.login_form.validate()) return
       // 表单验证成功
       _this.loginLoading = true
-      this.$http.post(process.env.VUE_APP_BASE_API +
+      _this.$http.post(process.env.VUE_APP_BASE_API +
         '/user/login', this.loginForm).then((response) => {
         this.token = response.data
+        localStorage.setItem('token', this.token)
         console.log(this.token)
+        _this.$router.push('/')
       })
     }
   }
