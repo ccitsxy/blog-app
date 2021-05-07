@@ -120,19 +120,30 @@ export default {
     this.getCategory()
     this.getTags()
     window.addEventListener('beforeunload', e => {
-      this.handle(e)
-    })
-    window.addEventListener('pagehide', e => {
-      this.handle(e)
+      this.beforeunloadHandler(e)
     })
   },
   destroyed () {
-    window.removeEventListener('beforeunload', e => {
-      this.handle(e)
+    window.addEventListener('beforeunload', e => {
+      this.beforeunloadHandler(e)
     })
-    window.removeEventListener('pagehide', e => {
-      this.handle(e)
+  },
+  async beforeRouteLeave (to, from, next) {
+    const dialogInstance = await this.$dialog.confirm({
+      title: '是否离开页面',
+      text: '你所做的更改可能未保存',
+      waitForResult: false,
+      actions: {
+        false: '取消',
+        true: '确认'
+      }
     })
+    const userChoice = await dialogInstance.wait()
+    if (userChoice) {
+      next()
+    } else {
+      next(false)
+    }
   },
   methods: {
     publish () {
@@ -197,7 +208,7 @@ export default {
         }
       })
     },
-    handle (e) {
+    beforeunloadHandler (e) {
       // 按照标准规定取消事件
       e.preventDefault()
       // Chrome需要设置returnValue
