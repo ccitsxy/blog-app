@@ -119,6 +119,20 @@ export default {
     this.getArticle()
     this.getCategory()
     this.getTags()
+    window.addEventListener('beforeunload', e => {
+      this.handle(e)
+    })
+    window.addEventListener('pagehide', e => {
+      this.handle(e)
+    })
+  },
+  destroyed () {
+    window.removeEventListener('beforeunload', e => {
+      this.handle(e)
+    })
+    window.removeEventListener('pagehide', e => {
+      this.handle(e)
+    })
   },
   methods: {
     publish () {
@@ -182,6 +196,12 @@ export default {
           this.contentEditor.setValue(this.article.markdown)
         }
       })
+    },
+    handle (e) {
+      // 按照标准规定取消事件
+      e.preventDefault()
+      // Chrome需要设置returnValue
+      e.returnValue = ''
     }
   }
 }

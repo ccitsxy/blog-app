@@ -30,6 +30,9 @@ export default {
     handleScroll () {
       this.fab = document.documentElement.scrollTop + document.body.scrollTop > 500
     }
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
