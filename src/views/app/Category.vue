@@ -43,7 +43,6 @@ export default {
   methods: {
     getCategories () {
       this.$http.get(`${process.env.VUE_APP_BASE_API}/category/`).then((response) => {
-        console.log(response.data)
         this.categories = response.data
       })
     }

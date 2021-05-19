@@ -1,13 +1,13 @@
 <template>
   <v-app>
 
-    <app-drawer :nav="nav"/>
+    <app-drawer v-if="$vuetify.breakpoint.xsOnly" temporary :nav="nav"/>
 
     <app-bar :nav="nav"/>
 
     <app-view/>
 
-    <app-footer/>
+    <app-footer name="博客" path="/"/>
 
     <app-fab/>
 
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { sync } from 'vuex-pathify'
+
 export default {
   name: 'Index',
   data () {
@@ -44,11 +46,22 @@ export default {
     }
   },
   components: {
-    AppDrawer: () => import('../../components/app/Drawer'),
-    AppBar: () => import('../../components/app/AppBar'),
-    AppView: () => import('../../components/app/View'),
-    AppFooter: () => import('../../components/app/Footer'),
+    AppDrawer: () => import('../../components/Drawer'),
+    AppBar: () => import('../../components/AppBar'),
+    AppView: () => import('../../components/AppView'),
+    AppFooter: () => import('../../components/Footer'),
     AppFab: () => import('../../components/Fab')
+  },
+  computed: {
+    ...sync('drawer', [
+      'drawer'
+    ])
+  },
+  beforeRouteLeave (to, from, next) {
+    // 导航离开该组件的对应路由时调用
+    // 可以访问组件实例 `this`
+    this.drawer = !this.$vuetify.breakpoint.xsOnly
+    next()
   }
 }
 </script>

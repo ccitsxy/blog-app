@@ -6,7 +6,7 @@
           <v-flex xs12 sm8 md6 lg5 xl3>
             <v-card class="elevation-12">
               <v-toolbar color="primary" dark flat>
-                <v-toolbar-title>登录</v-toolbar-title>
+                <v-toolbar-title>注册</v-toolbar-title>
                 <v-spacer></v-spacer>
               </v-toolbar>
               <v-card-text>
@@ -27,10 +27,15 @@
                     prepend-icon="mdi-lock"
                     :type="passwordDisplay ? 'text' : 'password'"
                     v-model="loginForm.password"
-                    :append-icon="passwordDisplay ? 'mdi-eye' : 'mdi-eye-off'"
                     @click:append="passwordDisplay = !passwordDisplay"
                     :rules="[rules.required]"
                   ></v-text-field>
+                  <v-text-field
+                    label="邮箱"
+                    name="email"
+                    prepend-icon="mdi-email"
+                  >
+                  </v-text-field>
                 </v-form>
               </v-card-text>
               <v-card-actions>

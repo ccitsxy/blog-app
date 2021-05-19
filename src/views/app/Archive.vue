@@ -45,7 +45,6 @@ export default {
   methods: {
     getArchive () {
       this.$http.get(`${process.env.VUE_APP_BASE_API}/article/archive`).then((response) => {
-        console.log(response.data)
         this.archive = response.data
       })
     }

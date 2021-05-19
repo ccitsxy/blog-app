@@ -13,7 +13,7 @@
       >
         {{ new Date().getFullYear() }} —
         <strong>
-          <router-link class="text-decoration-none" to="/admin">博客后台</router-link>
+          <router-link class="text-decoration-none" :to="path">{{ name }}</router-link>
         </strong>
       </v-col>
     </v-row>
@@ -22,6 +22,10 @@
 
 <script>
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  props: {
+    path: String,
+    name: String
+  }
 }
 </script>

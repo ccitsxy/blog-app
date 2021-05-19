@@ -2,10 +2,15 @@
 $data-table-regular-header-font-size: 1rem;
 $data-table-regular-row-font-size: 1rem;
 $data-footer-font-size: 1rem;
-$data-footer-select-selections-comma-font-size: 1rem;
 $data-footer-padding: 0;
+$data-footer-select-margin-end: 0;
+$data-footer-select-select-margin-start: 12px;
+$data-footer-select-selections-comma-font-size: 1rem;
+$data-footer-pagination-margin-start: 12px;
+$data-footer-pagination-margin-end: 12px;
 // list
 $list-dense-min-height: 48px;
+$list-padding: 0;
 $list-item-dense-title-font-size: 1rem;
 // btn 按钮
 $btn-active-opacity: none

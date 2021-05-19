@@ -1,7 +1,7 @@
 <template>
   <v-main>
     <router-view :key="$route.path"/>
-    <admin-footer></admin-footer>
+    <admin-footer name="博客后台" path="/admin"></admin-footer>
   </v-main>
 </template>
 
@@ -9,7 +9,7 @@
 export default {
   name: 'AdminView',
   components: {
-    AdminFooter: () => import('../../components/admin/Footer')
+    AdminFooter: () => import('../components/Footer')
   }
 }
 </script>

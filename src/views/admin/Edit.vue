@@ -68,6 +68,7 @@
             item-value="tid"
             :menu-props="{ bottom: true, offsetY: true }"
             label="标签"
+            small-chips
             outlined
             dense
             clearable
@@ -76,7 +77,7 @@
           ></v-select>
         </v-col>
       </v-row>
-      <div id="markdown"></div>
+      <div id="vditor"></div>
     </v-form>
   </v-container>
 </template>
@@ -94,7 +95,7 @@ export default {
         description: '',
         markdown: '',
         category: null,
-        tags: null
+        tags: []
       },
       titleRules: [
         v => !!v || '标题不能为空',
@@ -119,31 +120,6 @@ export default {
     this.getArticle()
     this.getCategory()
     this.getTags()
-    window.addEventListener('beforeunload', e => {
-      this.beforeunloadHandler(e)
-    })
-  },
-  destroyed () {
-    window.addEventListener('beforeunload', e => {
-      this.beforeunloadHandler(e)
-    })
-  },
-  async beforeRouteLeave (to, from, next) {
-    const dialogInstance = await this.$dialog.confirm({
-      title: '是否离开页面',
-      text: '你所做的更改可能未保存',
-      waitForResult: false,
-      actions: {
-        false: '取消',
-        true: '确认'
-      }
-    })
-    const userChoice = await dialogInstance.wait()
-    if (userChoice) {
-      next()
-    } else {
-      next(false)
-    }
   },
   methods: {
     publish () {
@@ -166,8 +142,7 @@ export default {
         this.$http.get(`${process.env.VUE_APP_BASE_API}/article/${this.$route.params.aid}`)
           .then((response) => {
             this.article = response.data
-            this.initEditor()
-          })
+          }).then(() => this.initEditor())
       } else {
         this.initEditor()
       }
@@ -184,7 +159,7 @@ export default {
     },
     initEditor () {
       // 页面加载后加载编辑器，防止读取不到id
-      this.contentEditor = new Vditor('markdown', {
+      this.contentEditor = new Vditor('vditor', {
         height: 300,
         toolbarConfig: {
           pin: true
@@ -192,11 +167,6 @@ export default {
         counter: {
           enable: true,
           max: 100000
-        },
-        // 缓存编辑器内容
-        cache: {
-          enable: true,
-          id: 'markdown'
         },
         preview: {
           hljs: {
@@ -207,12 +177,6 @@ export default {
           this.contentEditor.setValue(this.article.markdown)
         }
       })
-    },
-    beforeunloadHandler (e) {
-      // 按照标准规定取消事件
-      e.preventDefault()
-      // Chrome需要设置returnValue
-      e.returnValue = ''
     }
   }
 }

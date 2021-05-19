@@ -1,16 +1,20 @@
 <template>
   <v-app>
-    <admin-app-bar />
 
-    <admin-drawer :nav="nav" />
+    <app-bar admin/>
 
-    <admin-view />
+    <drawer :nav="nav"/>
 
-    <admin-fab />
+    <admin-view/>
+
+    <fab/>
+
   </v-app>
 </template>
 
 <script>
+import { sync } from 'vuex-pathify'
+
 export default {
   name: 'Index',
   data () {
@@ -40,10 +44,21 @@ export default {
     }
   },
   components: {
-    AdminDrawer: () => import('../../components/admin/Drawer'),
-    AdminAppBar: () => import('../../components/admin/AppBar'),
-    AdminView: () => import('../../components/admin/View'),
-    AdminFab: () => import('../../components/Fab')
+    Drawer: () => import('../../components/Drawer'),
+    AppBar: () => import('../../components/AppBar'),
+    AdminView: () => import('../../components/AdminView'),
+    Fab: () => import('../../components/Fab')
+  },
+  computed: {
+    ...sync('drawer', [
+      'drawer'
+    ])
+  },
+  beforeRouteLeave (to, from, next) {
+    // 导航离开该组件的对应路由时调用
+    // 可以访问组件实例 `this`
+    this.drawer = false
+    next()
   }
 }
 </script>

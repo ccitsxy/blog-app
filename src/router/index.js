@@ -118,13 +118,13 @@ const routes = [
   {
     path: '*',
     name: 'ERROR404',
-    component: () => import('../views/404')
+    component: () => import('../views/Error404')
   }
 ]
 
 const router = new VueRouter({
   routes,
-  mode: 'hash',
+  mode: process.env.VUE_APP_ROUTER_MODE,
   // 切换路由时页面回到顶部
   scrollBehavior: () => ({
     x: 0,

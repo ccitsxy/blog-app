@@ -1,3 +1,2 @@
-export { default as app } from './app'
-export { default as admin } from './admin'
+export { default as drawer } from './drawer'
 export { default as user } from './user'

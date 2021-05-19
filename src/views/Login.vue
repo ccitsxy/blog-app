@@ -84,11 +84,11 @@ export default {
       if (!_this.$refs.login_form.validate()) return
       // 表单验证成功
       _this.loginLoading = true
-      _this.$http.post(process.env.VUE_APP_BASE_API +
-        '/user/login', this.loginForm).then((response) => {
-        this.token = response.data
+      _this.$http.post(`${process.env.VUE_APP_BASE_API}/user/login`, this.loginForm).then((response) => {
+        _this.token = response.data
         localStorage.setItem('token', this.token)
         console.log(this.token)
+        _this.$dialog.message.success('登录成功')
         _this.$router.push('/')
       })
     }

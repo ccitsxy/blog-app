@@ -149,7 +149,6 @@ export default {
   methods: {
     getUsers () {
       this.$http.get(`${process.env.VUE_APP_BASE_API}/user/`).then((response) => {
-        console.log(response.data)
         this.users = response.data
       })
     },

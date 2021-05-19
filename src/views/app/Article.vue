@@ -1,13 +1,14 @@
 <template>
   <v-container>
-    <v-row justify="center">
+    <v-row>
       <v-col
         cols="12"
         sm="9"
+        class="preview"
       >
         <v-card flat>
-          <v-card-title class="ml-3 headline">{{ article.title }}</v-card-title>
-          <v-card-subtitle class="black--text mt-0 ml-2">
+          <v-card-title class=" headline">{{ article.title }}</v-card-title>
+          <v-card-subtitle class="black--text mt-0 ml-n1">
             <v-icon>mdi-timer</v-icon>
             {{ article.created }}
             <v-icon v-if="article.updated">mdi-update</v-icon>
@@ -15,7 +16,7 @@
           </v-card-subtitle>
           <v-card-text>
             <v-chip
-              class="ml-3 mr-2"
+              class="mr-2"
               color="primary"
               small
               outlined
@@ -35,15 +36,32 @@
             >
               {{ item.name }}
             </v-chip>
-            <v-container class="white" id="preview"></v-container>
+            <v-container class="white pa-0" id="preview"></v-container>
           </v-card-text>
         </v-card>
       </v-col>
       <v-col
         cols="12"
         sm="3"
+        class="hidden-xs-only"
       >
         <v-container class="white pa-0 rounded" id="outline"></v-container>
+      </v-col>
+
+      <v-col
+        cols="12"
+        sm="9"
+      >
+        <Comment
+          class="ma-0"
+          v-model="data"
+          :props="props"
+          :user="currentUser"
+          :before-submit="addComment"
+          :before-delete="deleteComment"
+          :before-like="likeComment"
+          :upload-img="uploadOrCopyImg"
+        />
       </v-col>
     </v-row>
   </v-container>
@@ -53,8 +71,13 @@
 import Vditor from 'vditor'
 import 'vditor/dist/index.css'
 
+import Comment from 'vue-juejin-comment'
+
 export default {
   name: 'Article',
+  components: {
+    Comment
+  },
   data () {
     return {
       article: {
@@ -62,6 +85,13 @@ export default {
         category: {
           cid: ''
         }
+      },
+      data: [],
+      props: {},
+      currentUser: {
+        name: '',
+        avatar: '',
+        author: false
       }
     }
   },
@@ -96,7 +126,7 @@ export default {
           })
 
           let toc = []
-          window.addEventListener('scroll', () => {
+          addEventListener('scroll', () => {
             const scrollTop = window.scrollY
             toc = []
             headingElements.forEach((item) => {
@@ -121,13 +151,29 @@ export default {
           })
         }
       })
+    },
+    addComment (comment) {
+      // ...
+    },
+    deleteComment (comment) {
+      // ...
+    },
+    likeComment (comment) {
+      // ...
+    },
+    uploadOrCopyImg ({
+      file,
+      callback
+    }) {
+      // ...
+
+      // callback(imgUrl) // 图片地址必传
     }
   }
 }
 </script>
 
-<style>
-
+<style scoped>
 #outline {
   width: 270px;
   max-height: calc(100% - 128px);
@@ -144,30 +190,34 @@ export default {
   list-style: none;
 }
 
-#outline > ul {
+>>> #outline > ul {
   padding-left: 0;
   margin-left: 0;
 }
 
-#outline li > span {
+>>> #outline li > span {
   cursor: pointer;
   border-left: 1px solid transparent;
   display: block;
   padding-left: 8px;
 }
 
-#outline li > span.vditor-outline__item--current {
+>>> #outline li > span.vditor-outline__item--current {
   border-left: 1px solid #1976d2;
   color: #1976d2;
   background-color: #f6f8fa;
 }
 
-#outline li > span:hover {
+>>> #outline li > span:hover {
   color: #1976d2;
   background-color: #f6f8fa;
 }
 
 .vditor-outline::-webkit-scrollbar {
   display: inherit;
+}
+
+>>> .comment-form{
+  margin: 0!important;
 }
 </style>

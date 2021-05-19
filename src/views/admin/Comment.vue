@@ -92,7 +92,7 @@
 
 <script>
 export default {
-  name: 'Category',
+  name: 'Comment',
   data () {
     return {
       headers:
@@ -185,3 +185,4 @@ export default {
   }
 }
 </script>
+
