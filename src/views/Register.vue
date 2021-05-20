@@ -30,12 +30,6 @@
                     @click:append="passwordDisplay = !passwordDisplay"
                     :rules="[rules.required]"
                   ></v-text-field>
-                  <v-text-field
-                    label="邮箱"
-                    name="email"
-                    prepend-icon="mdi-email"
-                  >
-                  </v-text-field>
                 </v-form>
               </v-card-text>
               <v-card-actions>
@@ -97,7 +91,7 @@ export default {
             _this.loginLoading = false
             _this.$router.replace('/')
           } else {
-            console.error(res) // _this.snackbarShow(res.msg);
+            _this.snackbarShow(res.msg)
           }
         })
         .catch(({ msg }) => {

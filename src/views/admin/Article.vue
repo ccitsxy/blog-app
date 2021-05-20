@@ -1,6 +1,6 @@
 <template>
   <v-card flat>
-    <v-card-title class="pr-2">
+    <v-card-title class="pt-3 pl-3 pr-3 pt-sm-4 pl-sm-4 pr-sm-2">
       <v-text-field
         v-model="search"
         hide-details
