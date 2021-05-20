@@ -15,7 +15,6 @@
     "vditor": "^3.8.5",
     "vue": "^2.6.11",
     "vue-axios": "^3.2.4",
-    "vue-juejin-comment": "^0.1.2",
     "vue-router": "^3.2.0",
     "vuetify": "^2.5.0",
     "vuetify-dialog": "^2.0.14",
@@ -23,7 +22,6 @@
     "vuex-pathify": "^1.4.5"
   },
   "devDependencies": {
-    "@mdi/font": "^5.9.55",
     "@vue/cli-plugin-babel": "^4.5.12",
     "@vue/cli-plugin-eslint": "^4.5.12",
     "@vue/cli-plugin-router": "^4.5.12",

@@ -52,16 +52,6 @@
         cols="12"
         sm="9"
       >
-        <Comment
-          class="ma-0"
-          v-model="data"
-          :props="props"
-          :user="currentUser"
-          :before-submit="addComment"
-          :before-delete="deleteComment"
-          :before-like="likeComment"
-          :upload-img="uploadOrCopyImg"
-        />
       </v-col>
     </v-row>
   </v-container>
@@ -71,13 +61,8 @@
 import Vditor from 'vditor'
 import 'vditor/dist/index.css'
 
-import Comment from 'vue-juejin-comment'
-
 export default {
   name: 'Article',
-  components: {
-    Comment
-  },
   data () {
     return {
       article: {
@@ -85,13 +70,6 @@ export default {
         category: {
           cid: ''
         }
-      },
-      data: [],
-      props: {},
-      currentUser: {
-        name: '',
-        avatar: '',
-        author: false
       }
     }
   },
@@ -151,23 +129,6 @@ export default {
           })
         }
       })
-    },
-    addComment (comment) {
-      // ...
-    },
-    deleteComment (comment) {
-      // ...
-    },
-    likeComment (comment) {
-      // ...
-    },
-    uploadOrCopyImg ({
-      file,
-      callback
-    }) {
-      // ...
-
-      // callback(imgUrl) // 图片地址必传
     }
   }
 }
@@ -217,7 +178,7 @@ export default {
   display: inherit;
 }
 
->>> .comment-form{
-  margin: 0!important;
+>>> .comment-form {
+  margin: 0 !important;
 }
 </style>
