@@ -46,19 +46,19 @@
         cols="12"
         sm="3"
       >
-        <v-container class="white pa-0 rounded" id="outline"></v-container>
+        <v-container v-show="outline||$vuetify.breakpoint.smAndUp" class="white pa-0 rounded" id="outline"></v-container>
       </v-col>
     </v-row>
     <v-btn
       fab
-      left
+      right
       bottom
       fixed
       small
-      class="hidden-sm-and-up ml-n2"
+      class="btn-outline hidden-sm-and-up"
       color="primary"
       title="大纲"
-      @click="showOutline"
+      @click="outline = !outline"
     >
       <v-icon>mdi-menu</v-icon>
     </v-btn>
@@ -139,17 +139,6 @@ export default {
           })
         }
       })
-    },
-    showOutline () {
-      if (!this.outline) {
-        document.getElementById('outline').style.display = 'block'
-        document.getElementById('outline').style.top = '60px'
-        document.getElementById('outline').style.right = '12px'
-        this.outline = true
-      } else {
-        document.getElementById('outline').style.display = 'none'
-        this.outline = false
-      }
     }
   }
 }
@@ -161,6 +150,7 @@ export default {
   max-height: calc(100% - 128px);
   display: block;
   position: fixed;
+  top: 60px;
   overflow: auto;
   font-size: 14px;
   background-color: #fff;
@@ -201,5 +191,9 @@ export default {
 
 >>> .comment-form {
   margin: 0 !important;
+}
+
+.btn-outline {
+  bottom: 64px;
 }
 </style>

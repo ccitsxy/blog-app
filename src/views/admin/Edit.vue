@@ -84,8 +84,8 @@
 
 <script>
 import { createOrUpdateArticle, getArticleByAid } from '@/api/article'
-import {findAllCategories} from '@/api/category'
-import {findAllTags} from '@/api/tag'
+import { findAllCategories } from '@/api/category'
+import { findAllTags } from '@/api/tag'
 
 import Vditor from 'vditor'
 import 'vditor/dist/index.css'
