@@ -6,28 +6,34 @@
           <v-flex xs12 sm8 md6 lg5 xl3>
             <v-card class="elevation-12">
               <v-card-title class="primary white--text mb-8">
-                登录
+                注册
               </v-card-title>
               <v-card-text>
                 <v-form ref="login_form">
                   <v-text-field
-                    label="账号"
+                    label="用户名"
                     name="username"
                     prepend-icon="mdi-account"
                     type="text"
-                    v-model="loginForm.username"
+                    v-model="registerForm.username"
                     :rules="[rules.required]"
                   ></v-text-field>
-
                   <v-text-field
                     id="password"
                     label="密码"
                     name="password"
                     prepend-icon="mdi-lock"
-                    :type="passwordDisplay ? 'text' : 'password'"
-                    v-model="loginForm.password"
-                    :append-icon="passwordDisplay ? 'mdi-eye' : 'mdi-eye-off'"
-                    @click:append="passwordDisplay = !passwordDisplay"
+                    type="password"
+                    v-model="registerForm.password"
+                    :rules="[rules.required]"
+                  ></v-text-field>
+                  <v-text-field
+                    id="password"
+                    label="重复密码"
+                    name="password"
+                    prepend-icon="mdi-repeat"
+                    type="password"
+                    v-model="registerForm.repass"
                     :rules="[rules.required]"
                   ></v-text-field>
                 </v-form>
@@ -35,16 +41,16 @@
               <v-card-actions>
                 <v-btn
                   text
-                  to="/register"
+                  to="/login"
                   color="primary"
-                >注册
+                >登录
                 </v-btn>
                 <v-spacer></v-spacer>
                 <v-btn
                   :loading="loginLoading"
                   color="primary"
-                  @click="userLogin"
-                >登录
+                  @click="userRegister"
+                >注册
                 </v-btn
                 >
               </v-card-actions>
@@ -53,6 +59,7 @@
         </v-layout>
       </v-container>
     </v-main>
+    <app-footer path="/" name="博客"/>
   </v-app>
 </template>
 
@@ -61,34 +68,38 @@
 import { sync } from 'vuex-pathify'
 
 export default {
-  name: 'Login',
-  data: () => ({
-    passwordDisplay: false,
-    loginLoading: false,
-    loginForm: {
-      username: 'admin',
-      password: 'admin'
-    },
-    rules: {
-      required: value => !!value || 'Required.'
+  name: 'Register',
+  components: {
+    AppFooter: () => import('@/components/Footer')
+  },
+  data () {
+    return {
+      loginLoading: false,
+      registerForm: {
+        username: 'admin',
+        password: 'admin',
+        repass: ''
+      },
+      rules: {
+        required: value => !!value || 'Required.'
+      }
     }
-  }),
+  },
   computed: {
     ...sync('user', [
       'token'
     ])
   },
   methods: {
-    userLogin () {
+    userRegister () {
       const _this = this
       if (!_this.$refs.login_form.validate()) return
       // 表单验证成功
-      _this.$http.post(`${process.env.VUE_APP_BASE_API}/user/login`, this.loginForm).then((response) => {
+      _this.$http.post(`${process.env.VUE_APP_BASE_API}/user/register`, this.registerForm).then((response) => {
         _this.token = response.data
-        localStorage.setItem('token', this.token)
         _this.loginLoading = true
-        _this.$dialog.message.success('登录成功')
-        _this.$router.push('/')
+        _this.$dialog.message.success('注册成功，请进行登录')
+        _this.$router.push('/login')
       })
     }
   }

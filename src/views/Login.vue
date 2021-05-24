@@ -11,7 +11,7 @@
               <v-card-text>
                 <v-form ref="login_form">
                   <v-text-field
-                    label="账号"
+                    label="用户名"
                     name="username"
                     prepend-icon="mdi-account"
                     type="text"
@@ -53,6 +53,7 @@
         </v-layout>
       </v-container>
     </v-main>
+    <app-footer path="/" name="博客"/>
   </v-app>
 </template>
 
@@ -63,17 +64,22 @@ import { sync } from 'vuex-pathify'
 
 export default {
   name: 'Login',
-  data: () => ({
-    passwordDisplay: false,
-    loginLoading: false,
-    loginForm: {
-      username: 'admin',
-      password: 'admin'
-    },
-    rules: {
-      required: value => !!value || 'Required.'
+  components: {
+    AppFooter: () => import('@/components/Footer')
+  },
+  data () {
+    return {
+      passwordDisplay: false,
+      loginLoading: false,
+      loginForm: {
+        username: 'admin',
+        password: 'admin'
+      },
+      rules: {
+        required: value => !!value || 'Required.'
+      }
     }
-  }),
+  },
   computed: {
     ...sync('user', [
       'token'
@@ -89,7 +95,8 @@ export default {
         localStorage.setItem('token', this.token)
         _this.loginLoading = true
         _this.$dialog.message.success('登录成功', {
-          position: 'top'
+          position: 'top',
+          timeout: 500
         })
         _this.$router.push('/')
       })

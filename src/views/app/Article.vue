@@ -7,7 +7,9 @@
         class="preview"
       >
         <v-card flat>
-          <v-card-title class=" headline">{{ article.title }}</v-card-title>
+          <v-card-title class="headline">
+            {{ article.title }}
+          </v-card-title>
           <v-card-subtitle class="black--text mt-0 ml-n1">
             <v-icon>mdi-timer</v-icon>
             {{ article.created }}
@@ -43,11 +45,23 @@
       <v-col
         cols="12"
         sm="3"
-        class="hidden-xs-only"
       >
         <v-container class="white pa-0 rounded" id="outline"></v-container>
       </v-col>
     </v-row>
+    <v-btn
+      fab
+      left
+      bottom
+      fixed
+      small
+      class="hidden-sm-and-up ml-n2"
+      color="primary"
+      title="大纲"
+      @click="showOutline"
+    >
+      <v-icon>mdi-menu</v-icon>
+    </v-btn>
   </v-container>
 </template>
 
@@ -66,7 +80,8 @@ export default {
         category: {
           cid: ''
         }
-      }
+      },
+      outline: false
     }
   },
   mounted () {
@@ -124,6 +139,17 @@ export default {
           })
         }
       })
+    },
+    showOutline () {
+      if (!this.outline) {
+        document.getElementById('outline').style.display = 'block'
+        document.getElementById('outline').style.top = '60px'
+        document.getElementById('outline').style.right = '12px'
+        this.outline = true
+      } else {
+        document.getElementById('outline').style.display = 'none'
+        this.outline = false
+      }
     }
   }
 }

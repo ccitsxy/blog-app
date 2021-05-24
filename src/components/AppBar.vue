@@ -90,7 +90,8 @@ export default {
       this.token = null
       localStorage.removeItem('token')
       this.$dialog.message.info('退出登录', {
-        position: 'top'
+        position: 'top',
+        timeout: 1500
       })
       if (this.$route.path !== '/') {
         this.$router.push('/')

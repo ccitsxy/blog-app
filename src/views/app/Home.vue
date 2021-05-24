@@ -11,13 +11,6 @@
           :length="articles.totalPages">
         </v-pagination>
       </v-col>
-      <v-col
-        cols="12"
-        sm="3"
-        class="hidden-xs-only"
-      >
-        <side class="side"/>
-      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -28,8 +21,7 @@ import { findAllByPage } from '@/api/article'
 export default {
   name: 'Home',
   components: {
-    ArticleList: () => import('@/components/ArticleList'),
-    Side: () => import('@/components/Side')
+    ArticleList: () => import('@/components/ArticleList')
   },
   data () {
     return {
