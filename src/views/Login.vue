@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import { login } from '@/api/user'
 
 import { sync } from 'vuex-pathify'
 
@@ -83,7 +84,7 @@ export default {
       const _this = this
       if (!_this.$refs.login_form.validate()) return
       // 表单验证成功
-      _this.$http.post(`${process.env.VUE_APP_BASE_API}/user/login`, this.loginForm).then((response) => {
+      login(this.loginForm).then((response) => {
         _this.token = response.data
         localStorage.setItem('token', this.token)
         _this.loginLoading = true

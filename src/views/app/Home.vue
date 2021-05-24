@@ -11,16 +11,25 @@
           :length="articles.totalPages">
         </v-pagination>
       </v-col>
+      <v-col
+        cols="12"
+        sm="3"
+        class="hidden-xs-only"
+      >
+        <side-card></side-card>
+      </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
+import { findAllByPage } from '@/api/article'
 
 export default {
   name: 'Home',
   components: {
-    ArticleList: () => import('../../components/ArticleList')
+    ArticleList: () => import('@/components/ArticleList'),
+    SideCard: () => import('@/components/SideCard')
   },
   data () {
     return {
@@ -30,19 +39,15 @@ export default {
     }
   },
   created () {
-    this.getArticles()
+    findAllByPage(this.page, this.size).then((response) => {
+      this.articles = response.data
+    })
   },
   watch: {
     page () {
-      this.getArticles()
-    }
-  },
-  methods: {
-    getArticles () {
-      this.$http.get(`${process.env.VUE_APP_BASE_API}/article/${this.page}/${this.size}`)
-        .then((response) => {
-          this.articles = response.data
-        })
+      findAllByPage(this.page, this.size).then((response) => {
+        this.articles = response.data
+      })
     }
   }
 }

@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import { findAllCategories } from '@/api/category'
+
 export default {
   name: 'Category',
   data () {
@@ -38,14 +40,9 @@ export default {
     }
   },
   created () {
-    this.getCategories()
-  },
-  methods: {
-    getCategories () {
-      this.$http.get(`${process.env.VUE_APP_BASE_API}/category/`).then((response) => {
-        this.categories = response.data
-      })
-    }
+    findAllCategories().then((response) => {
+      this.categories = response.data
+    })
   }
 }
 </script>

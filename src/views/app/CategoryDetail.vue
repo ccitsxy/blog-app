@@ -9,10 +9,12 @@
 </template>
 
 <script>
+import { findAllByCategory } from '@/api/article'
+
 export default {
   name: 'CategoryDetail',
   components: {
-    ArticleList: () => import('../../components/ArticleList')
+    ArticleList: () => import('@/components/ArticleList')
   },
   data () {
     return {
@@ -22,20 +24,15 @@ export default {
     }
   },
   created () {
-    this.getArticlesByCategory()
+    findAllByCategory(this.$route.params.cid, this.page, this.size).then((response) => {
+      this.articles = response.data
+    })
   },
   watch: {
     page () {
-      this.getArticlesByCategory()
-    }
-  },
-  methods: {
-    getArticlesByCategory () {
-      this.$http.get(`${process.env.VUE_APP_BASE_API}/article/category/
-      ${this.$route.params.cid}/${this.page}/${this.size}`)
-        .then((response) => {
-          this.articles = response.data
-        })
+      findAllByCategory(this.$route.params.cid, this.page, this.size).then((response) => {
+        this.articles = response.data
+      })
     }
   }
 }

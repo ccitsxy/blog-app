@@ -47,17 +47,13 @@
       >
         <v-container class="white pa-0 rounded" id="outline"></v-container>
       </v-col>
-
-      <v-col
-        cols="12"
-        sm="9"
-      >
-      </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
+import { getArticleByAid } from '@/api/article'
+
 import Vditor from 'vditor'
 import 'vditor/dist/index.css'
 
@@ -78,8 +74,7 @@ export default {
   },
   methods: {
     getArticle () {
-      // ES6 ${变量}
-      this.$http.get(`${process.env.VUE_APP_BASE_API}/article/${this.$route.params.aid}`)
+      getArticleByAid(this.$route.params.aid)
         .then((response) => {
           this.article = response.data
         })

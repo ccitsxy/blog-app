@@ -8,7 +8,7 @@
         <v-chip-group
           column
         >
-          <template v-for="(item,index) in archive">
+          <template v-for="(item,index) in archives">
             <v-chip
               active-class="primary"
               :key="index"
@@ -17,7 +17,6 @@
               {{ item.year }}年{{ item.month }}月
             </v-chip>
           </template>
-
         </v-chip-group>
       </v-col>
       <v-col
@@ -32,22 +31,19 @@
 </template>
 
 <script>
+import { archiveAll } from '@/api/article'
+
 export default {
   name: 'Archive',
   data () {
     return {
-      archive: []
+      archives: []
     }
   },
   created () {
-    this.getArchive()
-  },
-  methods: {
-    getArchive () {
-      this.$http.get(`${process.env.VUE_APP_BASE_API}/article/archive`).then((response) => {
-        this.archive = response.data
-      })
-    }
+    archiveAll().then((response) => {
+      this.archives = response.data
+    })
   }
 }
 </script>

@@ -1,22 +1,21 @@
 <template>
   <v-app>
-    <v-content>
+    <v-main>
       <v-container fluid fill-height>
         <v-layout class="align-center justify-center">
           <v-flex xs12 sm8 md6 lg5 xl3>
             <v-card class="elevation-12">
-              <v-toolbar color="primary" dark flat>
-                <v-toolbar-title>注册</v-toolbar-title>
-                <v-spacer></v-spacer>
-              </v-toolbar>
+              <v-card-title class="primary white--text mb-8">
+                登录
+              </v-card-title>
               <v-card-text>
                 <v-form ref="login_form">
                   <v-text-field
                     label="账号"
-                    name="account"
+                    name="username"
                     prepend-icon="mdi-account"
                     type="text"
-                    v-model="loginForm.account"
+                    v-model="loginForm.username"
                     :rules="[rules.required]"
                   ></v-text-field>
 
@@ -27,6 +26,7 @@
                     prepend-icon="mdi-lock"
                     :type="passwordDisplay ? 'text' : 'password'"
                     v-model="loginForm.password"
+                    :append-icon="passwordDisplay ? 'mdi-eye' : 'mdi-eye-off'"
                     @click:append="passwordDisplay = !passwordDisplay"
                     :rules="[rules.required]"
                   ></v-text-field>
@@ -35,78 +35,61 @@
               <v-card-actions>
                 <v-btn
                   text
-                  to="/login"
+                  to="/register"
                   color="primary"
-                >登录
+                >注册
                 </v-btn>
                 <v-spacer></v-spacer>
                 <v-btn
                   :loading="loginLoading"
                   color="primary"
                   @click="userLogin"
-                >注册
-                </v-btn>
+                >登录
+                </v-btn
+                >
               </v-card-actions>
             </v-card>
           </v-flex>
         </v-layout>
       </v-container>
-    </v-content>
-    <v-snackbar top :color="snackbar.color" v-model="snackbar.show">
-      {{ snackbar.text }}
-      <v-btn text @click="snackbar.show = false">Close</v-btn>
-    </v-snackbar>
+    </v-main>
   </v-app>
 </template>
 
 <script>
+
+import { sync } from 'vuex-pathify'
+
 export default {
-  name: 'Register',
+  name: 'Login',
   data: () => ({
     passwordDisplay: false,
     loginLoading: false,
     loginForm: {
-      account: 'admin',
+      username: 'admin',
       password: 'admin'
     },
     rules: {
       required: value => !!value || 'Required.'
-    },
-    snackbar: {
-      show: false,
-      text: '',
-      color: 'primary'
     }
   }),
+  computed: {
+    ...sync('user', [
+      'token'
+    ])
+  },
   methods: {
     userLogin () {
       const _this = this
       if (!_this.$refs.login_form.validate()) return
       // 表单验证成功
-      _this.loginLoading = true
-      _this.$store
-        .dispatch('user/LOGIN', _this.loginForm)
-        .then(res => {
-          if (res.code === 200) {
-            _this.loginLoading = false
-            _this.$router.replace('/')
-          } else {
-            _this.snackbarShow(res.msg)
-          }
-        })
-        .catch(({ msg }) => {
-          _this.snackbarShow(msg, 'error')
-        })
-        .finally(() => {
-          _this.loginLoading = false
-        })
-    },
-    snackbarShow (text, color) {
-      this.snackbar = {
-        show: true,
-        text,
-        color
-      }
+      _this.$http.post(`${process.env.VUE_APP_BASE_API}/user/login`, this.loginForm).then((response) => {
+        _this.token = response.data
+        localStorage.setItem('token', this.token)
+        _this.loginLoading = true
+        _this.$dialog.message.success('登录成功')
+        _this.$router.push('/')
+      })
     }
   }
 }

@@ -9,10 +9,12 @@
 </template>
 
 <script>
+import { findAllByTag } from '@/api/article'
+
 export default {
   name: 'TagDetail',
   components: {
-    ArticleList: () => import('../../components/ArticleList')
+    ArticleList: () => import('@/components/ArticleList')
   },
   data () {
     return {
@@ -22,20 +24,15 @@ export default {
     }
   },
   created () {
-    this.getArticlesByTag()
+    findAllByTag(this.$route.params.tid, this.page, this.size).then((response) => {
+      this.articles = response.data
+    })
   },
   watch: {
     page () {
-      this.getArticlesByTag()
-    }
-  },
-  methods: {
-    getArticlesByTag () {
-      this.$http.get(`${process.env.VUE_APP_BASE_API}/article/tag/
-      ${this.$route.params.tid}/${this.page}/${this.size}`)
-        .then((response) => {
-          this.articles = response.data
-        })
+      findAllByTag(this.$route.params.tid, this.page, this.size).then((response) => {
+        this.articles = response.data
+      })
     }
   }
 }

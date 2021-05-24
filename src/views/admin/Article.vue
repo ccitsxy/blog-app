@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import { findAllArticles } from '@/api/article'
 
 export default {
   name: 'Article',
@@ -93,19 +94,20 @@ export default {
     }
   },
   created () {
-    this.getArticles()
+    findAllArticles().then((response) => {
+      this.articles = response.data
+    })
   },
   methods: {
-    getArticles () {
-      this.$http.get(`${process.env.VUE_APP_BASE_API}/article/`).then((response) => {
-        this.articles = response.data
-      })
-    },
     editArticle (item) {
       const route = this.$router.resolve(`/admin/edit/${item.aid}`)
       window.open(route.href, '_blank')
     },
     deleteArticle (item) {
+      this.$dialog.confirm({
+        title: '删除文章',
+        text: '确认要删除文章吗'
+      })
       console.log(item.aid)
     }
   }

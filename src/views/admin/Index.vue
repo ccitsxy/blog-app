@@ -44,10 +44,10 @@ export default {
     }
   },
   components: {
-    Drawer: () => import('../../components/Drawer'),
-    AppBar: () => import('../../components/AppBar'),
-    AdminView: () => import('../../components/AdminView'),
-    Fab: () => import('../../components/Fab')
+    Drawer: () => import('@/components/Drawer'),
+    AppBar: () => import('@/components/AppBar'),
+    AdminView: () => import('@/components/AdminView'),
+    Fab: () => import('@/components/Fab')
   },
   computed: {
     ...sync('drawer', [

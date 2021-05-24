@@ -88,6 +88,8 @@
 </template>
 
 <script>
+import { findAllTags } from '@/api/tag'
+
 export default {
   name: 'Tag',
   data () {
@@ -128,7 +130,9 @@ export default {
     }
   },
   created () {
-    this.getTags()
+    findAllTags().then((response) => {
+      this.tags = response.data
+    })
   },
   computed: {
     formTitle () {
@@ -144,11 +148,6 @@ export default {
     }
   },
   methods: {
-    getTags () {
-      this.$http.get(`${process.env.VUE_APP_BASE_API}/tag/`).then((response) => {
-        this.tags = response.data
-      })
-    },
     createItem () {
       this.dialog = true
     },

@@ -10,7 +10,7 @@
         >
           <v-chip
             active-class="primary"
-            v-for="(item,index) in categories"
+            v-for="(item,index) in tags"
             :key="index"
             :to="'/tag/'+item.tid"
             label
@@ -30,22 +30,19 @@
 </template>
 
 <script>
+import { findAllTags } from '@/api/tag'
+
 export default {
   name: 'Tag',
   data () {
     return {
-      categories: {}
+      tags: {}
     }
   },
   created () {
-    this.getTags()
-  },
-  methods: {
-    getTags () {
-      this.$http.get(`${process.env.VUE_APP_BASE_API}/tag/`).then((response) => {
-        this.categories = response.data
-      })
-    }
+    findAllTags().then((response) => {
+      this.tags = response.data
+    })
   }
 }
 </script>

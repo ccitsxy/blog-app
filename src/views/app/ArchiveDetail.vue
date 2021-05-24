@@ -2,6 +2,7 @@
   <div>
     <article-list :articles="articles.content"/>
     <v-pagination
+      v-if="articles.totalPages !== undefined"
       v-model="page"
       :length="articles.totalPages">
     </v-pagination>
@@ -9,6 +10,8 @@
 </template>
 
 <script>
+import { findAllByArchive } from '@/api/article'
+
 export default {
   name: 'ArchiveDetail',
   components: {
@@ -22,20 +25,15 @@ export default {
     }
   },
   created () {
-    this.getArticlesByArchive()
+    findAllByArchive(this.$route.params.year, this.$route.params.month, this.page, this.size).then((response) => {
+      this.articles = response.data
+    })
   },
   watch: {
     page () {
-      this.getArticlesByArchive()
-    }
-  },
-  methods: {
-    getArticlesByArchive () {
-      this.$http.get(`${process.env.VUE_APP_BASE_API}/article/archive/
-      ${this.$route.params.year}/${this.$route.params.month}/${this.page}/${this.size}`)
-        .then((response) => {
-          this.articles = response.data
-        })
+      findAllByArchive(this.$route.params.year, this.$route.params.month, this.page, this.size).then((response) => {
+        this.articles = response.data
+      })
     }
   }
 }

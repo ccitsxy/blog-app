@@ -91,6 +91,8 @@
 </template>
 
 <script>
+import { findAllUsers } from '@/api/user'
+
 export default {
   name: 'User',
   data () {
@@ -131,7 +133,9 @@ export default {
     }
   },
   created () {
-    this.getUsers()
+    findAllUsers().then((response) => {
+      this.users = response.data
+    })
   },
   computed: {
     formTitle () {
@@ -147,11 +151,6 @@ export default {
     }
   },
   methods: {
-    getUsers () {
-      this.$http.get(`${process.env.VUE_APP_BASE_API}/user/`).then((response) => {
-        this.users = response.data
-      })
-    },
     createItem () {
       this.dialog = true
     },

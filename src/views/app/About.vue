@@ -3,7 +3,7 @@
     <v-row justify="center">
       <v-col
         cols="12"
-        sm="4"
+        sm="3"
       >
         <v-card>
           <v-card-title class="primary white--text">
@@ -23,7 +23,7 @@
       </v-col>
       <v-col
         cols="12"
-        sm="4"
+        sm="3"
       >
         <v-card>
           <v-card-title class="green white--text">
@@ -43,7 +43,7 @@
       </v-col>
       <v-col
         cols="12"
-        sm="4"
+        sm="3"
       >
         <v-card>
           <v-card-title class="red white--text">

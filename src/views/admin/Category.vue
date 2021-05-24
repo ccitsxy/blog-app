@@ -91,6 +91,8 @@
 </template>
 
 <script>
+import { findAllCategories } from '@/api/category'
+
 export default {
   name: 'Category',
   data () {
@@ -131,7 +133,9 @@ export default {
     }
   },
   created () {
-    this.getCategories()
+    findAllCategories().then((response) => {
+      this.categories = response.data
+    })
   },
   computed: {
     formTitle () {
@@ -139,19 +143,11 @@ export default {
     }
   },
   watch: {
-    page () {
-      this.getCategories()
-    },
     dialog (val) {
       val || this.close()
     }
   },
   methods: {
-    getCategories () {
-      this.$http.get(`${process.env.VUE_APP_BASE_API}/category/`).then((response) => {
-        this.categories = response.data
-      })
-    },
     createItem () {
       this.dialog = true
     },

@@ -83,6 +83,10 @@
 </template>
 
 <script>
+import { createOrUpdateArticle, getArticleByAid } from '@/api/article'
+import {findAllCategories} from '@/api/category'
+import {findAllTags} from '@/api/tag'
+
 import Vditor from 'vditor'
 import 'vditor/dist/index.css'
 
@@ -116,10 +120,16 @@ export default {
       contentEditor: ''
     }
   },
+  created () {
+    findAllCategories().then((response) => {
+      this.category = response.data
+    })
+    findAllTags().then((response) => {
+      this.tags = response.data
+    })
+  },
   mounted () {
     this.getArticle()
-    this.getCategory()
-    this.getTags()
   },
   methods: {
     publish () {
@@ -127,35 +137,24 @@ export default {
       if (!(this.article.markdown.length - 1)) {
         this.contentEditor.tip('内容不能为空', 1000)
       } else if (this.$refs.form.validate()) {
-        this.$http.post(`${process.env.VUE_APP_BASE_API}/article/`, this.article)
-          .then(() => {
-            this.$dialog.message.success('发表成功', {
-              position: 'top',
-              timeout: 5000
-            })
-            this.$router.push('/admin/article')
+        createOrUpdateArticle(this.article).then(() => {
+          this.$dialog.message.success('发表成功', {
+            position: 'top',
+            timeout: 5000
           })
+          this.$router.push('/admin/article')
+        })
       }
     },
     getArticle () {
       if (this.$route.params.aid) {
-        this.$http.get(`${process.env.VUE_APP_BASE_API}/article/${this.$route.params.aid}`)
-          .then((response) => {
-            this.article = response.data
-          }).then(() => this.initEditor())
+        getArticleByAid(this.$route.params.aid).then((response) => {
+          this.article = response.data
+        }).then(() =>
+          this.initEditor())
       } else {
         this.initEditor()
       }
-    },
-    getCategory () {
-      this.$http.get(`${process.env.VUE_APP_BASE_API}/category/`).then((response) => {
-        this.category = response.data
-      })
-    },
-    getTags () {
-      this.$http.get(`${process.env.VUE_APP_BASE_API}/tag/`).then((response) => {
-        this.tags = response.data
-      })
     },
     initEditor () {
       // 页面加载后加载编辑器，防止读取不到id
