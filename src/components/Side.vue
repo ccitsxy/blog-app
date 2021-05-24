@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="aside">
     <v-card flat class="mb-4">
       <v-card-title>SXY</v-card-title>
       <v-card-subtitle class="black--text">长春工程学院</v-card-subtitle>
@@ -92,6 +92,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-</style>

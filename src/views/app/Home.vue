@@ -16,7 +16,7 @@
         sm="3"
         class="hidden-xs-only"
       >
-        <side-card></side-card>
+        <side class="side"/>
       </v-col>
     </v-row>
   </v-container>
@@ -29,7 +29,7 @@ export default {
   name: 'Home',
   components: {
     ArticleList: () => import('@/components/ArticleList'),
-    SideCard: () => import('@/components/SideCard')
+    Side: () => import('@/components/Side')
   },
   data () {
     return {

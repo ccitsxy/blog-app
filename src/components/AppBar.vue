@@ -88,9 +88,10 @@ export default {
   methods: {
     logout () {
       this.token = null
-      this.$http.get('/user/logout')
       localStorage.removeItem('token')
-      this.$dialog.message.success('退出登录')
+      this.$dialog.message.info('退出登录', {
+        position: 'top'
+      })
       if (this.$route.path !== '/') {
         this.$router.push('/')
       }

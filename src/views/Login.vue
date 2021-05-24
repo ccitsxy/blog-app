@@ -88,7 +88,9 @@ export default {
         _this.token = response.data
         localStorage.setItem('token', this.token)
         _this.loginLoading = true
-        _this.$dialog.message.success('登录成功')
+        _this.$dialog.message.success('登录成功', {
+          position: 'top'
+        })
         _this.$router.push('/')
       })
     }
