@@ -24,13 +24,14 @@ export default {
       size: 10
     }
   },
-  created () {
-    findAllByArchive(this.$route.params.year, this.$route.params.month, this.page, this.size).then((response) => {
-      this.articles = response.data
-    })
-  },
   watch: {
-    page () {
+    page: {
+      handler: 'findAllArticles',
+      immediate: true
+    }
+  },
+  methods: {
+    findAllArticles () {
       findAllByArchive(this.$route.params.year, this.$route.params.month, this.page, this.size).then((response) => {
         this.articles = response.data
       })

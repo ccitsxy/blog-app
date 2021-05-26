@@ -15,7 +15,10 @@ const routes = [
       {
         path: '/',
         name: '主页',
-        component: () => import('../views/app/Home')
+        component: () => import('../views/app/Home'),
+        meta: {
+          title: '主页-博客'
+        }
       },
       {
         path: '/category',
@@ -26,7 +29,10 @@ const routes = [
             {
               path: '/category/:cid',
               name: '分类',
-              component: () => import('../views/app/CategoryDetail')
+              component: () => import('../views/app/CategoryDetail'),
+              meta: {
+                title: '分类-博客'
+              }
             }
           ]
       },
@@ -39,7 +45,10 @@ const routes = [
             {
               path: '/tag/:tid',
               name: '标签',
-              component: () => import('../views/app/TagDetail')
+              component: () => import('../views/app/TagDetail'),
+              meta: {
+                title: '标题-博客'
+              }
             }
           ]
       },
@@ -52,19 +61,28 @@ const routes = [
             {
               path: '/archive/:year/:month',
               name: '归档',
-              component: () => import('../views/app/ArchiveDetail')
+              component: () => import('../views/app/ArchiveDetail'),
+              meta: {
+                title: '归档-博客'
+              }
             }
           ]
       },
       {
         path: '/about',
         name: '关于',
-        component: () => import('../views/app/About')
+        component: () => import('../views/app/About'),
+        meta: {
+          title: '关于-博客'
+        }
       },
       {
         path: '/article/:aid',
         name: '文章',
-        component: () => import('../views/app/Article')
+        component: () => import('../views/app/Article'),
+        meta: {
+          title: '文章-博客'
+        }
       }
     ]
   },
@@ -76,49 +94,76 @@ const routes = [
       {
         path: '/admin/edit',
         name: '文章编辑',
-        component: () => import('../views/admin/Edit')
+        component: () => import('../views/admin/Edit'),
+        meta: {
+          title: '文章编辑-博客后台'
+        }
       },
       {
         path: '/admin/edit/:aid',
         name: '文章修改',
-        component: () => import('../views/admin/Edit')
+        component: () => import('../views/admin/Edit'),
+        meta: {
+          title: '文章修改-博客后台'
+        }
       },
       {
         path: '/admin/article',
         name: '文章管理',
-        component: () => import('../views/admin/Article')
+        component: () => import('../views/admin/Article'),
+        meta: {
+          title: '文章管理-博客后台'
+        }
       },
       {
         path: '/admin/category',
         name: '分类管理',
-        component: () => import('../views/admin/Category')
+        component: () => import('../views/admin/Category'),
+        meta: {
+          title: '分类管理-博客后台'
+        }
       },
       {
         path: '/admin/tag',
         name: '标签管理',
-        component: () => import('../views/admin/Tag')
+        component: () => import('../views/admin/Tag'),
+        meta: {
+          title: '标签管理-博客后台'
+        }
       },
       {
         path: '/admin/user',
         name: '用户管理',
-        component: () => import('../views/admin/User')
+        component: () => import('../views/admin/User'),
+        meta: {
+          title: '用户管理-博客后台'
+        }
       }
     ]
   },
   {
     path: '/login',
     name: '登录',
-    component: () => import('../views/Login')
+    component: () => import('../views/Login'),
+    meta: {
+      title: '登录'
+    }
   },
   {
     path: '/register',
     name: '注册',
-    component: () => import('../views/Register')
+    component: () => import('../views/Register'),
+    meta: {
+      title: '注册'
+    }
   },
   {
     path: '*',
     name: 'ERROR404',
-    component: () => import('../views/Error404')
+    component: () => import('../views/Error404'),
+    meta: {
+      title: '404'
+    }
   }
 ]
 
@@ -135,6 +180,7 @@ const router = new VueRouter({
 // 顶部进度条
 router.beforeEach((to, from, next) => {
   NProgress.start()
+  window.document.title = to.meta.title === undefined ? '默认标题' : to.meta.title
   next()
 })
 

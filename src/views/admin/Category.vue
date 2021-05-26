@@ -151,6 +151,7 @@ export default {
     createItem () {
       this.dialog = true
     },
+
     editItem (item) {
       this.editedIndex = this.categories.indexOf(item)
       this.editedItem = Object.assign({}, item)

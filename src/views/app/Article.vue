@@ -46,7 +46,17 @@
         cols="12"
         sm="3"
       >
-        <v-container v-show="outline||$vuetify.breakpoint.smAndUp" class="white pa-0 rounded" id="outline"></v-container>
+        <v-container
+          v-show="outline||$vuetify.breakpoint.smAndUp"
+          class="white pa-0 rounded"
+          id="outline"
+        ></v-container>
+      </v-col>
+      <v-col
+        cols="12"
+        sm="9"
+      >
+        <comments-form class="white rounded"></comments-form>
       </v-col>
     </v-row>
     <v-btn
@@ -57,10 +67,10 @@
       small
       class="btn-outline hidden-sm-and-up"
       color="primary"
-      title="大纲"
       @click="outline = !outline"
     >
-      <v-icon>mdi-menu</v-icon>
+      <v-icon v-if="outline">mdi-arrow-collapse-left</v-icon>
+      <v-icon v-else>mdi-arrow-collapse-right</v-icon>
     </v-btn>
   </v-container>
 </template>
@@ -73,6 +83,9 @@ import 'vditor/dist/index.css'
 
 export default {
   name: 'Article',
+  components: {
+    CommentsForm: () => import('@/components/comment/CommentsForm')
+  },
   data () {
     return {
       article: {
@@ -189,11 +202,21 @@ export default {
   display: inherit;
 }
 
+@media (max-width: 600px) {
+  .vditor-outline::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 >>> .comment-form {
   margin: 0 !important;
 }
 
 .btn-outline {
   bottom: 64px;
+}
+
+.theme--light.v-btn:focus::before {
+  opacity: 0;
 }
 </style>

@@ -30,13 +30,14 @@ export default {
       size: 10
     }
   },
-  created () {
-    findAllByPage(this.page, this.size).then((response) => {
-      this.articles = response.data
-    })
-  },
   watch: {
-    page () {
+    page: {
+      handler: 'findAllArticles',
+      immediate: true
+    }
+  },
+  methods: {
+    findAllArticles () {
       findAllByPage(this.page, this.size).then((response) => {
         this.articles = response.data
       })

@@ -23,13 +23,14 @@ export default {
       size: 10
     }
   },
-  created () {
-    findAllByCategory(this.$route.params.cid, this.page, this.size).then((response) => {
-      this.articles = response.data
-    })
-  },
   watch: {
-    page () {
+    page: {
+      handler: 'findAllArticles',
+      immediate: true
+    }
+  },
+  methods: {
+    findAllArticles () {
       findAllByCategory(this.$route.params.cid, this.page, this.size).then((response) => {
         this.articles = response.data
       })
