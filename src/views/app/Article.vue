@@ -56,7 +56,7 @@
         cols="12"
         sm="9"
       >
-        <comments-form class="white rounded"></comments-form>
+        <comment-list class="white rounded"></comment-list>
       </v-col>
     </v-row>
     <v-btn
@@ -84,7 +84,7 @@ import 'vditor/dist/index.css'
 export default {
   name: 'Article',
   components: {
-    CommentsForm: () => import('@/components/comment/CommentsForm')
+    CommentList: () => import('@/components/comment/CommentList')
   },
   data () {
     return {

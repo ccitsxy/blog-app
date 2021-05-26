@@ -1,10 +1,10 @@
 <template>
   <v-container>
-    <v-row justify="center">
-      <v-col cols="1">
+    <v-row justify="space-between">
+      <v-col cols="1" class="px-0 px-sm-2 px-md-4">
         <v-avatar
           color="grey darken-1 shrink"
-          size="36"
+          size="32"
         ></v-avatar>
       </v-col>
       <v-col cols="11">
