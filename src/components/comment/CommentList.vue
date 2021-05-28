@@ -1,16 +1,21 @@
 <template>
   <v-container>
-    <comments-form></comments-form>
-    <comments-item></comments-item>
+    <comment-form></comment-form>
+    <comment-item v-for="(item,index) in comments" :key="index" :comment="item"></comment-item>
   </v-container>
 </template>
 
 <script>
-import CommentsForm from '@/components/comment/CommentForm'
-import CommentsItem from '@/components/comment/CommentItem'
+
 export default {
   name: 'CommentList',
-  components: { CommentsItem, CommentsForm }
+  components: {
+    CommentForm: () => import('@/components/comment/CommentForm'),
+    CommentItem: () => import('@/components/comment/CommentItem')
+  },
+  props: {
+    comments: Array
+  }
 }
 </script>
 

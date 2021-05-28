@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: 'CommentsForm',
+  name: 'CommentForm',
   methods: {
     test () {
       console.log(1)
