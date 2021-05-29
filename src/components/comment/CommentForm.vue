@@ -10,7 +10,7 @@
       <v-col cols="11">
         <v-row>
           <v-col cols="12">
-            <v-textarea auto-grow dense outlined hide-details></v-textarea>
+            <v-textarea label="请输入评论" auto-grow dense outlined hide-details></v-textarea>
           </v-col>
           <v-col cols="12">
             <v-btn

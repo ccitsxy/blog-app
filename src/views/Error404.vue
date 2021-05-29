@@ -15,7 +15,8 @@
         large
         depressed
         to="/"
-      >回到主页</v-btn>
+      >回到主页
+      </v-btn>
     </div>
   </div>
 </template>

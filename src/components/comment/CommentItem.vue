@@ -17,7 +17,7 @@
             <a>删除</a>
           </v-col>
           <comment-item v-for="(item,index) in comment.children" :key="index" :comment="item" children></comment-item>
-          <comment-form v-if="!children&&form"></comment-form>
+          <comment-form v-if="form"></comment-form>
         </v-row>
       </v-col>
     </v-row>

@@ -102,7 +102,7 @@ export default {
 </script>
 
 <style scoped>
-.theme--light.v-btn:focus::before{
+.theme--light.v-btn:focus::before {
   opacity: 0;
 }
 </style>

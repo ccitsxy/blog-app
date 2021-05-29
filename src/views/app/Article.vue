@@ -56,7 +56,7 @@
         cols="12"
         sm="9"
       >
-        <div class="white rounded">
+        <div class="white rounded pb-4">
           <comment-list :comments="comments.content"></comment-list>
           <v-pagination
             v-if="comments.totalPages"
