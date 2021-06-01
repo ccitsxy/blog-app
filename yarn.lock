@@ -2750,10 +2750,10 @@ core-js-compat@^3.6.5, core-js-compat@^3.8.1, core-js-compat@^3.9.0:
     browserslist "^4.16.3"
     semver "7.0.0"
 
-core-js@^3.13.0:
-  version "3.13.0"
-  resolved "https://registry.nlark.com/core-js/download/core-js-3.13.0.tgz?cache=0&sync_timestamp=1621973790226&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcore-js%2Fdownload%2Fcore-js-3.13.0.tgz#58ca436bf01d6903aee3d364089868d0d89fe58d"
-  integrity sha1-WMpDa/AdaQOu49NkCJho0Nif5Y0=
+core-js@^3.13.1:
+  version "3.13.1"
+  resolved "https://registry.nlark.com/core-js/download/core-js-3.13.1.tgz?cache=0&sync_timestamp=1622278867523&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcore-js%2Fdownload%2Fcore-js-3.13.1.tgz#30303fabd53638892062d8b4e802cac7599e9fb7"
+  integrity sha1-MDA/q9U2OIkgYti06ALKx1men7c=
 
 core-js@^3.6.5:
   version "3.9.1"

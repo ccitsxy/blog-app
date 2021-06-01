@@ -25,17 +25,19 @@
           发布
         </v-btn>
       </v-text-field>
-      <v-text-field
+      <v-textarea
         v-model="article.description"
+        height="80"
+        no-resize
         background-color="white"
         outlined
         clearable
         dense
         label="简介"
         :rules="descriptionRules"
-        counter="100"
+        counter="200"
         hide-details="auto"
-      ></v-text-field>
+      ></v-textarea>
       <v-row>
         <v-col
           cols="12"
@@ -107,7 +109,7 @@ export default {
       ],
       descriptionRules: [
         v => !!v || '简介不能为空',
-        v => v.length <= 100 || '简介必须少于100个字'
+        v => v.length <= 200 || '简介必须少于200个字'
       ],
       categoryRules: [
         v => !!v || '分类不能为空'
