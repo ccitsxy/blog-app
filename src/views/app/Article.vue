@@ -122,7 +122,6 @@ export default {
       getArticleByAid(this.$route.params.aid)
         .then((response) => {
           this.article = response.data
-          console.log(this.$route.params.aid)
         })
         .then(() => {
           this.preview()
@@ -132,7 +131,6 @@ export default {
       findAllCommentsByAid(this.$route.params.aid, this.page, this.size)
         .then((response) => {
           this.comments = response.data
-          console.log(this.$route.params.aid)
         })
     },
     preview () {

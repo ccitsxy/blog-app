@@ -90,9 +90,9 @@ export default {
       const _this = this
       if (!_this.$refs.login_form.validate()) return
       // 表单验证成功
-      login(this.loginForm).then((response) => {
+      login(_this.loginForm).then((response) => {
         _this.token = response.data
-        localStorage.setItem('token', this.token)
+        localStorage.setItem('token', _this.token)
         _this.loginLoading = true
         _this.$dialog.message.success('登录成功', {
           position: 'top',
