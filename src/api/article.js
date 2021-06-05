@@ -109,3 +109,15 @@ export function createOrUpdateArticle (article) {
     data: article
   })
 }
+
+/**
+ * DELETE /{aid} : 删除文章
+ *
+ * @param aid 文章ID
+ */
+export function deleteArticle (aid) {
+  return request({
+    method: 'delete',
+    url: `/article/${aid}`
+  })
+}

@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import { findAllTags } from '@/api/tag'
+import { createOrUpdateTag, findAllTags, deleteTag } from '@/api/tag'
 
 export default {
   name: 'Tag',
@@ -125,14 +125,13 @@ export default {
       editedIndex: -1,
       editedItem: {},
       defaultItem: {
+        id: null,
         name: ''
       }
     }
   },
   created () {
-    findAllTags().then((response) => {
-      this.tags = response.data
-    })
+    this.getTags()
   },
   computed: {
     formTitle () {
@@ -148,6 +147,12 @@ export default {
     }
   },
   methods: {
+    getTags () {
+      findAllTags().then((response) => {
+        this.tags = response.data
+      })
+    },
+
     createItem () {
       this.dialog = true
     },
@@ -157,9 +162,29 @@ export default {
       this.dialog = true
     },
 
-    deleteItem (item) {
-      const index = this.tags.indexOf(item)
-      confirm('Are you sure you want to delete this item?') && this.tags.splice(index, 1)
+    async deleteItem (item) {
+      const res = await this.$dialog.confirm({
+        title: '删除标签',
+        text: '确认要删除标签吗',
+        actions:
+          [
+            {
+              text: '取消',
+              color: 'blue',
+              key: 'false'
+            },
+            {
+              text: '确认',
+              color: 'red',
+              key: 'true'
+            }
+          ]
+      })
+      if (res) {
+        deleteTag(item.tid)
+        this.tags.splice(this.editedIndex, 1)
+        this.getTags()
+      }
     },
 
     close () {
@@ -171,11 +196,13 @@ export default {
     },
 
     save () {
+      createOrUpdateTag(this.editedItem)
       if (this.editedIndex > -1) {
-        Object.assign(this.tags[this.editedIndex], this.editedItem)
+        Object.assign(this.categories[this.editedIndex], this.editedItem)
       } else {
-        this.tags.content.push(this.editedItem)
+        this.tags.push(this.editedItem)
       }
+      this.getTags()
       this.close()
     }
   }

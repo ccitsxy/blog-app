@@ -11,6 +11,14 @@
               <v-card-text>
                 <v-form ref="login_form">
                   <v-text-field
+                    label="邮箱"
+                    name="email"
+                    prepend-icon="mdi-email"
+                    type="text"
+                    v-model="registerForm.email"
+                    :rules="[rules.required]"
+                  ></v-text-field>
+                  <v-text-field
                     label="用户名"
                     name="username"
                     prepend-icon="mdi-account"
@@ -76,6 +84,7 @@ export default {
     return {
       loginLoading: false,
       registerForm: {
+        email: '1127885451@qq.com',
         username: 'admin',
         password: 'admin',
         repass: ''

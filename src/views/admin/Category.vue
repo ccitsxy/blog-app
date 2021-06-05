@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import { findAllCategories } from '@/api/category'
+import { createOrUpdateCategory, deleteCategory, findAllCategories } from '@/api/category'
 
 export default {
   name: 'Category',
@@ -126,16 +126,18 @@ export default {
       search: '',
       dialog: false,
       editedIndex: -1,
-      editedItem: {},
+      editedItem: {
+        cid: null,
+        name: ''
+      },
       defaultItem: {
+        cid: null,
         name: ''
       }
     }
   },
   created () {
-    findAllCategories().then((response) => {
-      this.categories = response.data
-    })
+    this.getCategories()
   },
   computed: {
     formTitle () {
@@ -148,6 +150,12 @@ export default {
     }
   },
   methods: {
+    getCategories () {
+      findAllCategories().then((response) => {
+        this.categories = response.data
+      })
+    },
+
     createItem () {
       this.dialog = true
     },
@@ -158,9 +166,29 @@ export default {
       this.dialog = true
     },
 
-    deleteItem (item) {
-      const index = this.categories.indexOf(item)
-      confirm('Are you sure you want to delete this item?') && this.tags.splice(index, 1)
+    async deleteItem (item) {
+      const res = await this.$dialog.confirm({
+        title: '删除分类',
+        text: '确认要删除分类吗',
+        actions:
+          [
+            {
+              text: '取消',
+              color: 'blue',
+              key: 'false'
+            },
+            {
+              text: '确认',
+              color: 'red',
+              key: 'true'
+            }
+          ]
+      })
+      if (res) {
+        deleteCategory(item.cid)
+        this.categories.splice(this.editedIndex, 1)
+        this.getCategories()
+      }
     },
 
     close () {
@@ -172,11 +200,13 @@ export default {
     },
 
     save () {
+      createOrUpdateCategory(this.editedItem)
       if (this.editedIndex > -1) {
         Object.assign(this.categories[this.editedIndex], this.editedItem)
       } else {
         this.categories.push(this.editedItem)
       }
+      this.getCategories()
       this.close()
     }
   }

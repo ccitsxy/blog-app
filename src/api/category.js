@@ -51,3 +51,15 @@ export function createOrUpdateCategory (category) {
     data: category
   })
 }
+
+/**
+ * DELETE /category/{cid}
+ *
+ * @param cid 分类id
+ */
+export function deleteCategory (cid) {
+  return request({
+    method: 'delete',
+    url: `/category/${cid}`
+  })
+}

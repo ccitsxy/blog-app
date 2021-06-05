@@ -52,19 +52,6 @@
           id="outline"
         ></v-container>
       </v-col>
-      <v-col
-        cols="12"
-        sm="9"
-      >
-        <div class="white rounded pb-4">
-          <comment-list :comments="comments.content"></comment-list>
-          <v-pagination
-            v-if="comments.totalPages"
-            v-model="page"
-            :length="comments.totalPages">
-          </v-pagination>
-        </div>
-      </v-col>
     </v-row>
     <v-btn
       fab
@@ -84,16 +71,12 @@
 
 <script>
 import { getArticleByAid } from '@/api/article'
-import { findAllCommentsByAid } from '@/api/comment'
 
 import Vditor from 'vditor'
 import 'vditor/dist/index.css'
 
 export default {
   name: 'Article',
-  components: {
-    CommentList: () => import('@/components/comment/CommentList')
-  },
   data () {
     return {
       article: {
@@ -110,12 +93,6 @@ export default {
   },
   mounted () {
     this.getArticle()
-    this.getComments()
-  },
-  watch: {
-    page () {
-      this.getComments()
-    }
   },
   methods: {
     getArticle () {
@@ -125,12 +102,6 @@ export default {
         })
         .then(() => {
           this.preview()
-        })
-    },
-    getComments () {
-      findAllCommentsByAid(this.$route.params.aid, this.page, this.size)
-        .then((response) => {
-          this.comments = response.data
         })
     },
     preview () {

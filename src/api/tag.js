@@ -48,6 +48,18 @@ export function createOrUpdateTag (tag) {
   return request({
     method: 'post',
     url: '/tag',
-    dara: tag
+    data: tag
+  })
+}
+
+/**
+ * DELETE /tag/{tid}
+ *
+ * @param tid 标签id
+ */
+export function deleteTag (tid) {
+  return request({
+    method: 'delete',
+    url: `/tag/${tid}`
   })
 }

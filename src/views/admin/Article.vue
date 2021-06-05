@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { findAllArticles } from '@/api/article'
+import { deleteArticle, findAllArticles } from '@/api/article'
 
 export default {
   name: 'Article',
@@ -94,21 +94,41 @@ export default {
     }
   },
   created () {
-    findAllArticles().then((response) => {
-      this.articles = response.data
-    })
+    this.getArticles()
   },
   methods: {
+    getArticles () {
+      findAllArticles().then((response) => {
+        this.articles = response.data
+      })
+    },
     editArticle (item) {
       const route = this.$router.resolve(`/admin/edit/${item.aid}`)
       window.open(route.href, '_blank')
     },
-    deleteArticle (item) {
-      this.$dialog.confirm({
+    async deleteArticle (item) {
+      const res = await this.$dialog.confirm({
         title: '删除文章',
-        text: '确认要删除文章吗'
+        text: '确认要删除文章吗',
+        actions:
+          [
+            {
+              text: '取消',
+              color: 'blue',
+              key: 'false'
+            },
+            {
+              text: '确认',
+              color: 'red',
+              key: 'true'
+            }
+          ]
       })
-      console.log(item.aid)
+      if (res) {
+        deleteArticle(item.aid)
+        this.articles.splice(this.editedIndex, 1)
+        this.getArticles()
+      }
     }
   }
 }
