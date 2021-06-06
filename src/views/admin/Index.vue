@@ -35,11 +35,11 @@ export default {
         {
           path: '/admin/tag',
           name: '标签管理'
-        },
+        }/*,
         {
           path: '/admin/user',
           name: '用户管理'
-        }
+        } */
       ]
     }
   },

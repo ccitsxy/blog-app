@@ -29,13 +29,12 @@
       :search="search"
       :options="{itemsPerPage:15}"
     >
-      <template v-slot:item.actions="
-      /* eslint-disable-next-line vue/no-unused-vars */
-      {item}">
+      <template v-slot:item.actions="{item}">
         <v-btn
           icon
           class="mr-2"
-          color="success" @click="editItem(item)"
+          color="success"
+          @click="editItem(item)"
         >
           <v-icon>
             mdi-pencil
@@ -123,9 +122,12 @@ export default {
       search: '',
       dialog: false,
       editedIndex: -1,
-      editedItem: {},
+      editedItem: {
+        tid: null,
+        name: ''
+      },
       defaultItem: {
-        id: null,
+        tid: null,
         name: ''
       }
     }
@@ -139,9 +141,6 @@ export default {
     }
   },
   watch: {
-    page () {
-      this.getTags()
-    },
     dialog (val) {
       val || this.close()
     }
@@ -197,12 +196,14 @@ export default {
 
     save () {
       createOrUpdateTag(this.editedItem)
+        .then(() => {
+          this.getTags()
+        })
       if (this.editedIndex > -1) {
-        Object.assign(this.categories[this.editedIndex], this.editedItem)
+        Object.assign(this.tags[this.editedIndex], this.editedItem)
       } else {
         this.tags.push(this.editedItem)
       }
-      this.getTags()
       this.close()
     }
   }

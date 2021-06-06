@@ -1,6 +1,7 @@
 <template>
   <v-card flat>
     <v-card-title class="pt-3 pl-3 pr-3 pt-sm-4 pl-sm-4 pr-sm-2">
+      <!-- 搜索 -->
       <v-text-field
         v-model="search"
         hide-details
@@ -9,7 +10,7 @@
         clearable
         dense
         label="搜索"
-      >
+      ><!-- 新建 -->
         <v-btn
           class="ml-2"
           height="40"
@@ -28,33 +29,30 @@
       :headers="headers"
       :search="search"
       :options="{itemsPerPage:15}"
-    >
-      <template v-slot:item.actions="
-      /* eslint-disable-next-line vue/no-unused-vars */
-      {item}">
+    ><!-- 操作 -->
+      <template v-slot:item.actions="{item}">
         <v-btn
           icon
           class="mr-2"
           color="success"
+          @click="editItem(item)"
         >
-          <v-icon
-            @click="editItem(item)"
-          >
+          <v-icon><!-- 修改 -->
             mdi-pencil
           </v-icon>
         </v-btn>
         <v-btn
           icon
           color="error"
-        >
-          <v-icon
-            @click="deleteItem(item)"
-          >
+          @click="deleteItem(item)"
+        ><!-- 删除 -->
+          <v-icon>
             mdi-delete
           </v-icon>
         </v-btn>
       </template>
     </v-data-table>
+    <!-- 编辑对话框 -->
     <v-dialog
       v-model="dialog"
       max-width="300px"
@@ -97,6 +95,7 @@ export default {
   name: 'Category',
   data () {
     return {
+      // 表头
       headers:
         [
           {
@@ -187,7 +186,6 @@ export default {
       if (res) {
         deleteCategory(item.cid)
         this.categories.splice(this.editedIndex, 1)
-        this.getCategories()
       }
     },
 
@@ -200,13 +198,14 @@ export default {
     },
 
     save () {
-      createOrUpdateCategory(this.editedItem)
+      createOrUpdateCategory(this.editedItem).then(() => {
+        this.getCategories()
+      })
       if (this.editedIndex > -1) {
         Object.assign(this.categories[this.editedIndex], this.editedItem)
       } else {
         this.categories.push(this.editedItem)
       }
-      this.getCategories()
       this.close()
     }
   }

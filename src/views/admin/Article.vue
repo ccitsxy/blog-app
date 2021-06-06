@@ -1,6 +1,7 @@
 <template>
   <v-card flat>
     <v-card-title class="pt-3 pl-3 pr-3 pt-sm-4 pl-sm-4 pr-sm-2">
+      <!-- 搜索 -->
       <v-text-field
         v-model="search"
         hide-details
@@ -9,7 +10,7 @@
         clearable
         dense
         label="搜索"
-      >
+      ><!-- 新建 -->
         <v-btn
           class="ml-2"
           height="40"
@@ -23,20 +24,21 @@
         </v-btn>
       </v-text-field>
     </v-card-title>
+    <!-- 表格 -->
     <v-data-table
       class="mx-sm-4"
       :items="articles"
       :headers="headers"
       :search="search"
       :options="{itemsPerPage:15}"
-    >
+    ><!-- 操作 -->
       <template v-slot:item.actions="{item}">
         <v-btn
           icon
           class="mr-2"
           color="success"
           @click="editArticle(item)"
-        >
+        ><!-- 修改 -->
           <v-icon>
             mdi-pencil
           </v-icon>
@@ -45,7 +47,7 @@
           icon
           color="error"
           @click="deleteArticle(item)"
-        >
+        ><!-- 删除 -->
           <v-icon>
             mdi-delete
           </v-icon>
@@ -62,6 +64,7 @@ export default {
   name: 'Article',
   data () {
     return {
+      // 表头
       headers:
         [
           {
@@ -97,15 +100,18 @@ export default {
     this.getArticles()
   },
   methods: {
+    // 获取文章
     getArticles () {
       findAllArticles().then((response) => {
         this.articles = response.data
       })
     },
+    // 编辑文章
     editArticle (item) {
       const route = this.$router.resolve(`/admin/edit/${item.aid}`)
       window.open(route.href, '_blank')
     },
+    // 删除文章
     async deleteArticle (item) {
       const res = await this.$dialog.confirm({
         title: '删除文章',
@@ -124,6 +130,7 @@ export default {
             }
           ]
       })
+      // 判断是否确认
       if (res) {
         deleteArticle(item.aid)
         this.articles.splice(this.editedIndex, 1)
