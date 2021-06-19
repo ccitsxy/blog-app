@@ -75,8 +75,13 @@ import { getArticleByAid } from '@/api/article'
 import Vditor from 'vditor'
 import 'vditor/dist/index.css'
 
+import Comment from 'vue-juejin-comment'
+
 export default {
   name: 'Article',
+  components: {
+    Comment
+  },
   data () {
     return {
       article: {
@@ -84,11 +89,7 @@ export default {
         category: {
           cid: ''
         }
-      },
-      outline: false,
-      comments: {},
-      page: 1,
-      size: 10
+      }
     }
   },
   mounted () {

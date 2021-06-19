@@ -8710,10 +8710,10 @@ vue@^2.6.14:
   resolved "https://registry.nlark.com/vue/download/vue-2.6.14.tgz?cache=0&sync_timestamp=1623098047096&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fvue%2Fdownload%2Fvue-2.6.14.tgz#e51aa5250250d569a3fbad3a8a5a687d6036e235"
   integrity sha1-5RqlJQJQ1Wmj+606ilpofWA24jU=
 
-vuetify-dialog@^2.0.14:
-  version "2.0.14"
-  resolved "https://registry.npm.taobao.org/vuetify-dialog/download/vuetify-dialog-2.0.14.tgz#194010bc03b94a61d3673825a3eeff873b9e1358"
-  integrity sha1-GUAQvAO5SmHTZzglo+7/hzueE1g=
+vuetify-dialog@^2.0.16:
+  version "2.0.16"
+  resolved "https://registry.nlark.com/vuetify-dialog/download/vuetify-dialog-2.0.16.tgz#b4bd946e19db7960334cf8a45ecceb61d15d9285"
+  integrity sha1-tL2UbhnbeWAzTPikXszrYdFdkoU=
 
 vuetify-loader@^1.7.0:
   version "1.7.2"
@@ -8724,10 +8724,10 @@ vuetify-loader@^1.7.0:
     file-loader "^6.2.0"
     loader-utils "^2.0.0"
 
-vuetify@^2.5.3:
-  version "2.5.3"
-  resolved "https://registry.nlark.com/vuetify/download/vuetify-2.5.3.tgz#9d703414a736879673c94550035adc177a6ca394"
-  integrity sha1-nXA0FKc2h5ZzyUVQA1rcF3pso5Q=
+vuetify@^2.5.4:
+  version "2.5.4"
+  resolved "https://registry.nlark.com/vuetify/download/vuetify-2.5.4.tgz#037cc8d430b61188ab15b9a8cc1ee67e620fa6e7"
+  integrity sha1-A3zI1DC2EYirFbmozB7mfmIPpuc=
 
 vuex-pathify@^1.4.5:
   version "1.4.5"

@@ -110,14 +110,6 @@ export default {
           version: '2.6.11'
         },
         {
-          name: 'vue-router',
-          version: '3.2.0'
-        },
-        {
-          name: 'vuex',
-          version: '3.4.0'
-        },
-        {
           name: 'vuex-pathify',
           version: '1.4.5'
         },
@@ -154,14 +146,6 @@ export default {
         {
           name: 'Sa-Token',
           version: '1.17.0'
-        },
-        {
-          name: 'Tomcat',
-          version: '9.0.41'
-        },
-        {
-          name: 'Hibernate',
-          version: '5.4.27'
         }
       ]
     }
