@@ -21,8 +21,8 @@ export default {
     return {
       nav: [
         {
-          path: '/admin/edit',
-          name: '文章编辑'
+          path: '/admin/dashboard',
+          name: '仪表盘'
         },
         {
           path: '/admin/article',

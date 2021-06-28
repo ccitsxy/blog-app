@@ -38,7 +38,7 @@
             >
               {{ item.name }}
             </v-chip>
-            <v-container class="white pa-0" id="preview"></v-container>
+            <v-container class="white pa-0 vditor-reset" id="article" v-html="article.content"></v-container>
           </v-card-text>
         </v-card>
       </v-col>
@@ -46,11 +46,13 @@
         cols="12"
         sm="3"
       >
-        <v-container
+        <side-catalog
           v-show="outline||$vuetify.breakpoint.smAndUp"
-          class="white pa-0 rounded"
+          v-if="article.content"
           id="outline"
-        ></v-container>
+          class="catalog white rounded"
+          v-bind="catalogProps"
+        ></side-catalog>
       </v-col>
     </v-row>
     <v-btn
@@ -72,23 +74,27 @@
 <script>
 import { getArticleByAid } from '@/api/article'
 
-import Vditor from 'vditor'
 import 'vditor/dist/index.css'
-
-import Comment from 'vue-juejin-comment'
+import SideCatalog from 'vue-side-catalog'
+import 'vue-side-catalog/lib/vue-side-catalog.css'
 
 export default {
   name: 'Article',
   components: {
-    Comment
+    SideCatalog
   },
   data () {
     return {
       article: {
-        markdown: '',
+        content: '',
         category: {
           cid: ''
         }
+      },
+      outline: false,
+      catalogProps: {
+        container: '#article',
+        levelList: ['h1', 'h2', 'h3', 'h4', 'h5']
       }
     }
   },
@@ -101,52 +107,6 @@ export default {
         .then((response) => {
           this.article = response.data
         })
-        .then(() => {
-          this.preview()
-        })
-    },
-    preview () {
-      Vditor.preview(document.getElementById('preview'), this.article.markdown, {
-        hljs: {
-          lineNumber: true
-        },
-        after () {
-          Vditor.outlineRender(
-            document.getElementById('preview'),
-            document.getElementById('outline'))
-          const headingElements = []
-          Array.from(document.getElementById('preview').children).forEach((item) => {
-            if (item.tagName.length === 2 && item.tagName !== 'HR' && item.tagName.indexOf('H') === 0) {
-              headingElements.push(item)
-            }
-          })
-
-          let toc = []
-          addEventListener('scroll', () => {
-            const scrollTop = window.scrollY
-            toc = []
-            headingElements.forEach((item) => {
-              toc.push({
-                id: item.id,
-                offsetTop: item.offsetTop
-              })
-            })
-
-            const currentElement = document.querySelector('.vditor-outline__item--current')
-            for (let i = 0, iMax = toc.length; i < iMax; i++) {
-              if (scrollTop < toc[i].offsetTop - 30) {
-                if (currentElement) {
-                  currentElement.classList.remove('vditor-outline__item--current')
-                }
-                const index = i > 0 ? i - 1 : 0
-                document.querySelector('span[data-target-id="' + toc[index].id + '"]')
-                  .classList.add('vditor-outline__item--current')
-                break
-              }
-            }
-          })
-        }
-      })
     }
   }
 }
@@ -154,64 +114,21 @@ export default {
 
 <style scoped>
 #outline {
-  width: 270px;
-  max-height: calc(100% - 128px);
-  display: block;
+  width: 240px;
   position: fixed;
   top: 60px;
-  overflow: auto;
-  font-size: 14px;
-  background-color: #fff;
-  white-space: nowrap;
+  max-height: calc(100% - 128px)
 }
 
-#outline ul {
-  margin-left: 16px;
-  list-style: none;
-}
-
->>> #outline > ul {
-  padding-left: 0;
-  margin-left: 0;
-}
-
->>> #outline li > span {
-  cursor: pointer;
-  border-left: 1px solid transparent;
-  display: block;
-  padding-left: 8px;
-}
-
->>> #outline li > span.vditor-outline__item--current {
-  border-left: 1px solid #1976d2;
-  color: #1976d2;
-  background-color: #f6f8fa;
-}
-
->>> #outline li > span:hover {
-  color: #1976d2;
-  background-color: #f6f8fa;
-}
-
-.vditor-outline::-webkit-scrollbar {
-  display: inherit;
-}
-
-@media (max-width: 600px) {
-  .vditor-outline::-webkit-scrollbar {
-    display: none;
-  }
-}
-
->>> .comment-form {
-  margin: 0 !important;
+#outline::-webkit-scrollbar {
+  display: inherit
 }
 
 .btn-outline {
-  bottom: 64px;
+  bottom: 64px
 }
 
 .theme--light.v-btn:focus::before {
-  opacity: 0;
+  opacity: 0
 }
 </style>

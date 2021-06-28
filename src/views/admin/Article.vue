@@ -10,15 +10,15 @@
         clearable
         dense
         label="搜索"
-      ><!-- 新建 -->
+      >
+        <!-- 新建 -->
         <v-btn
           class="ml-2"
           height="40"
           slot="append-outer"
           color="primary"
           dark
-          to="/admin/edit"
-          target="_blank"
+          @click="dialog=!dialog"
         >
           <v-icon>mdi-plus</v-icon>
         </v-btn>
@@ -54,6 +54,7 @@
         </v-btn>
       </template>
     </v-data-table>
+    <edit></edit>
   </v-card>
 </template>
 
@@ -62,6 +63,9 @@ import { deleteArticle, findAllArticles } from '@/api/article'
 
 export default {
   name: 'Article',
+  components: {
+    Edit: () => import('@/views/admin/Edit')
+  },
   data () {
     return {
       // 表头

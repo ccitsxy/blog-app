@@ -1,87 +1,109 @@
 <template>
-  <v-container id="edit" class="ma-sm-1" fluid>
-    <v-form
-      ref="form"
-      lazy-validation
-    >
-      <v-text-field
-        v-model="article.title"
-        background-color="white"
-        outlined
-        clearable
-        dense
-        label="标题"
-        :rules="titleRules"
-        counter="50"
+  <v-dialog
+    v-model="dialog"
+    fullscreen
+    hide-overlay
+    transition="dialog-bottom-transition"
+  >
+    <v-card>
+      <v-toolbar
+        dark
+        color="primary"
       >
         <v-btn
-          class="ml-2"
-          height="40"
-          slot="append-outer"
-          color="primary"
+          icon
           dark
-          @click="publish()"
+          @click="dialog = false"
         >
-          发布
+          <v-icon>mdi-close</v-icon>
         </v-btn>
-      </v-text-field>
-      <v-textarea
-        v-model="article.description"
-        height="80"
-        no-resize
-        background-color="white"
-        outlined
-        clearable
-        dense
-        label="简介"
-        :rules="descriptionRules"
-        counter="200"
-        hide-details="auto"
-      ></v-textarea>
-      <v-row>
-        <v-col
-          cols="12"
-          md="6"
+        <v-toolbar-title>Settings</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-toolbar-items>
+          <v-btn
+            dark
+            text
+            @click="publish()"
+          >
+            Save
+          </v-btn>
+        </v-toolbar-items>
+      </v-toolbar>
+    </v-card>
+    <v-container id="edit" fluid>
+      <v-form
+        ref="form"
+        lazy-validation
+      >
+        <v-text-field
+          v-model="article.title"
+          background-color="white"
+          outlined
+          clearable
+          dense
+          label="标题"
+          :rules="titleRules"
+          counter="50"
         >
-          <v-select
-            v-model="article.category"
-            return-object
-            :items="category"
-            item-text="name"
-            item-value="cid"
-            :menu-props="{ bottom: true, offsetY: true }"
-            label="分类"
-            outlined
-            dense
-            clearable
-            hide-details="auto"
-            :rules="categoryRules"
-          ></v-select>
-        </v-col>
-        <v-col
-          cols="12"
-          md="6"
-        >
-          <v-select
-            v-model="article.tags"
-            return-object
-            :items="tags"
-            item-text="name"
-            item-value="tid"
-            :menu-props="{ bottom: true, offsetY: true }"
-            label="标签"
-            small-chips
-            outlined
-            dense
-            clearable
-            multiple
-            :rules="tagRules"
-          ></v-select>
-        </v-col>
-      </v-row>
-      <div id="vditor"></div>
-    </v-form>
-  </v-container>
+        </v-text-field>
+        <v-textarea
+          v-model="article.description"
+          height="80"
+          no-resize
+          background-color="white"
+          outlined
+          clearable
+          dense
+          label="简介"
+          :rules="descriptionRules"
+          counter="200"
+          hide-details="auto"
+        ></v-textarea>
+        <v-row>
+          <v-col
+            cols="12"
+            md="6"
+          >
+            <v-select
+              v-model="article.category"
+              return-object
+              :items="category"
+              item-text="name"
+              item-value="cid"
+              :menu-props="{ bottom: true, offsetY: true }"
+              label="分类"
+              outlined
+              dense
+              clearable
+              hide-details="auto"
+              :rules="categoryRules"
+            ></v-select>
+          </v-col>
+          <v-col
+            cols="12"
+            md="6"
+          >
+            <v-select
+              v-model="article.tags"
+              return-object
+              :items="tags"
+              item-text="name"
+              item-value="tid"
+              :menu-props="{ bottom: true, offsetY: true }"
+              label="标签"
+              small-chips
+              outlined
+              dense
+              clearable
+              multiple
+              :rules="tagRules"
+            ></v-select>
+          </v-col>
+        </v-row>
+        <div id="vditor"></div>
+      </v-form>
+    </v-container>
+  </v-dialog>
 </template>
 
 <script>
@@ -99,7 +121,7 @@ export default {
       article: {
         title: '',
         description: '',
-        markdown: '',
+        content: '',
         category: null,
         tags: []
       },
@@ -119,7 +141,8 @@ export default {
       ],
       category: [],
       tags: [],
-      contentEditor: ''
+      contentEditor: '',
+      dialog: null
     }
   },
   created () {
@@ -135,8 +158,8 @@ export default {
   },
   methods: {
     publish () {
-      this.article.markdown = this.contentEditor.getValue()
-      if (!(this.article.markdown.length - 1)) {
+      this.article.content = this.contentEditor.getHTML()
+      if (!(this.article.content.length - 1)) {
         this.contentEditor.tip('内容不能为空', 1000)
       } else if (this.$refs.form.validate()) {
         createOrUpdateArticle(this.article).then(() => {
@@ -175,7 +198,7 @@ export default {
           }
         },
         after: () => {
-          this.contentEditor.setValue(this.article.markdown)
+          this.contentEditor.setValue(this.contentEditor.html2md(this.article.content))
         }
       })
     }

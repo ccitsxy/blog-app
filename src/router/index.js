@@ -89,22 +89,14 @@ const routes = [
   {
     path: '/admin',
     component: () => import('../views/admin/Index'),
-    redirect: '/admin/edit',
+    redirect: '/admin/dashboard',
     children: [
       {
-        path: '/admin/edit',
-        name: '文章编辑',
-        component: () => import('../views/admin/Edit'),
+        path: '/admin/dashboard',
+        name: '首页',
+        component: () => import('../views/admin/Dashboard'),
         meta: {
-          title: '文章编辑-博客后台'
-        }
-      },
-      {
-        path: '/admin/edit/:aid',
-        name: '文章修改',
-        component: () => import('../views/admin/Edit'),
-        meta: {
-          title: '文章修改-博客后台'
+          title: '首页-博客后台'
         }
       },
       {
