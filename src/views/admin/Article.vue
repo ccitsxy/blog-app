@@ -316,11 +316,11 @@ export default {
     },
 
     save () {
-      this.article.content = this.contentEditor.getHTML()
-      if (!(this.article.content.length - 1)) {
+      this.editedItem.content = this.contentEditor.getHTML()
+      if (!(this.editedItem.content.length - 1)) {
         this.contentEditor.tip('内容不能为空', 1000)
       } else if (this.$refs.form.validate()) {
-        createOrUpdateArticle(this.article).then(() => {
+        createOrUpdateArticle(this.editedItem).then(() => {
           this.$dialog.message.success('发表成功', {
             position: 'top',
             timeout: 5000

@@ -25,3 +25,15 @@ export function login (user) {
     data: user
   })
 }
+/**
+ * POST /user/login : 登录
+ *
+ * @param user 用户
+ */
+export function register (user) {
+  return request({
+    method: 'post',
+    url: '/user/register',
+    data: user
+  })
+}

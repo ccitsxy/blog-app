@@ -11,14 +11,6 @@
               <v-card-text>
                 <v-form ref="login_form">
                   <v-text-field
-                    label="邮箱"
-                    name="email"
-                    prepend-icon="mdi-email"
-                    type="text"
-                    v-model="registerForm.email"
-                    :rules="[rules.required]"
-                  ></v-text-field>
-                  <v-text-field
                     label="用户名"
                     name="username"
                     prepend-icon="mdi-account"
@@ -33,15 +25,6 @@
                     prepend-icon="mdi-lock"
                     type="password"
                     v-model="registerForm.password"
-                    :rules="[rules.required]"
-                  ></v-text-field>
-                  <v-text-field
-                    id="password"
-                    label="重复密码"
-                    name="password"
-                    prepend-icon="mdi-repeat"
-                    type="password"
-                    v-model="registerForm.repass"
                     :rules="[rules.required]"
                   ></v-text-field>
                 </v-form>
@@ -72,6 +55,7 @@
 </template>
 
 <script>
+import { register } from '@/api/user'
 
 import { sync } from 'vuex-pathify'
 
@@ -84,13 +68,11 @@ export default {
     return {
       loginLoading: false,
       registerForm: {
-        email: '1127885451@qq.com',
         username: 'admin',
-        password: 'admin',
-        repass: ''
+        password: 'admin'
       },
       rules: {
-        required: value => !!value || 'Required.'
+        required: v => !!v || '不能为空'
       }
     }
   },
@@ -104,7 +86,7 @@ export default {
       const _this = this
       if (!_this.$refs.login_form.validate()) return
       // 表单验证成功
-      _this.$http.post(`${process.env.VUE_APP_BASE_API}/user/register`, this.registerForm).then((response) => {
+      register(this.registerForm).then((response) => {
         _this.token = response.data
         _this.loginLoading = true
         _this.$dialog.message.success('注册成功，请进行登录')
