@@ -62,7 +62,7 @@ import { sync } from 'vuex-pathify'
 export default {
   name: 'Register',
   components: {
-    AppFooter: () => import('@/components/Footer')
+    AppFooter: () => import('@/components/AppFooter')
   },
   data () {
     return {

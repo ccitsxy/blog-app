@@ -46,11 +46,11 @@ export default {
     }
   },
   components: {
-    AppDrawer: () => import('@/components/Drawer'),
+    AppDrawer: () => import('@/components/AppDrawer'),
     AppBar: () => import('@/components/AppBar'),
     AppView: () => import('@/components/AppView'),
-    AppFooter: () => import('@/components/Footer'),
-    AppFab: () => import('@/components/Fab')
+    AppFooter: () => import('@/components/AppFooter'),
+    AppFab: () => import('@/components/AppFab')
   },
   computed: {
     ...sync('drawer', [

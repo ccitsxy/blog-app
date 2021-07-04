@@ -9,7 +9,7 @@
 export default {
   name: 'AdminView',
   components: {
-    AdminFooter: () => import('@/components/Footer')
+    AdminFooter: () => import('@/components/AppFooter')
   }
 }
 </script>

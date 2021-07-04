@@ -65,7 +65,7 @@ import { sync } from 'vuex-pathify'
 export default {
   name: 'Login',
   components: {
-    AppFooter: () => import('@/components/Footer')
+    AppFooter: () => import('@/components/AppFooter')
   },
   data () {
     return {
